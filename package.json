@@ -1,5 +1,5 @@
 {
-  "name": "textlint-plugin-JTF-style",
+  "name": "textlint-plugin-jtf-style",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/azu/textlint-plugin-JTF-style.git"
