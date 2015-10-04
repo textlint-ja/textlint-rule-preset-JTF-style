@@ -36,6 +36,7 @@
   ],
   "devDependencies": {
     "babel": "^5.8.23",
+    "mocha": "^2.3.3",
     "textlint-tester": "^0.1.1"
   },
   "dependencies": {
