@@ -1,8 +1,7 @@
 // LICENSE : MIT
 "use strict";
+require("../src/");
 // test prh rule
-// LICENSE : MIT
-"use strict";
 import TextLintTester from "textlint-tester";
 var tester = new TextLintTester();
 // 実際のテストはymlファイル自体に書かれている
