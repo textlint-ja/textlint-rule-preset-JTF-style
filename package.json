@@ -1,0 +1,36 @@
+{
+  "name": "textlint-rule-jtf-style",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/azu/textlint-rule-JTF-style.git"
+  },
+  "author": "azu",
+  "email": "azuciao@gmail.com",
+  "homepage": "https://github.com/azu/textlint-rule-JTF-style",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/azu/textlint-rule-JTF-style/issues"
+  },
+  "version": "1.0.0",
+  "description": "JTF Style Guide for Translators Working into Japanese for textlint.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "textlint",
+    "english",
+    "japanese",
+    "translation"
+  ],
+  "devDependencies": {
+    "babel": "^5.8.23",
+    "textlint-tester": "^0.1.1"
+  },
+  "dependencies": {
+    "textlint-rule-helper": "^1.1.3"
+  }
+}
