@@ -1,4 +1,4 @@
-# textlint-rule-JTF-style
+# textlint-plugin-JTF-style
 
 [JTF日本語標準スタイルガイド（翻訳用）](https://www.jtf.jp/jp/style_guide/styleguide_top.html "JTF日本語標準スタイルガイド（翻訳用）") for [textlint](https://github.com/azu/textlint "textlint").
 

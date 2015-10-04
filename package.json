@@ -1,15 +1,15 @@
 {
-  "name": "textlint-rule-jtf-style",
+  "name": "textlint-plugin-JTF-style",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/azu/textlint-rule-JTF-style.git"
+    "url": "git+https://github.com/azu/textlint-plugin-JTF-style.git"
   },
   "author": "azu",
   "email": "azuciao@gmail.com",
-  "homepage": "https://github.com/azu/textlint-rule-JTF-style",
+  "homepage": "https://github.com/azu/textlint-plugin-JTF-style",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/azu/textlint-rule-JTF-style/issues"
+    "url": "https://github.com/azu/textlint-plugin-JTF-style/issues"
   },
   "version": "1.0.0",
   "description": "JTF Style Guide for Translators Working into Japanese for textlint.",
