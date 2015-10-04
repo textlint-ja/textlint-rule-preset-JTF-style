@@ -1,7 +1,10 @@
 // LICENSE : MIT
 "use strict";
 import {isUserWrittenNode} from "./util/node-util";
-// 1.2. 句読点の使用
+/*
+1.2.1. 句点(。)と読点(、)
+句読点には全角の「、」と「。」を使います。和文の句読点としてピリオド(.)とカンマ(,)を使用しません。「4.1.1 句点(。)」と「4.1.2 読点(、)」を参照してください。
+ */
 export default function punctuationMark(context) {
     let {Syntax, RuleError, report, getSource} = context;
     return {
