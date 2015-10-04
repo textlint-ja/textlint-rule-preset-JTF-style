@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import TextLintTester from "textlint-tester";
-import rule from "../src/1.2.2.ピリオド(.)とカンマ(,)";
+import rule from "../src/1.2.2";
 var tester = new TextLintTester();
 tester.run("1.2.2.ピリオド(.)とカンマ(,)", rule, {
     valid: [

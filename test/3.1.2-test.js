@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import TextLintTester from "textlint-tester";
-import rule from "../src/3.1.2.全角文字どうし";
+import rule from "../src/3.1.2";
 var tester = new TextLintTester();
 tester.run("3.1.2. 全角文字どうし", rule, {
     valid: [

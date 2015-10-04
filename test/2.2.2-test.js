@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import TextLintTester from "textlint-tester";
-import rule from "../src/2.2.2.算用数字と漢数字の使い分け";
+import rule from "../src/2.2.2";
 var tester = new TextLintTester();
 tester.run("2.2.2.算用数字と漢数字の使い分け", rule, {
     valid: [

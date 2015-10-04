@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import TextLintTester from "textlint-tester";
-import rule from "../src/4.1.1.句点(。)";
+import rule from "../src/4.1.1";
 var tester = new TextLintTester();
 tester.run("4.1.1.句点(。)", rule, {
     valid: [

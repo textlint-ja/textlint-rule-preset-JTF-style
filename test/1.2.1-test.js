@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import TextLintTester from "textlint-tester";
-import rule from "../src/1.2.1.句点(。)と読点(、)";
+import rule from "../src/1.2.1";
 var tester = new TextLintTester();
 tester.run("1.2.1.句点(。)と読点(、)", rule, {
     valid: [
