@@ -8,6 +8,6 @@ import prh from "textlint-rule-prh";
 import path from "path";
 export default function (context) {
     return prh(context, {
-        rulePaths: [path.join(__dirname, "dict", "2.2.3.一部の助数詞の表記.yml")]
+        rulePaths: [path.join(__dirname, "..", "dict", "2.2.3.一部の助数詞の表記.yml")]
     });
 }
