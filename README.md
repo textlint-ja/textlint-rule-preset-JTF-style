@@ -4,7 +4,26 @@
 
 ## Installation
 
-- [ ] Describe the installation process
+    npm install textlint-plugin-jtf-style
+    
+## Usage
+
+    npm install texlint textlint-plugin-jtf-style
+    textlint --plugin textlint-plugin-jtf-style
+
+`.textlintrc`
+
+```js
+{
+    "plugins": [
+        "jtf-style"
+    ],
+    "rules": {
+        // 特定のルールを無効化
+        "1.2.2.ピリオド(.)とカンマ(,)": false
+    }
+}
+```
 
 ## Feature
 
