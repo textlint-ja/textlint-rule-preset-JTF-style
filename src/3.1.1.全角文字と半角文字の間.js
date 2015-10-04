@@ -1,12 +1,12 @@
 // LICENSE : MIT
 "use strict";
-import {isUserWrittenNode} from "./util/node-util";
 /*
 3.1.1. 全角文字と半角文字の間
 原則として、全角文字と半角文字の間にスペースを入れません。
 
 。ただしカタカナ複合語の場合を除きます。「2.1.7 カタカナ複合語」を参照してください。
  */
+import {isUserWrittenNode} from "./util/node-util";
 export default function punctuationMark(context) {
     let {Syntax, RuleError, report, getSource} = context;
     return {
