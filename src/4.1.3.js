@@ -17,7 +17,7 @@ export default function punctuationMark(context) {
             }
             let text = getSource(node);
             // 和文. はエラー
-            if (/[亜-熙ぁ-んァ-ヶ]\./.test(text)) {
+            if (/([\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]|[\uD840-\uD87F][\uDC00-\uDFFF]|[ぁ-んァ-ヶ])\./.test(text)) {
                 report(node, new RuleError("和文の句読点としてはピリオドを使用しません。"));
             }
         }

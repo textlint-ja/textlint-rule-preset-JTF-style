@@ -15,7 +15,7 @@ export default function punctuationMark(context) {
                 return;
             }
             let text = getSource(node);
-            let matchReg = /[亜-熙ぁ-んァ-ヶ] [亜-熙ぁ-んァ-ヶ]/g;
+            let matchReg = /([\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]|[\uD840-\uD87F][\uDC00-\uDFFF]|[ぁ-んァ-ヶ]) ([\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]|[\uD840-\uD87F][\uDC00-\uDFFF]|[ぁ-んァ-ヶ])/g;
             let katakakana = /[ァ-ヶ] [ァ-ヶ]/;
             if (matchReg.test(text)) {
                 var matches = text.match(matchReg);
