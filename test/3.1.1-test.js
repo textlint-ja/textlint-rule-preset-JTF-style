@@ -7,7 +7,9 @@ tester.run("3.1.1. 全角文字と半角文字の間", rule, {
     valid: [
         "JTF標準",
         "This is a pen.",
-        "1. `./*.*`にマッチするファイルを取得 = Readable Stream"
+        "1. `./*.*`にマッチするファイルを取得 = Readable Stream",
+        `[CONTRIBUTING.md](./CONTRIBUTING.md)に、書籍で扱うべきプラグインアーキテクチャのProposalの書き方や
+Pull Request、コミットのやりかたなどが書かれています。`
     ],
     invalid: [
         {

@@ -16,8 +16,8 @@ export default function punctuationMark(context) {
             }
             let text = getSource(node);
             // アルファベットと全角の間は半角スペースではない
-            let betweenHanAndZen = /[A-Za-z0-9](\s)(?:[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]|[\uD840-\uD87F][\uDC00-\uDFFF]|[ぁ-んァ-ヶ])/;
-            let betweenZenAndHan = /(?:[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]|[\uD840-\uD87F][\uDC00-\uDFFF]|[ぁ-んァ-ヶ])(\s)[A-Za-z0-9]/;
+            let betweenHanAndZen = /[A-Za-z0-9]( )(?:[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]|[\uD840-\uD87F][\uDC00-\uDFFF]|[ぁ-んァ-ヶ])/;
+            let betweenZenAndHan = /(?:[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]|[\uD840-\uD87F][\uDC00-\uDFFF]|[ぁ-んァ-ヶ])( )[A-Za-z0-9]/;
             var match = text.match(betweenZenAndHan) || text.match(betweenHanAndZen);
             if (match) {
                 report(node, new RuleError("原則として、全角文字と半角文字の間にスペースを入れません。", match.index + 1));
