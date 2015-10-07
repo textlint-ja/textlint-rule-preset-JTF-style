@@ -122,22 +122,25 @@ export default function (context) {
                     });
                     return all.replace(match, result);
                 });
-                report(node, new RuleError(`${text} => ${expected}`));
+                report(node, new RuleError(`${text} => ${expected}
+数量を表現し、数を数えられるものは算用数字を使用します。任意の数に置き換えても通用する語句がこれに該当します。`));
             };
 
 
             // 算用数字 -> 漢数字
+
             let toKanNumber = (text, pattern, match) => {
                 var expected = text.replace(pattern, function (all, match) {
                     return all.replace(match, _num2ja(match, {'with_arabic': false}));
                 });
-                report(node, new RuleError(`${text} => ${expected}`));
+                report(node, new RuleError(`${text} => ${expected}
+慣用的表現、熟語、概数、固有名詞、副詞など、漢数字を使用することが一般的な語句では漢数字を使います。`));
             };
 
+            // 数えられる数字は算用数字を使う
             matchToReplace(text,
                 /([一二三四五六七八九十壱弐参拾百〇]+)[兆億万]/g, toNumber
-            )
-            ;
+            );
             matchToReplace(text, /([一二三四五六七八九十壱弐参拾百〇]+)つ/g, toNumber);
             matchToReplace(text, /([一二三四五六七八九十壱弐参拾百〇]+)回/g, toNumber);
             matchToReplace(text, /([一二三四五六七八九十壱弐参拾百〇]+)か月/g, toNumber);
@@ -145,16 +148,17 @@ export default function (context) {
             matchToReplace(text, /([一二三四五六七八九十壱弐参拾百〇]+)進法/g, toNumber);
             matchToReplace(text, /([一二三四五六七八九十壱弐参拾百〇]+)次元/g, toNumber);
             //  漢数字を使う
-            matchToReplace(text, /世界([0-9]+)/g, toKanNumber);
-            matchToReplace(text, /([0-9]+)時的/g, toKanNumber);
-            matchToReplace(text, /([0-9]+)部分/g, toKanNumber);
-            matchToReplace(text, /第([0-9]+)者/g, toKanNumber);
-            matchToReplace(text, /([0-9]+)種/g, toKanNumber);
-            matchToReplace(text, /([0-9]+)部の/g, toKanNumber);
-            matchToReplace(text, /([0-9]+)番に/g, toKanNumber);
-            matchToReplace(text, /([0-9]+)倍/g, toKanNumber);
+            // 慣用的表現、熟語、概数、固有名詞、副詞など、漢数字を使用することが一般的な語句では漢数字を使いま す。
+            matchToReplace(text, /世界(1)/g, toKanNumber);
+            matchToReplace(text, /(1)時的/g, toKanNumber);
+            matchToReplace(text, /(1)部分/g, toKanNumber);
+            matchToReplace(text, /第(3)者/g, toKanNumber);
+            matchToReplace(text, /(1)種/g, toKanNumber);
+            matchToReplace(text, /(1)部の/g, toKanNumber);
+            matchToReplace(text, /(1)番に/g, toKanNumber);
+            matchToReplace(text, /数([0-9]+)倍/g, toKanNumber);
             matchToReplace(text, /([0-9]+)次関数/g, toKanNumber);
-            matchToReplace(text, /([0-9]+)大陸/g, toKanNumber);
+            matchToReplace(text, /(5)大陸/g, toKanNumber);
         }
     }
 }
