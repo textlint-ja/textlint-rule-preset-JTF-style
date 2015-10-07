@@ -6,11 +6,21 @@ var tester = new TextLintTester();
 tester.run("3.1.1. 全角文字と半角文字の間", rule, {
     valid: [
         "JTF標準",
-        "This is a pen."
+        "This is a pen.",
+        "1. `./*.*`にマッチするファイルを取得 = Readable Stream"
     ],
     invalid: [
         {
             text: "JTF 標準",
+            errors: [
+                {
+                    message: "原則として、全角文字と半角文字の間にスペースを入れません。",
+                    column: 3
+                }
+            ]
+        },
+        {
+            text: "これは Unicode",
             errors: [
                 {message: "原則として、全角文字と半角文字の間にスペースを入れません。"}
             ]

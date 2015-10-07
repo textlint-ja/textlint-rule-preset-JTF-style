@@ -15,6 +15,7 @@ export default function punctuationMark(context) {
                 return;
             }
             let text = getSource(node);
+            // 全角同士の間は半角スペースを入れない
             let matchReg = /([\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]|[\uD840-\uD87F][\uDC00-\uDFFF]|[ぁ-んァ-ヶ]) ([\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]|[\uD840-\uD87F][\uDC00-\uDFFF]|[ぁ-んァ-ヶ])/g;
             let katakakana = /[ァ-ヶ] [ァ-ヶ]/;
             if (matchReg.test(text)) {
