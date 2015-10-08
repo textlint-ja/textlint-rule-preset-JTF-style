@@ -21,8 +21,9 @@ export default function punctuationMark(context) {
             let text = getSource(node);
             // 和文で半角の?は利用しない
             var matchHanQuestion = /([\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]|[\uD840-\uD87F][\uDC00-\uDFFF]|[ぁ-んァ-ヶ])\?/;
-            if (matchHanQuestion.test(text)) {
-                return report(node, new RuleError("疑問符(？)を使用する場合は「全角」で表記します。"))
+            var index = text.search(matchHanQuestion);
+            if (index !== -1) {
+                return report(node, new RuleError("疑問符(？)を使用する場合は「全角」で表記します。", index + 1))
             }
         }
     };
