@@ -21,7 +21,6 @@ export default function punctuationMark(context) {
                 // 例外として、住所や電話番号の区切りにはハイフン(-)を使用できる
                 // ?-? を取り出して \d-\d ならOK、そうでないならダメ
                 var bufOfIndex = text.slice(index - 1, index + 2);
-                console.log(bufOfIndex);
                 if (!/^[0-9a-z]\-[0-9a-z]$/.test(bufOfIndex)) {
                     report(node, new RuleError(`原則として和文ではハイフン(-)を使用しません。
 例外は、住所や電話番号の区切りに使う場合です。`, index));
