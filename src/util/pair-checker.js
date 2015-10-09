@@ -37,7 +37,7 @@ export function checkPair(context, { left, right }) {
                 });
             }
             // right を探す
-            let pairIndex = text.indexOf(right, index);
+            let pairIndex = text.indexOf(right, index + 1);
             if (pairIndex !== -1) {
                 matchParentheses.pop();
             }
