@@ -8,7 +8,7 @@
     
 ## Usage
 
-    npm install texlint textlint-plugin-jtf-style
+    npm install -g texlint textlint-plugin-jtf-style
     textlint --plugin textlint-plugin-jtf-style
 
 `.textlintrc`
@@ -423,9 +423,9 @@
 
 ## License
 
-by Japan Translation Federation (CC BY-SA) www.jtf.jp
-本著作物は「JTF日本語標準スタイルガイド2.0」(JTF, CC BY-SA)を改変して作成したものです。
+    by Japan Translation Federation (CC BY-SA) www.jtf.jp
+    本著作物は「JTF日本語標準スタイルガイド2.0」(JTF, CC BY-SA)を改変して作成したものです。
 
 - [JTFスタイルガイドとCCライセンスの素敵な関係 | JTFジャーナルWeb](http://journal.jtf.jp/update/id=306 "JTFスタイルガイドとCCライセンスの素敵な関係 | JTFジャーナルWeb")
 
-その他のコードはMITライセンス
+その他のコードはMITライセンスです。
