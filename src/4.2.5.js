@@ -17,7 +17,6 @@ export default function punctuationMark(context) {
             var matchHanQuestion = /\d(~)\d/;
             var index = text.search(matchHanQuestion);
             if (index !== -1) {
-                console.log(index);
                 return report(node, new RuleError("数値の範囲を示す場合には全角の〜を使用します。", index + 1 + 1));
             }
         }
