@@ -6,15 +6,15 @@
 
 パラグラフをまたぐかぎかっこが存在しないことを検証する
  */
-import Helper from "textlint-rule-helper";
+import {RuleHelper} from "textlint-rule-helper";
 export default function (context) {
     let {Syntax, RuleError, report, getSource} = context;
-    let helper = new Helper(context);
+    let helper = new RuleHelper(context);
     let isInParagraph = false;
     let matchParentheses = [];
     return {
         [Syntax.Paragraph](node){
-            if (!helper.isChildNode(node, [Syntax.BlockQuote])) {
+            if (helper.isChildNode(node, [Syntax.BlockQuote])) {
                 return;
             }
             isInParagraph = true
@@ -25,13 +25,15 @@ export default function (context) {
             }
             let text = getSource(node);
             // 「 を探す
-            var index = text.indexOf("「");
-            matchParentheses.push({
-                node,
-                index
-            });
+            let index = text.indexOf("「");
+            if(index !== -1) {
+                matchParentheses.push({
+                    node,
+                    index
+                });
+            }
             // 」 を探す
-            var pairIndex = text.indexOf("」", index);
+            let pairIndex = text.indexOf("」", index);
             if (pairIndex !== -1) {
                 matchParentheses.pop();
             }
