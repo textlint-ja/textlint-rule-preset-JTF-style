@@ -7,7 +7,7 @@
 ただし和文でも、見出し語とその説明の間にコロンを使う場合があります。使用する場合は全角で表記します。
  */
 import {isUserWrittenNode} from "./util/node-util";
-export default function punctuationMark(context) {
+export default function (context) {
     let {Syntax, RuleError, report, getSource} = context;
     return {
         [Syntax.Str](node){

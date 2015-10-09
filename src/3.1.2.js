@@ -7,7 +7,7 @@ import {isUserWrittenNode} from "./util/node-util";
 原則として、全角文字どうしの間にスペースを入れません。ただしカタカナ複合語の場合を除きます。
 「2.1.7 カタカナ複合語」を参照してください。
  */
-export default function punctuationMark(context) {
+export default function (context) {
     let {Syntax, RuleError, report, getSource} = context;
     return {
         [Syntax.Str](node){

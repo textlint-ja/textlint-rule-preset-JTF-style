@@ -11,7 +11,7 @@
 文中に疑問符を使用する場合はスペースを挿入しません。
  */
 import {isUserWrittenNode} from "./util/node-util";
-export default function punctuationMark(context) {
+export default function (context) {
     let {Syntax, RuleError, report, getSource} = context;
     return {
         [Syntax.Str](node){

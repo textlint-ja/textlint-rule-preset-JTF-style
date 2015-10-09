@@ -10,7 +10,7 @@ Note: ここでのダッシュはU+2012-U+2015とする
 https://ja.wikipedia.org/wiki/%E3%83%80%E3%83%83%E3%82%B7%E3%83%A5_%28%E8%A8%98%E5%8F%B7%29
  */
 import {isUserWrittenNode} from "./util/node-util";
-export default function punctuationMark(context) {
+export default function (context) {
     let {Syntax, RuleError, report, getSource} = context;
     return {
         [Syntax.Str](node){

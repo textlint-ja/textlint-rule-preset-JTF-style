@@ -8,7 +8,7 @@
 和文の句読点としては使用しません。「1.2.2 ピリオド(.)とカンマ(,)」を 参照してください
  */
 import {isUserWrittenNode} from "./util/node-util";
-export default function punctuationMark(context) {
+export default function (context) {
     let {Syntax, RuleError, report, getSource} = context;
     return {
         [Syntax.Str](node){

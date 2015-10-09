@@ -7,7 +7,7 @@
 例外は、住所や電話番号の区切りに使う場合です。
  */
 import {isUserWrittenNode} from "./util/node-util";
-export default function punctuationMark(context) {
+export default function (context) {
     let {Syntax, RuleError, report, getSource} = context;
     return {
         [Syntax.Str](node){

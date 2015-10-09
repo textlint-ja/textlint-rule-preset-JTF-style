@@ -12,7 +12,7 @@
 文中に感嘆符を使用する場合はスペースを挿入しません。下記を参考にしてください。
  */
 import {isUserWrittenNode} from "./util/node-util";
-export default function punctuationMark(context) {
+export default function (context) {
     let {Syntax, RuleError, report, getSource} = context;
     return {
         [Syntax.Str](node){

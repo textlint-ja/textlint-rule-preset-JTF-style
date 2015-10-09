@@ -15,7 +15,7 @@ const leftBrackets = brackets.map(bracket => {
 const rightBrackets = brackets.map(bracket => {
     return bracket + " ";
 });
-export default function punctuationMark(context) {
+export default function (context) {
     let {Syntax, RuleError, report, getSource} = context;
     return {
         [Syntax.Str](node){
