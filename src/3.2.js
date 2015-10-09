@@ -14,6 +14,7 @@ export default function (context) {
                 return;
             }
             let text = getSource(node);
+            // カタカナ(カタカナ以外)カタカナ のパターンを取り出す
             let matchReg = /[ァ-ヶー]([^[ァ-ヶー])[ァ-ヶー]/;
             let match = text.match(matchReg);
             if (match) {
