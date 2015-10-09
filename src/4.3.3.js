@@ -6,48 +6,10 @@
 
 パラグラフをまたぐかぎかっこが存在しないことを検証する
  */
-import {RuleHelper} from "textlint-rule-helper";
+import {checkPair} from "./util/pair-checker";
 export default function (context) {
-    let {Syntax, RuleError, report, getSource} = context;
-    let helper = new RuleHelper(context);
-    let isInParagraph = false;
-    let matchParentheses = [];
-    return {
-        [Syntax.Paragraph](node){
-            if (helper.isChildNode(node, [Syntax.BlockQuote])) {
-                return;
-            }
-            isInParagraph = true
-        },
-        [Syntax.Str](node){
-            if (!isInParagraph) {
-                return;
-            }
-            let text = getSource(node);
-            // 「 を探す
-            let index = text.indexOf("「");
-            if(index !== -1) {
-                matchParentheses.push({
-                    node,
-                    index
-                });
-            }
-            // 」 を探す
-            let pairIndex = text.indexOf("」", index);
-            if (pairIndex !== -1) {
-                matchParentheses.pop();
-            }
-        },
-        [`${Syntax.Paragraph}:exit`](node){
-            isInParagraph = false;
-            // 全てのかっこの対が見つかったなら配列は空になる
-            if (matchParentheses.length === 0) {
-                return;
-            }
-
-            matchParentheses.forEach(({node, index}) => {
-                report(node, new RuleError("対となるかぎかっこ「」が見つかりません。", index));
-            });
-        }
-    };
+    return checkPair(context, {
+        left: "「",
+        right: "」"
+    });
 }
