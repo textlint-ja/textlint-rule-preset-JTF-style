@@ -1,0 +1,379 @@
+# This dictionary is based on http://www.jtf.jp/jp/style_guide/jtfstylechecker.html
+# テクニカルコミュニケーター協会> 外来語（カタカナ）表記ガイドライン http://www.jtca.org/standardization/
+# TODO: [WIP] not complete
+version: 1
+rules:
+  - expected: アドベンチャー
+    patterns: /アドベンチャ[^ー]/
+
+  - expected: アイデンティティー
+    patterns: /アイデンティティ[^ー]/
+  
+  - expected: アクセサリー
+    patterns: /アクセサリ[^ー]/
+  
+  - expected: アセンブラー
+    patterns: /アセンブラ[^ー]/
+  
+  - expected: アダプター
+    patterns: /アダプタ[^ー]/
+  
+  - expected: アドバイザー
+    patterns: /アドバイザ[^ー]/
+  
+  - expected: アブソーバー
+    patterns: /アブソーバ[^ー]/
+  
+  - expected: イレーサー
+    patterns: /イレーサ[^ー]/
+  
+  - expected: インジケーター
+    patterns: /インジケータ[^ー]/
+  
+  - expected: インストラクター
+    patterns: /インストラクタ[^ー]/
+  
+  - expected: インタビュー
+    patterns: /インタビュ[^ー]/
+  
+  - expected: エクスプローラー
+    patterns: /エクスプローラ[^ー]/
+  
+  - expected: エスカレーター
+    patterns: /エスカレータ[^ー]/
+  
+  - expected: エディター
+    patterns: /エディタ[^ー]/
+  
+  - expected: エネルギー
+    patterns: /エネルギ[^ー]/
+  
+  - expected: エレベーター
+    patterns: /エレベータ[^ー]/
+  
+  - expected: エントリー
+    patterns: /エントリ[^ー]/
+  
+  - expected: オペレーター
+    patterns: /オペレータ[^ー]/
+  
+  - expected: カウンター
+    patterns: /カウンタ[^ー]/
+  
+  - expected: カスタマー
+    patterns: /カスタマ[^ー]/
+  
+  - expected: カテゴリー
+    patterns: /カテゴリ[^ー]/
+  
+  - expected: カプラー
+    patterns: /カプラ[^ー]/
+  
+  - expected: カレンダー
+    patterns: /カレンダ[^ー]/
+  
+  - expected: キャラクター
+    patterns: /キャラクタ[^ー]/
+  
+  - expected: クーラー
+    patterns: /クーラ[^ー]/
+  
+  - expected: クリーナー
+    patterns: /クリーナ[^ー]/
+  
+  - expected: コーディネーター
+    patterns: /コーディネータ[^ー]/
+  
+  - expected: コーナー
+    patterns: /コーナ[^ー]/
+  
+  - expected: コネクター
+    patterns: /コネクタ[^ー]/
+  
+  - expected: コミュニティー
+    patterns: /コミュニティ[^ー]/
+  
+  - expected: コンダクター
+    patterns: /コンダクタ[^ー]/
+  
+  - expected: コンデンサー
+    patterns: /コンデンサ[^ー]/
+  
+  - expected: コントローラー
+    patterns: /コントローラ[^ー]/
+  
+  - expected: コンバーター
+    patterns: /コンバータ[^ー]/
+  
+  - expected: コンパイラー
+    patterns: /コンパイラ[^ー]/
+  
+  - expected: コンピューター
+    patterns: /コンピュータ[^ー]/
+  
+  - expected: サーバー
+    patterns: /サーバ[^ー]/
+  
+  - expected: サマリー
+    patterns: /サマリ[^ー]/
+  
+  - expected: ジェネレーター
+    patterns: /ジェネレータ[^ー]/
+  
+  - expected: シミュレーター
+    patterns: /シミュレータ[^ー]/
+  
+  - expected: シャッター
+    patterns: /シャッタ[^ー]/
+  
+  - expected: シリンダー
+    patterns: /シリンダ[^ー]/
+  
+  - expected: シンナー
+    patterns: /シンナ[^ー]/
+  
+  - expected: スーパーバイザー
+    patterns: /スーパーバイザ[^ー]/
+  
+  - expected: スキャナー
+    patterns: /スキャナ[^ー]/
+  
+  - expected: スタッカー
+    patterns: /スタッカ[^ー]/
+  
+  - expected: セーバー
+    patterns: /セーバ[^ー]/
+  
+  - expected: セーフティー
+    patterns: /セーフティ[^ー]/
+  
+  - expected: セキュリティー
+    patterns: /セキュリティ[^ー]/
+  
+  - expected: セパレーター
+    patterns: /セパレータ[^ー]/
+  
+  - expected: セレクター
+    patterns: /セレクタ[^ー]/
+  
+  - expected: センサー
+    patterns: /センサ[^ー]/
+  
+  - expected: ソーター
+    patterns: /ソータ[^ー]/
+  
+  - expected: ダイアリー
+    patterns: /ダイアリ[^ー]/
+  
+  - expected: タイプライター
+    patterns: /タイプライタ[^ー]/
+  
+  - expected: タイマー
+    patterns: /タイマ[^ー]/
+  
+  - expected: チャージャー
+    patterns: /チャージャ[^ー]/
+  
+  - expected: ディレクター
+    patterns: /ディレクタ[^ー]/
+  
+  - expected: ディレクトリー
+    patterns: /ディレクトリ[^ー]/
+  
+  - expected: デコーダー
+    patterns: /デコーダ[^ー]/
+  
+  - expected: デリバリー
+    patterns: /デリバリ[^ー]/
+  
+  - expected: ドライバー
+    patterns: /ドライバ[^ー]/
+  
+  - expected: トランシーバー
+    patterns: /トランシーバ[^ー]/
+  
+  - expected: トランスミッター
+    patterns: /トランスミッタ[^ー]/
+  
+  - expected: トレーナー
+    patterns: /トレーナ[^ー]/
+  
+  - expected: パーティー
+    patterns: /パーティ[^ー]/
+  
+  - expected: バイナリー
+    patterns: /バイナリ[^ー]/
+  
+  - expected: ハイパー
+    patterns: /ハイパ[^ー]/
+  
+  - expected: バインダー
+    patterns: /バインダ[^ー]/
+  
+  - expected: バインダリー
+    patterns: /バインダリ[^ー]/
+  
+  - expected: バッテリー
+    patterns: /バッテリ[^ー]/
+  
+  - expected: バッファー
+    patterns: /バッファ[^ー]/
+  
+  - expected: バナー
+    patterns: /バナ[^ー]/
+  
+  - expected: バラエティー
+    patterns: /バラエティ[^ー]/
+  
+  - expected: パラメーター
+    patterns: /パラメータ[^ー]/
+  
+  - expected: ハンディー
+    patterns: /ハンディ[^ー]/
+  
+  - expected: ハンドラー
+    patterns: /ハンドラ[^ー]/
+  
+  - expected: ビューアー
+    patterns: /ビューア[^ー]/
+  
+  - expected: ファインダー
+    patterns: /ファインダ[^ー]/
+  
+  - expected: ファミリー
+    patterns: /ファミリ[^ー]/
+  
+  - expected: フィーダー
+    patterns: /フィーダ[^ー]/
+  
+  - expected: フィニッシャー
+    patterns: /フィニッシャ[^ー]/
+  
+  - expected: フィルター
+    patterns: /フィルタ[^ー]/
+  
+  - expected: フォルダー
+    patterns: /フォルダ[^ー]/
+  
+  - expected: フッター
+    patterns: /フッタ[^ー]/
+  
+  - expected: フューザー
+    patterns: /フューザ[^ー]/
+  
+  - expected: プライマリー
+    patterns: /プライマリ[^ー]/
+  
+  - expected: ブラウザー
+    patterns: /ブラウザ[^ー]/
+  
+  - expected: プリンター
+    patterns: /プリンタ[^ー]/
+  
+  - expected: プレーヤー
+    patterns: /プレーヤ[^ー]/
+  
+  - expected: プロジェクター
+    patterns: /プロジェクタ[^ー]/
+  
+  - expected: プロセッサー
+    patterns: /プロセッサ[^ー]/
+  
+  - expected: プロッター
+    patterns: /プロッタ[^ー]/
+  
+  - expected: フロッピー
+    patterns: /フロッピ[^ー]/
+  
+  - expected: プロバイダー
+    patterns: /プロバイダ[^ー]/
+  
+  - expected: ヘッダー
+    patterns: /ヘッダ[^ー]/
+  
+  - expected: ポインター
+    patterns: /ポインタ[^ー]/
+  
+  - expected: ボディー
+    patterns: /ボディ[^ー]/
+  
+  - expected: ポリシー
+    patterns: /ポリシ[^ー]/
+  
+  - expected: マーカー
+    patterns: /マーカ[^ー]/
+  
+  - expected: マスター
+    patterns: /マスタ[^ー]/
+  
+  - expected: マネージャー
+    patterns: /マネージャ[^ー]/
+  
+  - expected: メーカー
+    patterns: /メーカ[^ー]/
+  
+  - expected: メーター
+    patterns: /メータ[^ー]/
+  
+  - expected: メモリー
+    patterns: /メモリ[^ー]/
+  
+  - expected: メロディー
+    patterns: /メロディ[^ー]/
+  
+  - expected: メンバー
+    patterns: /メンバ[^ー]/
+  
+  - expected: モーター
+    patterns: /モータ[^ー]/
+  
+  - expected: モジュラー
+    patterns: /モジュラ[^ー]/
+  
+  - expected: モニター
+    patterns: /モニタ[^ー]/
+  
+  - expected: ユーザー
+    patterns: /ユーザ[^ー]/
+  
+  - expected: ユーティリティー
+    patterns: /ユーティリティ[^ー]/
+  
+  - expected: ライター
+    patterns: /ライタ[^ー]/
+  
+  - expected: ライブラリー
+    patterns: /ライブラリ[^ー]/
+  
+  - expected: ラスター
+    patterns: /ラスタ[^ー]/
+  
+  - expected: リーダー
+    patterns: /リーダ[^ー]/
+  
+  - expected: リポジトリー
+    patterns: /リポジトリ[^ー]/
+  
+  - expected: ルーラー
+    patterns: /ルーラ[^ー]/
+  
+  - expected: レイヤー
+    patterns: /レイヤ[^ー]/
+  
+  - expected: レーダー
+    patterns: /レーダ[^ー]/
+  
+  - expected: レコーダー
+    patterns: /レコーダ[^ー]/
+  
+  - expected: レシーバー
+    patterns: /レシーバ[^ー]/
+  
+  - expected: レジスター
+    patterns: /レジスタ[^ー]/
+  
+  - expected: レジストリー
+    patterns: /レジストリ[^ー]/
+  
+  - expected: ローラー
+    patterns: /ローラ[^ー]/
