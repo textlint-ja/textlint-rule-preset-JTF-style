@@ -5,6 +5,8 @@
 文章の内容に応じて、敬体、常体、体言止めを使います。
 いずれの場合も、複数の文体をできるだけ混在させないことが重要です。
 通常、文末に句点(。)を付けませんが、複数の文章になる場合は句点を使用します。
+
+キャプション間で文体が混ざっていないことを確認する。
  */
 import {analyzeDesumasu, analyzeDearu} from "analyze-desumasu-dearu";
 export default function (context) {
@@ -12,12 +14,19 @@ export default function (context) {
     let desumasuList = [];
     let dearuList = [];
 
-    function reportResult(list, message) {
+    const imagePaddingLet = 2;// ![ の分paddingを付ける
+    function reportResult(list, {desumasu,dearu}) {
         list.forEach(({node, matches}) => {
             matches.forEach(match => {
+                let message;
+                if (desumasu) {
+                    message = `図表のキャプションを敬体(ですます調)に統一して下さい。\n図表のキャプション内で敬体、常体を混在させないことが重要です。\n"${match.value}"が常体(である調)です。`
+                } else if (dearu) {
+                    message = `図表のキャプションを常体(である調)に統一して下さい。\n図表のキャプション内で敬体、常体を混在させないことが重要です。\n"${match.value}"が敬体(ですます調)です。`
+                }
                 report(node, new RuleError(message, {
                     line: match.lineNumber - 1,
-                    column: match.colorIndex
+                    column: match.columnIndex + imagePaddingLet
                 }));
             });
         });
@@ -42,15 +51,23 @@ export default function (context) {
             }
         },
         [`${Syntax.Document}:exit`](){
-            if (desumasuList.length === 0 || dearuList.length === 0) {
+            let desumasuCount = desumasuList.reduce((count, {matches}) => count + matches.length, 0);
+            let dearuCount = dearuList.reduce((count, {matches}) => count + matches.length, 0);
+            if (desumasuCount === 0 || dearuCount === 0) {
                 return;
             }
-            if (desumasuList.length > dearuList.length) {
-                reportResult(dearuList, "図表のキャプションをですます調(敬体)に統一して下さい。図表のキャプション内で敬体、常体を混在させないことが重要です");
-            } else if (desumasuList.length < dearuList.length) {
-                reportResult(desumasuList, "図表のキャプションをである調(常体)に統一して下さい。図表のキャプション内で敬体、常体を混在させないことが重要です");
+            if (desumasuCount > dearuCount) {
+                reportResult(dearuList, {
+                    desumasu: true
+                });
+            } else if (desumasuCount < dearuCount) {
+                reportResult(desumasuList, {
+                    dearu: true
+                });
             } else {
-                reportResult(dearuList, "図表のキャプションをですます調(敬体)に統一して下さい。図表のキャプション内で敬体、常体を混在させないことが重要です");
+                reportResult(dearuList, {
+                    desumasu: true
+                });
             }
         }
     }
