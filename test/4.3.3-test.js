@@ -41,7 +41,7 @@ tester.run("4.3.3.かぎかっこ「」", rule, {
             errors: [
                 {
                     message: "「の対となる」が見つかりません。「」",
-                    column: 0
+                    column: 2
                 }
             ]
         }

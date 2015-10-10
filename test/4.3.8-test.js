@@ -44,7 +44,7 @@ tester.run("4.3.8.一重引用符''", rule, {
             errors: [
                 {
                     message: "'の対となる'が見つかりません。''",
-                    column: 0
+                    column: 2
                 }
             ]
         }

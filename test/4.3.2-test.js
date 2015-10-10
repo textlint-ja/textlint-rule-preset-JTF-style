@@ -11,11 +11,20 @@ tester.run("4.3.2.大かっこ［］", rule, {
     ],
     invalid: [
         {
-            text: "\\[ファイル]メニュー",// 半角かっこ Markdown的に意味を持つのでエスケープ
+            text: "半角[かっこ",// 半角かっこ Markdown的に意味を持つので片方ずつ
             errors: [
                 {
                     message: "半角の大かっこ[]が使用されています。",
-                    column: 0
+                    column: 3
+                }
+            ]
+        },
+        {
+            text: "半角]かっこ",// 半角かっこ Markdown的に意味を持つので片方ずつ
+            errors: [
+                {
+                    message: "半角の大かっこ[]が使用されています。",
+                    column: 3
                 }
             ]
         }
