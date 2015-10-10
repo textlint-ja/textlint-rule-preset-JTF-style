@@ -9,5 +9,15 @@ describe("index-test", function () {
                 assert(index.rulesConfig[ruleName] !== undefined);
             });
         });
+        it("should not ref same function", function () {
+            Object.keys(index.rules).forEach(ruleName => {
+                let rule = index.rules[ruleName];
+                Object.keys(index.rules).forEach(otherRuleName => {
+                    if (otherRuleName !== ruleName) {
+                        assert(rule !== index.rules[otherRuleName]);
+                    }
+                });
+            });
+        });
     });
 });
