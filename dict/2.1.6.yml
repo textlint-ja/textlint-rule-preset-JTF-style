@@ -3,377 +3,377 @@
 # TODO: [WIP] not complete
 version: 1
 rules:
-  - expected: アドベンチャー
-    patterns: /アドベンチャ[^ー]/
+  - expected: アドベンチャー$1
+    patterns: /アドベンチャ([^ー])/
 
-  - expected: アイデンティティー
-    patterns: /アイデンティティ[^ー]/
+  - expected: アイデンティティー$1
+    patterns: /アイデンティティ([^ー])/
   
-  - expected: アクセサリー
-    patterns: /アクセサリ[^ー]/
+  - expected: アクセサリー$1
+    patterns: /アクセサリ([^ー])/
   
-  - expected: アセンブラー
-    patterns: /アセンブラ[^ー]/
+  - expected: アセンブラー$1
+    patterns: /アセンブラ([^ー])/
   
-  - expected: アダプター
-    patterns: /アダプタ[^ー]/
+  - expected: アダプター$1
+    patterns: /アダプタ([^ー])/
   
-  - expected: アドバイザー
-    patterns: /アドバイザ[^ー]/
+  - expected: アドバイザー$1
+    patterns: /アドバイザ([^ー])/
   
-  - expected: アブソーバー
-    patterns: /アブソーバ[^ー]/
+  - expected: アブソーバー$1
+    patterns: /アブソーバ([^ー])/
   
-  - expected: イレーサー
-    patterns: /イレーサ[^ー]/
+  - expected: イレーサー$1
+    patterns: /イレーサ([^ー])/
   
-  - expected: インジケーター
-    patterns: /インジケータ[^ー]/
+  - expected: インジケーター$1
+    patterns: /インジケータ([^ー])/
   
-  - expected: インストラクター
-    patterns: /インストラクタ[^ー]/
+  - expected: インストラクター$1
+    patterns: /インストラクタ([^ー])/
   
-  - expected: インタビュー
-    patterns: /インタビュ[^ー]/
+  - expected: インタビュー$1
+    patterns: /インタビュ([^ー])/
   
-  - expected: エクスプローラー
-    patterns: /エクスプローラ[^ー]/
+  - expected: エクスプローラー$1
+    patterns: /エクスプローラ([^ー])/
   
-  - expected: エスカレーター
-    patterns: /エスカレータ[^ー]/
+  - expected: エスカレーター$1
+    patterns: /エスカレータ([^ー])/
   
-  - expected: エディター
-    patterns: /エディタ[^ー]/
+  - expected: エディター$1
+    patterns: /エディタ([^ー])/
   
-  - expected: エネルギー
-    patterns: /エネルギ[^ー]/
+  - expected: エネルギー$1
+    patterns: /エネルギ([^ー])/
   
-  - expected: エレベーター
-    patterns: /エレベータ[^ー]/
+  - expected: エレベーター$1
+    patterns: /エレベータ([^ー])/
   
-  - expected: エントリー
-    patterns: /エントリ[^ー]/
+  - expected: エントリー$1
+    patterns: /エントリ([^ー])/
   
-  - expected: オペレーター
-    patterns: /オペレータ[^ー]/
+  - expected: オペレーター$1
+    patterns: /オペレータ([^ー])/
   
-  - expected: カウンター
-    patterns: /カウンタ[^ー]/
+  - expected: カウンター$1
+    patterns: /カウンタ([^ー])/
   
-  - expected: カスタマー
-    patterns: /カスタマ[^ー]/
+  - expected: カスタマー$1
+    patterns: /カスタマ([^ー])/
   
-  - expected: カテゴリー
-    patterns: /カテゴリ[^ー]/
+  - expected: カテゴリー$1
+    patterns: /カテゴリ([^ー])/
   
-  - expected: カプラー
-    patterns: /カプラ[^ー]/
+  - expected: カプラー$1
+    patterns: /カプラ([^ー])/
   
-  - expected: カレンダー
-    patterns: /カレンダ[^ー]/
+  - expected: カレンダー$1
+    patterns: /カレンダ([^ー])/
   
-  - expected: キャラクター
-    patterns: /キャラクタ[^ー]/
+  - expected: キャラクター$1
+    patterns: /キャラクタ([^ー])/
   
-  - expected: クーラー
-    patterns: /クーラ[^ー]/
+  - expected: クーラー$1
+    patterns: /クーラ([^ー])/
   
-  - expected: クリーナー
-    patterns: /クリーナ[^ー]/
+  - expected: クリーナー$1
+    patterns: /クリーナ([^ー])/
   
-  - expected: コーディネーター
-    patterns: /コーディネータ[^ー]/
+  - expected: コーディネーター$1
+    patterns: /コーディネータ([^ー])/
   
-  - expected: コーナー
-    patterns: /コーナ[^ー]/
+  - expected: コーナー$1
+    patterns: /コーナ([^ー])/
   
-  - expected: コネクター
-    patterns: /コネクタ[^ー]/
+  - expected: コネクター$1
+    patterns: /コネクタ([^ー])/
   
-  - expected: コミュニティー
-    patterns: /コミュニティ[^ー]/
+  - expected: コミュニティー$1
+    patterns: /コミュニティ([^ー])/
   
-  - expected: コンダクター
-    patterns: /コンダクタ[^ー]/
+  - expected: コンダクター$1
+    patterns: /コンダクタ([^ー])/
   
-  - expected: コンデンサー
-    patterns: /コンデンサ[^ー]/
+  - expected: コンデンサー$1
+    patterns: /コンデンサ([^ー])/
   
-  - expected: コントローラー
-    patterns: /コントローラ[^ー]/
+  - expected: コントローラー$1
+    patterns: /コントローラ([^ー])/
   
-  - expected: コンバーター
-    patterns: /コンバータ[^ー]/
+  - expected: コンバーター$1
+    patterns: /コンバータ([^ー])/
   
-  - expected: コンパイラー
-    patterns: /コンパイラ[^ー]/
+  - expected: コンパイラー$1
+    patterns: /コンパイラ([^ー])/
   
-  - expected: コンピューター
-    patterns: /コンピュータ[^ー]/
+  - expected: コンピューター$1
+    patterns: /コンピュータ([^ー])/
   
-  - expected: サーバー
-    patterns: /サーバ[^ー]/
+  - expected: サーバー$1
+    patterns: /サーバ([^ー])/
   
-  - expected: サマリー
-    patterns: /サマリ[^ー]/
+  - expected: サマリー$1
+    patterns: /サマリ([^ー])/
   
-  - expected: ジェネレーター
-    patterns: /ジェネレータ[^ー]/
+  - expected: ジェネレーター$1
+    patterns: /ジェネレータ([^ー])/
   
-  - expected: シミュレーター
-    patterns: /シミュレータ[^ー]/
+  - expected: シミュレーター$1
+    patterns: /シミュレータ([^ー])/
   
-  - expected: シャッター
-    patterns: /シャッタ[^ー]/
+  - expected: シャッター$1
+    patterns: /シャッタ([^ー])/
   
-  - expected: シリンダー
-    patterns: /シリンダ[^ー]/
+  - expected: シリンダー$1
+    patterns: /シリンダ([^ー])/
   
-  - expected: シンナー
-    patterns: /シンナ[^ー]/
+  - expected: シンナー$1
+    patterns: /シンナ([^ー])/
   
-  - expected: スーパーバイザー
-    patterns: /スーパーバイザ[^ー]/
+  - expected: スーパーバイザー$1
+    patterns: /スーパーバイザ([^ー])/
   
-  - expected: スキャナー
-    patterns: /スキャナ[^ー]/
+  - expected: スキャナー$1
+    patterns: /スキャナ([^ー])/
   
-  - expected: スタッカー
-    patterns: /スタッカ[^ー]/
+  - expected: スタッカー$1
+    patterns: /スタッカ([^ー])/
   
-  - expected: セーバー
-    patterns: /セーバ[^ー]/
+  - expected: セーバー$1
+    patterns: /セーバ([^ー])/
   
-  - expected: セーフティー
-    patterns: /セーフティ[^ー]/
+  - expected: セーフティー$1
+    patterns: /セーフティ([^ー])/
   
-  - expected: セキュリティー
-    patterns: /セキュリティ[^ー]/
+  - expected: セキュリティー$1
+    patterns: /セキュリティ([^ー])/
   
-  - expected: セパレーター
-    patterns: /セパレータ[^ー]/
+  - expected: セパレーター$1
+    patterns: /セパレータ([^ー])/
   
-  - expected: セレクター
-    patterns: /セレクタ[^ー]/
+  - expected: セレクター$1
+    patterns: /セレクタ([^ー])/
   
-  - expected: センサー
-    patterns: /センサ[^ー]/
+  - expected: センサー$1
+    patterns: /センサ([^ー])/
   
-  - expected: ソーター
-    patterns: /ソータ[^ー]/
+  - expected: ソーター$1
+    patterns: /ソータ([^ー])/
   
-  - expected: ダイアリー
-    patterns: /ダイアリ[^ー]/
+  - expected: ダイアリー$1
+    patterns: /ダイアリ([^ー])/
   
-  - expected: タイプライター
-    patterns: /タイプライタ[^ー]/
+  - expected: タイプライター$1
+    patterns: /タイプライタ([^ー])/
   
-  - expected: タイマー
-    patterns: /タイマ[^ー]/
+  - expected: タイマー$1
+    patterns: /タイマ([^ー])/
   
-  - expected: チャージャー
-    patterns: /チャージャ[^ー]/
+  - expected: チャージャー$1
+    patterns: /チャージャ([^ー])/
   
-  - expected: ディレクター
-    patterns: /ディレクタ[^ー]/
+  - expected: ディレクター$1
+    patterns: /ディレクタ([^ー])/
   
-  - expected: ディレクトリー
-    patterns: /ディレクトリ[^ー]/
+  - expected: ディレクトリー$1
+    patterns: /ディレクトリ([^ー])/
   
-  - expected: デコーダー
-    patterns: /デコーダ[^ー]/
+  - expected: デコーダー$1
+    patterns: /デコーダ([^ー])/
   
-  - expected: デリバリー
-    patterns: /デリバリ[^ー]/
+  - expected: デリバリー$1
+    patterns: /デリバリ([^ー])/
   
-  - expected: ドライバー
-    patterns: /ドライバ[^ー]/
+  - expected: ドライバー$1
+    patterns: /ドライバ([^ー])/
   
-  - expected: トランシーバー
-    patterns: /トランシーバ[^ー]/
+  - expected: トランシーバー$1
+    patterns: /トランシーバ([^ー])/
   
-  - expected: トランスミッター
-    patterns: /トランスミッタ[^ー]/
+  - expected: トランスミッター$1
+    patterns: /トランスミッタ([^ー])/
   
-  - expected: トレーナー
-    patterns: /トレーナ[^ー]/
+  - expected: トレーナー$1
+    patterns: /トレーナ([^ー])/
   
-  - expected: パーティー
-    patterns: /パーティ[^ー]/
+  - expected: パーティー$1
+    patterns: /パーティ([^ー])/
   
-  - expected: バイナリー
-    patterns: /バイナリ[^ー]/
+  - expected: バイナリー$1
+    patterns: /バイナリ([^ー])/
   
-  - expected: ハイパー
-    patterns: /ハイパ[^ー]/
+  - expected: ハイパー$1
+    patterns: /ハイパ([^ー])/
   
-  - expected: バインダー
-    patterns: /バインダ[^ー]/
+  - expected: バインダー$1
+    patterns: /バインダ([^ー])/
   
-  - expected: バインダリー
-    patterns: /バインダリ[^ー]/
+  - expected: バインダリー$1
+    patterns: /バインダリ([^ー])/
   
-  - expected: バッテリー
-    patterns: /バッテリ[^ー]/
+  - expected: バッテリー$1
+    patterns: /バッテリ([^ー])/
   
-  - expected: バッファー
-    patterns: /バッファ[^ー]/
+  - expected: バッファー$1
+    patterns: /バッファ([^ー])/
   
-  - expected: バナー
-    patterns: /バナ[^ー]/
+  - expected: バナー$1
+    patterns: /バナ([^ー])/
   
-  - expected: バラエティー
-    patterns: /バラエティ[^ー]/
+  - expected: バラエティー$1
+    patterns: /バラエティ([^ー])/
   
-  - expected: パラメーター
-    patterns: /パラメータ[^ー]/
+  - expected: パラメーター$1
+    patterns: /パラメータ([^ー])/
   
-  - expected: ハンディー
-    patterns: /ハンディ[^ー]/
+  - expected: ハンディー$1
+    patterns: /ハンディ([^ー])/
   
-  - expected: ハンドラー
-    patterns: /ハンドラ[^ー]/
+  - expected: ハンドラー$1
+    patterns: /ハンドラ([^ー])/
   
-  - expected: ビューアー
-    patterns: /ビューア[^ー]/
+  - expected: ビューアー$1
+    patterns: /ビューア([^ー])/
   
-  - expected: ファインダー
-    patterns: /ファインダ[^ー]/
+  - expected: ファインダー$1
+    patterns: /ファインダ([^ー])/
   
-  - expected: ファミリー
-    patterns: /ファミリ[^ー]/
+  - expected: ファミリー$1
+    patterns: /ファミリ([^ー])/
   
-  - expected: フィーダー
-    patterns: /フィーダ[^ー]/
+  - expected: フィーダー$1
+    patterns: /フィーダ([^ー])/
   
-  - expected: フィニッシャー
-    patterns: /フィニッシャ[^ー]/
+  - expected: フィニッシャー$1
+    patterns: /フィニッシャ([^ー])/
   
-  - expected: フィルター
-    patterns: /フィルタ[^ー]/
+  - expected: フィルター$1
+    patterns: /フィルタ([^ー])/
   
-  - expected: フォルダー
-    patterns: /フォルダ[^ー]/
+  - expected: フォルダー$1
+    patterns: /フォルダ([^ー])/
   
-  - expected: フッター
-    patterns: /フッタ[^ー]/
+  - expected: フッター$1
+    patterns: /フッタ([^ー])/
   
-  - expected: フューザー
-    patterns: /フューザ[^ー]/
+  - expected: フューザー$1
+    patterns: /フューザ([^ー])/
   
-  - expected: プライマリー
-    patterns: /プライマリ[^ー]/
+  - expected: プライマリー$1
+    patterns: /プライマリ([^ー])/
   
-  - expected: ブラウザー
-    patterns: /ブラウザ[^ー]/
+  - expected: ブラウザー$1
+    patterns: /ブラウザ([^ー])/
   
-  - expected: プリンター
-    patterns: /プリンタ[^ー]/
+  - expected: プリンター$1
+    patterns: /プリンタ([^ー])/
   
-  - expected: プレーヤー
-    patterns: /プレーヤ[^ー]/
+  - expected: プレーヤー$1
+    patterns: /プレーヤ([^ー])/
   
-  - expected: プロジェクター
-    patterns: /プロジェクタ[^ー]/
+  - expected: プロジェクター$1
+    patterns: /プロジェクタ([^ー])/
   
-  - expected: プロセッサー
-    patterns: /プロセッサ[^ー]/
+  - expected: プロセッサー$1
+    patterns: /プロセッサ([^ー])/
   
-  - expected: プロッター
-    patterns: /プロッタ[^ー]/
+  - expected: プロッター$1
+    patterns: /プロッタ([^ー])/
   
-  - expected: フロッピー
-    patterns: /フロッピ[^ー]/
+  - expected: フロッピー$1
+    patterns: /フロッピ([^ー])/
   
-  - expected: プロバイダー
-    patterns: /プロバイダ[^ー]/
+  - expected: プロバイダー$1
+    patterns: /プロバイダ([^ー])/
   
-  - expected: ヘッダー
-    patterns: /ヘッダ[^ー]/
+  - expected: ヘッダー$1
+    patterns: /ヘッダ([^ー])/
   
-  - expected: ポインター
-    patterns: /ポインタ[^ー]/
+  - expected: ポインター$1
+    patterns: /ポインタ([^ー])/
   
-  - expected: ボディー
-    patterns: /ボディ[^ー]/
+  - expected: ボディー$1
+    patterns: /ボディ([^ー])/
   
-  - expected: ポリシー
-    patterns: /ポリシ[^ー]/
+  - expected: ポリシー$1
+    patterns: /ポリシ([^ー])/
   
-  - expected: マーカー
-    patterns: /マーカ[^ー]/
+  - expected: マーカー$1
+    patterns: /マーカ([^ー])/
   
-  - expected: マスター
-    patterns: /マスタ[^ー]/
+  - expected: マスター$1
+    patterns: /マスタ([^ー])/
   
-  - expected: マネージャー
-    patterns: /マネージャ[^ー]/
+  - expected: マネージャー$1
+    patterns: /マネージャ([^ー])/
   
-  - expected: メーカー
-    patterns: /メーカ[^ー]/
+  - expected: メーカー$1
+    patterns: /メーカ([^ー])/
   
-  - expected: メーター
-    patterns: /メータ[^ー]/
+  - expected: メーター$1
+    patterns: /メータ([^ー])/
   
-  - expected: メモリー
-    patterns: /メモリ[^ー]/
+  - expected: メモリー$1
+    patterns: /メモリ([^ー])/
   
-  - expected: メロディー
-    patterns: /メロディ[^ー]/
+  - expected: メロディー$1
+    patterns: /メロディ([^ー])/
   
-  - expected: メンバー
-    patterns: /メンバ[^ー]/
+  - expected: メンバー$1
+    patterns: /メンバ([^ー])/
   
-  - expected: モーター
-    patterns: /モータ[^ー]/
+  - expected: モーター$1
+    patterns: /モータ([^ー])/
   
-  - expected: モジュラー
-    patterns: /モジュラ[^ー]/
+  - expected: モジュラー$1
+    patterns: /モジュラ([^ー])/
   
-  - expected: モニター
-    patterns: /モニタ[^ー]/
+  - expected: モニター$1
+    patterns: /モニタ([^ー])/
   
-  - expected: ユーザー
-    patterns: /ユーザ[^ー]/
+  - expected: ユーザー$1
+    patterns: /ユーザ([^ー])/
   
-  - expected: ユーティリティー
-    patterns: /ユーティリティ[^ー]/
+  - expected: ユーティリティー$1
+    patterns: /ユーティリティ([^ー])/
   
-  - expected: ライター
-    patterns: /ライタ[^ー]/
+  - expected: ライター$1
+    patterns: /ライタ([^ー])/
   
-  - expected: ライブラリー
-    patterns: /ライブラリ[^ー]/
+  - expected: ライブラリー$1
+    patterns: /ライブラリ([^ー])/
   
-  - expected: ラスター
-    patterns: /ラスタ[^ー]/
+  - expected: ラスター$1
+    patterns: /ラスタ([^ー])/
   
-  - expected: リーダー
-    patterns: /リーダ[^ー]/
+  - expected: リーダー$1
+    patterns: /リーダ([^ー])/
   
-  - expected: リポジトリー
-    patterns: /リポジトリ[^ー]/
+  - expected: リポジトリー$1
+    patterns: /リポジトリ([^ー])/
   
-  - expected: ルーラー
-    patterns: /ルーラ[^ー]/
+  - expected: ルーラー$1
+    patterns: /ルーラ([^ー])/
   
-  - expected: レイヤー
-    patterns: /レイヤ[^ー]/
+  - expected: レイヤー$1
+    patterns: /レイヤ([^ー])/
   
-  - expected: レーダー
-    patterns: /レーダ[^ー]/
+  - expected: レーダー$1
+    patterns: /レーダ([^ー])/
   
-  - expected: レコーダー
-    patterns: /レコーダ[^ー]/
+  - expected: レコーダー$1
+    patterns: /レコーダ([^ー])/
   
-  - expected: レシーバー
-    patterns: /レシーバ[^ー]/
+  - expected: レシーバー$1
+    patterns: /レシーバ([^ー])/
   
-  - expected: レジスター
-    patterns: /レジスタ[^ー]/
+  - expected: レジスター$1
+    patterns: /レジスタ([^ー])/
   
-  - expected: レジストリー
-    patterns: /レジストリ[^ー]/
+  - expected: レジストリー$1
+    patterns: /レジストリ([^ー])/
   
-  - expected: ローラー
-    patterns: /ローラ[^ー]/
+  - expected: ローラー$1
+    patterns: /ローラ([^ー])/
