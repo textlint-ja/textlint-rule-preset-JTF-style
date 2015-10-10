@@ -86,8 +86,8 @@ rules:
     patterns:
       - 以て
       - 以って
-  - expected: $1ように
-    patterns: /([^一])様に/
+  - expected: のように
+    patterns: /の様に/
     specs:
       - from: 一様に
         to:   一様に
