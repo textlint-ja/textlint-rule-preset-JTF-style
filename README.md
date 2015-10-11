@@ -20,10 +20,12 @@
     ],
     "rules": {
         // 特定のルールを無効化
-        "1.2.2.ピリオド(.)とカンマ(,)": false
+        "jtf-style/1.2.2.ピリオド(.)とカンマ(,)": false
     }
 }
 ```
+
+それぞれの`rules`のキー名は[index.js](src/index.js)を参照
 
 ## Feature
 
