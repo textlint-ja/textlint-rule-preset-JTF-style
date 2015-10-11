@@ -10,7 +10,7 @@
 
 基本的に[textlint](https://github.com/azu/textlint "textlint")の使い方と同じです。
 
-- [textlint](https://github.com/azu/textlint "textlint")
+- [textlintで日本語の文章をチェックする | Web Scratch](http://efcl.info/2015/09/10/introduce-textlint/ "textlintで日本語の文章をチェックする | Web Scratch")
 
 ### 最も手軽な方法(グローバル)
 
