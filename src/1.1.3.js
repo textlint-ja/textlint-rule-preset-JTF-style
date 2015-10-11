@@ -54,12 +54,12 @@ export default function (context) {
             });
         });
     }
-    
+
+    // 末尾に。があるかが統一されているのチェック
     function countingPoint(withPointList, withoutPointList) {
         if (withPointList.length === 0 || withoutPointList.length === 0) {
             return;
         }
-        // 末尾に。があるかが統一されているのチェック
         if (withPointList.length > withoutPointList.length) {
             // 。ありに統一
             reportPointResult(withoutPointList, {
@@ -78,22 +78,25 @@ export default function (context) {
         }
     }
 
+    // 敬体(ですます調)あるいは常体(である調)なのかのチェック
     function countingDesumasuDearu(desumasuList, dearuList) {
-        // 敬体(ですます調)あるいは常体(である調)なのかのチェック
         let desumasuCount = desumasuList.reduce((count, {matches}) => count + matches.length, 0);
         let dearuCount = dearuList.reduce((count, {matches}) => count + matches.length, 0);
         if (desumasuCount === 0 || dearuCount === 0) {
             return;
         }
+        // ですます優先
         if (desumasuCount > dearuCount) {
             reportDesumaruDearuResult(dearuList, {
                 desumasu: true
             });
         } else if (desumasuCount < dearuCount) {
+            // である優先
             reportDesumaruDearuResult(desumasuList, {
                 dearu: true
             });
         } else {
+            // 同等の場合はですます優先
             reportDesumaruDearuResult(dearuList, {
                 desumasu: true
             });

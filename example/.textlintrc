@@ -1,0 +1,9 @@
+{
+  "plugins": [
+    "jtf-style"
+  ],
+  "rules": {
+    "jtf-style/2.1.6.カタカナの長音": false,
+    "jtf-style/4.3.1.丸かっこ（）": false
+  }
+}

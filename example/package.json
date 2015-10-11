@@ -1,0 +1,17 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "pretest": "npm rm textlint-plugin-jtf-style && npm i",
+    "textlint": "textlint",
+    "test": "npm run textlint -- -f pretty-error ../README.md"
+  },
+  "author": "azu",
+  "license": "MIT",
+  "devDependencies": {
+    "textlint": "^3.7.1",
+    "textlint-plugin-jtf-style": "file:.."
+  }
+}

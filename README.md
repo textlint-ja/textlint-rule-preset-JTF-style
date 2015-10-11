@@ -8,28 +8,57 @@
     
 ## Usage
 
-    npm install -g texlint textlint-plugin-jtf-style
-    textlint --plugin textlint-plugin-jtf-style
+基本的に[textlint](https://github.com/azu/textlint "textlint")の使い方と同じです。
 
-`.textlintrc`
+- [textlint](https://github.com/azu/textlint "textlint")
+
+### 最も手軽な方法(グローバル)
+
+npmでグローバルにインストールし、`--plugin`で利用するのが一番お手軽です。
+
+    npm install -g texlint textlint-plugin-jtf-style
+    textlint --plugin textlint-plugin-jtf-style README.md
+    # README.mdをLintした結果が出力されます
+
+グローバルにインストールするよりは、次のようにプロジェクト毎にディレクトリにインストールする方法を推奨します。
+
+### `.textlintrc`を使う方法(推奨)
+
+現在のディレクトリにtextlintとtextlint-plugin-jtf-styleをインストールする方法です。
+(グローバルにインストールしなくていいので環境がキレイに作れます)
+
+```
+npm init # package.jsonがないなら
+npm install -D texlint textlint-plugin-jtf-style
+```
+
+textlintの設定ファイルとなっている`.textlintrc`に次のように`jtf-style`と指定します(`textlint-plugin-`を取り除いたプラグイン名)。
 
 ```js
 {
     "plugins": [
         "jtf-style"
-    ],
-    "rules": {
-        // 特定のルールを無効化
-        "jtf-style/1.2.2.ピリオド(.)とカンマ(,)": false
-    }
+    ]
 }
 ```
 
-それぞれの`rules`のキー名は[index.js](src/index.js)を参照
+実行するには、`$ textlint <対象ファイル>` を行うだけで、自動的に同じディレクトリにある`.textlintrc`の設定を読み込んでくれます。
+
+```
+node_modules/.bin/textlint /path/to/target.md
+```
+
+npm run-script経由で実行すれば、`node_modules/.bin/`は省略出来ます。
+
+- [npm で依存もタスクも一元化する - Qiita](http://qiita.com/Jxck_/items/efaff21b977ddc782971#%E3%82%BF%E3%82%B9%E3%82%AF%E3%81%AE%E5%AE%9F%E8%A1%8C "npm で依存もタスクも一元化する - Qiita")
+
+### サンプル
+
+[example/](example/) に実行できるサンプルプロジェクトがあります。
 
 ## ルール一覧
 
-それぞれのルールの詳細は以下を読んで下さい。
+それぞれのルールの詳細は以下を読んでください。
 
 - [JTF日本語標準スタイルガイド（翻訳用）（PDFファイル）](https://www.jtf.jp/jp/style_guide/pdf/jtf_style_guide.pdf)
 
@@ -572,6 +601,11 @@ A. `.textlintrc` にルール毎の設定を追加することが出来ます。
     }
 }
 ```
+
+それぞれの指定できる`rules`のキー名は[index.js](src/index.js)を参照してください。
+
+`jtf-style/<key名>` となります。
+
 
 ## Contributing
 
