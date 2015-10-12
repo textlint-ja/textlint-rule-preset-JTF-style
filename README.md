@@ -16,7 +16,7 @@
 
 npmでグローバルにインストールし、`--plugin`で利用するのが一番お手軽です。
 
-    npm install -g texlint textlint-plugin-jtf-style
+    npm install -g textlint textlint-plugin-jtf-style
     textlint --plugin textlint-plugin-jtf-style README.md
     # README.mdをLintした結果が出力されます
 
@@ -29,7 +29,7 @@ npmでグローバルにインストールし、`--plugin`で利用するのが�
 
 ```
 npm init # package.jsonがないなら
-npm install -D texlint textlint-plugin-jtf-style
+npm install -D textlint textlint-plugin-jtf-style
 ```
 
 textlintの設定ファイルとなっている`.textlintrc`に次のように`jtf-style`と指定します(`textlint-plugin-`を取り除いたプラグイン名)。
