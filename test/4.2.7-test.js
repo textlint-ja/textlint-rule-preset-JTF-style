@@ -15,7 +15,7 @@ tester.run("4.2.7.コロン(：)", rule, {
             errors: [
                 {
                     message: "コロン(：)を使用する場合は「全角」で表記します。",
-                    column: 1
+                    column: 2
                 }
             ]
         }

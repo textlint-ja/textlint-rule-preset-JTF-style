@@ -14,7 +14,7 @@ tester.run("4.2.5.波線(~)", rule, {
             errors: [
                 {
                     message: "数値の範囲を示す場合には全角の〜を使用します。",
-                    column: 3
+                    column: 4
                 }
             ]
         }

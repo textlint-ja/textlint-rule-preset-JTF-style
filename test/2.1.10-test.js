@@ -18,7 +18,7 @@ tester.run("2.1.10.算用数字の位取りの表記", rule, {
                 {
                     message: "小数点には「ピリオド」を使います。",
                     line: 1,
-                    column: 0
+                    column: 1
                 }
             ]
         },
@@ -28,7 +28,7 @@ tester.run("2.1.10.算用数字の位取りの表記", rule, {
                 {
                     message: "小数点には「ピリオド」を使います。",
                     line: 1,
-                    column: 0
+                    column: 1
                 }
             ]
         }

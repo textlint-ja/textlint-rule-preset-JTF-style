@@ -16,7 +16,7 @@ tester.run("2.1.9.アルファベット", rule, {
                 {
                     message: "アルファベットは「半角」で表記します。",
                     line: 1,
-                    column: 0
+                    column: 1
                 }
             ]
         },
@@ -26,7 +26,7 @@ tester.run("2.1.9.アルファベット", rule, {
                 {
                     message: "アルファベットは「半角」で表記します。",
                     line: 1,
-                    column: 3
+                    column: 4
                 }
             ]
         }

@@ -15,7 +15,7 @@ tester.run("4.3.2.大かっこ［］", rule, {
             errors: [
                 {
                     message: "半角の大かっこ[]が使用されています。",
-                    column: 3
+                    column: 4
                 }
             ]
         },
@@ -24,7 +24,7 @@ tester.run("4.3.2.大かっこ［］", rule, {
             errors: [
                 {
                     message: "半角の大かっこ[]が使用されています。",
-                    column: 3
+                    column: 4
                 }
             ]
         }

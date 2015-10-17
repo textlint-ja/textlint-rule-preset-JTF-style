@@ -13,7 +13,7 @@ tester.run("4.3.1.丸かっこ()", rule, {
             errors: [
                 {
                     message: "半角のかっこ()が使用されています。",
-                    column: 4
+                    column: 5
                 }
             ]
         }
