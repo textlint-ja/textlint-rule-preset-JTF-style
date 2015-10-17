@@ -16,7 +16,7 @@ tester.run("2.1.8.算用数字", rule, {
                 {
                     message: "算用数字は「半角」で表記します。",
                     line: 1,
-                    column: 0
+                    column: 1
                 }
             ]
         },
@@ -26,7 +26,7 @@ tester.run("2.1.8.算用数字", rule, {
                 {
                     message: "算用数字は「半角」で表記します。",
                     line: 1,
-                    column: 4
+                    column: 5
                 }
             ]
         }

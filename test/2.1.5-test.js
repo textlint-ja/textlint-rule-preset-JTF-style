@@ -25,7 +25,7 @@ tester.run("2.1.5.カタカナ", rule, {
                 {
                     message: "カタカナは「全角」で表記します。",
                     line: 1,
-                    column: 0
+                    column: 1
                 }
             ]
         },
@@ -35,7 +35,7 @@ tester.run("2.1.5.カタカナ", rule, {
                 {
                     message: "カタカナは「全角」で表記します。",
                     line: 1,
-                    column: 0
+                    column: 1
                 }
             ]
         }

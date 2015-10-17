@@ -19,7 +19,7 @@ tester.run('4.3.5.二重引用符""', rule, {
             errors: [
                 {
                     message: '"の対となる"が見つかりません。""',
-                    column: 0
+                    column: 1
                 }
             ]
         },
@@ -30,16 +30,16 @@ tester.run('4.3.5.二重引用符""', rule, {
             errors: [
                 {
                     message: '"の対となる"が見つかりません。""',
-                    column: 0
+                    column: 1
                 },
                 // FIXME: why duplicated?
                 {
                     message: '"の対となる"が見つかりません。""',
-                    column: 0
+                    column: 1
                 },
                 {
                     message: '"の対となる"が見つかりません。""',
-                    column: 2
+                    column: 3
                 }
             ]
         },
@@ -49,7 +49,7 @@ tester.run('4.3.5.二重引用符""', rule, {
             errors: [
                 {
                     message: '"の対となる"が見つかりません。""',
-                    column: 2
+                    column: 3
                 }
             ]
         }

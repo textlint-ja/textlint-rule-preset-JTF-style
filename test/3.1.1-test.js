@@ -17,7 +17,7 @@ Pull Request、コミットのやりかたなどが書かれています。`
             errors: [
                 {
                     message: "原則として、全角文字と半角文字の間にスペースを入れません。",
-                    column: 3
+                    column: 4
                 }
             ]
         },

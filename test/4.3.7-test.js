@@ -14,7 +14,7 @@ tester.run('4.3.7.山かっこ<>', rule, {
             errors: [
                 {
                     message: '<の対となる>が見つかりません。<>',
-                    column: 0
+                    column: 1
                 }
             ]
         },
@@ -25,7 +25,7 @@ tester.run('4.3.7.山かっこ<>', rule, {
             errors: [
                 {
                     message: '<の対となる>が見つかりません。<>',
-                    column: 0
+                    column: 1
                 }
             ]
         },
@@ -35,7 +35,7 @@ tester.run('4.3.7.山かっこ<>', rule, {
             errors: [
                 {
                     message: '<の対となる>が見つかりません。<>',
-                    column: 2
+                    column: 3
                 }
             ]
         }

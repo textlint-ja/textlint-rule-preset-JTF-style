@@ -17,7 +17,7 @@ tester.run("4.2.2.疑問符(?)", rule, {
             errors: [
                 {
                     message: "疑問符(？)を使用する場合は「全角」で表記します。",
-                    column: 5
+                    column: 6
                 }
             ]
         }

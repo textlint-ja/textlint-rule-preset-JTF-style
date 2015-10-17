@@ -15,7 +15,7 @@ tester.run("4.2.8.セミコロン(;)", rule, {
             errors: [
                 {
                     message: "原則として和文ではセミコロン(;)を使用しません。",
-                    column: 2
+                    column: 3
                 }
             ]
         },
@@ -24,7 +24,7 @@ tester.run("4.2.8.セミコロン(;)", rule, {
             errors: [
                 {
                     message: "原則として和文ではセミコロン(;)を使用しません。",
-                    column: 2
+                    column: 3
                 }
             ]
         }
