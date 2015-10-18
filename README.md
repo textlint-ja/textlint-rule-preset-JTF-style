@@ -138,7 +138,7 @@ npm run-script経由で実行すれば、`node_modules/.bin/`は省略出来ま�
     <td>文字の表記</td>
 </tr>
 <tr>
-    <td>未実装</td>
+    <td><a href="src/2.1.2.js">2.1.2.js</a> (辞書ベース)</td>
     <td>11</td>
     <td>漢字</td>
     <td>常用漢字表にゆるやかに準じる。</td>
