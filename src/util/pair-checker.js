@@ -52,6 +52,8 @@ export function checkPair(context, { left, right }) {
             matchParentheses.forEach(({node, index}) => {
                 report(node, new RuleError(`${left}の対となる${right}が見つかりません。${left}${right}`, index));
             });
+            // clear state
+            matchParentheses = [];
         }
     };
 
