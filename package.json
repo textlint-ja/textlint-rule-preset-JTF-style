@@ -41,7 +41,7 @@
     "textlint-tester": "^0.2.0"
   },
   "dependencies": {
-    "analyze-desumasu-dearu": "^2.0.0",
+    "analyze-desumasu-dearu": "^2.1.2",
     "sorted-joyo-kanji": "^0.2.0",
     "textlint-rule-helper": "^1.1.3",
     "textlint-rule-prh": "^2.0.0"
