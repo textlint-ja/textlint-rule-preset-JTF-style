@@ -610,7 +610,7 @@ A. `.textlintrc` にルール毎の設定を追加することが出来ます。
 ## Contributing
 
 まだ未実装なルールがありますのでPull Request歓迎。
-（実装済みのルールでもその項目を全て満たせてないケースがあるかもしれません)
+実装済みのルールでもその項目を全て満たせてないケースがあるかもしれません。
 
 1. Fork it!
 2. Create your feature branch: `git checkout -b my-new-feature`
