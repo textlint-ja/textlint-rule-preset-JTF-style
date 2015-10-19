@@ -32,11 +32,6 @@ tester.run('4.3.5.二重引用符""', rule, {
                     message: '"の対となる"が見つかりません。""',
                     column: 1
                 },
-                // FIXME: why duplicated?
-                {
-                    message: '"の対となる"が見つかりません。""',
-                    column: 1
-                },
                 {
                     message: '"の対となる"が見つかりません。""',
                     column: 3
