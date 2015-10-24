@@ -152,16 +152,17 @@ rules:
 # 品詞・意味で使い分ける
   - expected: および
     patterns: 及び
-  - expected: 及ぶ
-    patterns: およぶ
+  - expected: が及ぶ
+    patterns: がおよぶ
     specs:
       - from: （例）影響がおよぶ。
         to:   （例）影響が及ぶ。
-  - expected: いたします
-    patterns: 致します
-    specs:
-      - from: （例）お願い致します。
-        to:   （例）お願いいたします。
+#  メンテナンスが難しいの無効
+#  - expected: $1いたします
+#    patterns: ([^引招送誘拉一合極雅筆風])致します
+#    specs:
+#      - from: （例）お願い致します。
+#        to:   （例）お願いいたします。
   - expected: 致す
     patterns: いたす
     specs:
