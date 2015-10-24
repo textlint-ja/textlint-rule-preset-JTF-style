@@ -64,6 +64,8 @@ npm run-script経由で実行すれば、`node_modules/.bin/`は省略出来ま�
 
 `textlint-plugin-JTF-style`で対応するルールと実装状況は以下のとおりです。
 
+辞書ベースと書かれているものは、独自の辞書をベースとしているため精度が曖昧となっています。
+
 <table>
 <tr>
     <th>対応ルール</th>
@@ -606,6 +608,14 @@ A. `.textlintrc` にルール毎の設定を追加することが出来ます。
 
 `jtf-style/<key名>` となります。
 
+Q. 辞書ベースのルールの質がよくない
+
+A. 正規表現の辞書ベースのルールが幾つかあります。
+
+誤爆が一番起きやすいのは恐らく辞書ベースの部分なので、
+辞書を改善していくかルール自体を無効化するアプローチを取る必要あります。
+
+[kuromoji.js](https://github.com/takuyaa/kuromoji.js "kuromoji.js")で形態素解析などをすることで改善できるかもしれません。
 
 ## Contributing
 
