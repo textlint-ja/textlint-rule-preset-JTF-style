@@ -34,8 +34,22 @@ rules:
     patterns:
       - 子供
       - こども
+  # 接続詞 または 文頭であることを考慮する
+  - expected: $1さらに
+    patterns:
+      - /([\s。、\nぁ-んァ-ヶ])更に/
+    specs:
+      - from: Aは加速した、更に加速した。
+        to:   Aは加速した、さらに加速した。
+      - from: 加速すると更に加速した
+        to:   加速するとさらに加速した
+      - from: 変更に加えて
+        to:   変更に加えて
   - expected: さらに
-    patterns: 更に
+    patterns: /^更に/
+    specs:
+      - from: 更に加速した。
+        to:   さらに加速した。
   - expected: しかし
     patterns: 然し
   - expected: しばらく
