@@ -6,42 +6,9 @@ var tester = new TextLintTester();
 tester.run("4.3.8.一重引用符''", rule, {
     valid: [
         "彼は'×××'を参照してくださいと言った。",
-        "- 彼は'×××'を参照してくださいと言った。"
+        "- 彼は'×××'を参照してくださいと言った。",
+        "Animal's bug.",
+        `[ES5, ES6, ES2016, ES.Next: What's going on with JavaScript versioning?](http://benmccormick.org/2015/09/14/es5-es6-es2016-es-next-whats-going-on-with-javascript-versioning/ "ES5, ES6, ES2016, ES.Next: What's going on with JavaScript versioning?")`
     ],
-    invalid: [
-        {
-            text: "'対となるがない中かっこがない文章です。",
-            errors: [
-                {
-                    message: "'の対となる'が見つかりません。''",
-                    column: 1
-                }
-            ]
-        },
-        {
-            text: `'パラグラフをまたぐような
-
-文章'は認められない。`,
-            errors: [
-                {
-                    message: "'の対となる'が見つかりません。''",
-                    column: 1
-                },
-                {
-                    message: "'の対となる'が見つかりません。''",
-                    column: 3
-                }
-            ]
-        },
-        {
-            // ListItem -> Paragraphなので
-            text: "- 'これはプラグイン",
-            errors: [
-                {
-                    message: "'の対となる'が見つかりません。''",
-                    column: 3
-                }
-            ]
-        }
-    ]
+    invalid: []
 });

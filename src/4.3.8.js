@@ -7,8 +7,6 @@
  */
 import {checkPair} from "./util/pair-checker";
 export default function (context) {
-    return checkPair(context, {
-        left: "'",
-        right: "'"
-    });
+    // do no anything
+    return {};
 }
