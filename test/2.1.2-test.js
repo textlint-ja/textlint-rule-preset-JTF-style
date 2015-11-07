@@ -12,7 +12,7 @@ tester.run("2.1.2.漢字", rule, {
             text: "文章を推敲する",
             errors: [
                 {
-                    message: "「敲」は、「常用漢字表」外の漢字です。",
+                    message: "「敲」は「常用漢字表」外の漢字です。",
                     line: 1,
                     column: 5
                 }
@@ -22,7 +22,7 @@ tester.run("2.1.2.漢字", rule, {
             text: "私は聡明でありたい",
             errors: [
                 {
-                    message: "「聡」は、「常用漢字表」外の漢字です。",
+                    message: "「聡」は「常用漢字表」外の漢字です。",
                     line: 1,
                     column: 3
                 }
