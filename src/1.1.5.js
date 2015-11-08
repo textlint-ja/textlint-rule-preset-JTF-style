@@ -14,6 +14,11 @@ export default function (context) {
     let desumasuList = [];
     let dearuList = [];
 
+    function resetState() {
+        desumasuList = [];
+        dearuList = [];
+    }
+
     const imagePaddingLet = 2;// ![ の分paddingを付ける
     function reportResult(list, {desumasu,dearu}) {
         list.forEach(({node, matches}) => {
@@ -33,10 +38,11 @@ export default function (context) {
     }
 
     return {
+        [Syntax.Document]: resetState,
         [Syntax.Image](node){
             let text = node.alt;
             // alt がない場合は無視する
-            if(text === undefined) {
+            if (text === undefined) {
                 return;
             }
             let retDesumasu = analyzeDesumasu(text);
