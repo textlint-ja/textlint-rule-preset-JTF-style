@@ -42,6 +42,10 @@ export default function (context) {
 
 
     return {
+        [Syntax.Document](){
+            desumasuList = [];
+            dearuList = [];
+        },
         [Syntax.Str](node){
             // 本文以外は無視する
             // => isUserWrittenNode
