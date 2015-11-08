@@ -38,7 +38,7 @@
   "devDependencies": {
     "babel": "^5.8.23",
     "mocha": "^2.3.3",
-    "textlint-tester": "^0.2.0"
+    "textlint-tester": "^0.3.0"
   },
   "dependencies": {
     "analyze-desumasu-dearu": "^2.1.2",
