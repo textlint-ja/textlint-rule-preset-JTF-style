@@ -2,7 +2,7 @@
 "use strict";
 import {isUserWrittenNode} from "./util/node-util";
 function matchToReplace(text, pattern, matchFn) {
-    var match = text.match(pattern);
+    var match = pattern.exec(text);
     if (match) {
         return matchFn(text, pattern, match);
     }
@@ -115,26 +115,34 @@ export default function (context) {
             let text = getSource(node);
             // 漢数字 -> 算用数字
             let toNumber = (text, pattern, match) => {
-                var expected = text.replace(pattern, function (all, match) {
+                let matchedString = match[0];
+                let index = match.index;
+                var expected = matchedString.replace(pattern, function (all, match) {
                     let result = 0;
                     match.split("").forEach(kanNumber => {
                         result += numberMap[kanNumber];
                     });
                     return all.replace(match, result);
                 });
-                report(node, new RuleError(`${text} => ${expected}
-数量を表現し、数を数えられるものは算用数字を使用します。任意の数に置き換えても通用する語句がこれに該当します。`));
+                var ruleError = new RuleError(`${matchedString} => ${expected}
+数量を表現し、数を数えられるものは算用数字を使用します。任意の数に置き換えても通用する語句がこれに該当します。`, {
+                    column: index
+                });
+                report(node, ruleError);
             };
 
 
             // 算用数字 -> 漢数字
 
             let toKanNumber = (text, pattern, match) => {
-                var expected = text.replace(pattern, function (all, match) {
+                var matchedString = match[0];
+                var expected = matchedString.replace(pattern, function (all, match) {
                     return all.replace(match, _num2ja(match, {'with_arabic': false}));
                 });
-                report(node, new RuleError(`${text} => ${expected}
-慣用的表現、熟語、概数、固有名詞、副詞など、漢数字を使用することが一般的な語句では漢数字を使います。`));
+                report(node, new RuleError(`${matchedString} => ${expected}
+慣用的表現、熟語、概数、固有名詞、副詞など、漢数字を使用することが一般的な語句では漢数字を使います。`, {
+                    column: matchedString.index
+                }));
             };
 
             // 数えられる数字は算用数字を使う
