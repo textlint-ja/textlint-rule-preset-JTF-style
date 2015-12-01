@@ -1,6 +1,6 @@
 # textlint-plugin-JTF-style [![Build Status](https://travis-ci.org/azu/textlint-plugin-JTF-style.svg?branch=master)](https://travis-ci.org/azu/textlint-plugin-JTF-style)
 
-[JTF日本語標準スタイルガイド（翻訳用）](https://www.jtf.jp/jp/style_guide/styleguide_top.html "JTF日本語標準スタイルガイド（翻訳用）") for [textlint](https://github.com/azu/textlint "textlint").
+[JTF日本語標準スタイルガイド（翻訳用）](https://www.jtf.jp/jp/style_guide/styleguide_top.html "JTF日本語標準スタイルガイド（翻訳用）") for [textlint](https://github.com/textlint/textlint "textlint").
 
 ## Installation
 
