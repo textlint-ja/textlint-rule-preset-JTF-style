@@ -5,7 +5,7 @@
 ## Installation
 
     npm install textlint-plugin-jtf-style
-    
+
 ## Usage
 
 基本的に[textlint](https://github.com/azu/textlint "textlint")の使い方と同じです。
@@ -571,7 +571,7 @@ Q. このルールはスタイルガイドと合ってないのでは？
 
 A. [Issue](https://github.com/azu/textlint-plugin-JTF-style/issues/new)に詳細を書いてみるといいと思います。
 
-Issueには以下の項目書かれていると問題が解決しやすくなります。
+Issueには以下の項目が書かれていると問題を解決しやすくなります。
 
 - 試した文章(もしくはファイル)
 - 期待する結果
