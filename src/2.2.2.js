@@ -145,9 +145,21 @@ export default function (context) {
                 }));
             };
 
+            // ignorePatternにマッチしたらmatchFnを呼ばないようにする(エラーを無視する)
+            let ignoreWhenMatched = (ignorePattern, matchFn) => {
+              return (text, pattern, match) => {
+                if (ignorePattern.test(text)) {
+                  return null;
+                } else {
+                  return matchFn(text, pattern, match);
+                }
+              }
+            }
+
             // 数えられる数字は算用数字を使う
-            matchToReplace(text,
-                /([一二三四五六七八九十壱弐参拾百〇]+)[兆億万]/g, toNumber
+            // 数十万、数百億にマッチしないように"数"という文字から始まるものは除外
+            matchToReplace(text, /([一二三四五六七八九十壱弐参拾百〇]+)[兆億万]/g,
+                ignoreWhenMatched(/数([一二三四五六七八九十壱弐参拾百〇]+)[兆億万]/g ,toNumber)
             );
             matchToReplace(text, /([一二三四五六七八九十壱弐参拾百〇]+)つ/g, toNumber);
             matchToReplace(text, /([一二三四五六七八九十壱弐参拾百〇]+)回/g, toNumber);
@@ -165,6 +177,7 @@ export default function (context) {
             matchToReplace(text, /(1)部の/g, toKanNumber);
             matchToReplace(text, /(1)番に/g, toKanNumber);
             matchToReplace(text, /数([0-9]+)倍/g, toKanNumber);
+            matchToReplace(text, /数([0-9]+)[兆億万]/g, toKanNumber);
             matchToReplace(text, /([0-9]+)次関数/g, toKanNumber);
             matchToReplace(text, /(5)大陸/g, toKanNumber);
         }
