@@ -147,19 +147,20 @@ export default function (context) {
 
             // ignorePatternにマッチしたらmatchFnを呼ばないようにする(エラーを無視する)
             let ignoreWhenMatched = (ignorePattern, matchFn) => {
-              return (text, pattern, match) => {
-                if (ignorePattern.test(text)) {
-                  return null;
-                } else {
-                  return matchFn(text, pattern, match);
+                return (text, pattern, match) => {
+                    if (ignorePattern.test(text)) {
+                        return null;
+                    } else {
+                        return matchFn(text, pattern, match);
+                    }
                 }
-              }
-            }
+            };
 
-            // 数えられる数字は算用数字を使う
+            // ＊数えられる数字は算用数字を使う
             // 数十万、数百億にマッチしないように"数"という文字から始まるものは除外
+            // https://github.com/azu/textlint-plugin-JTF-style/pull/23
             matchToReplace(text, /([一二三四五六七八九十壱弐参拾百〇]+)[兆億万]/g,
-                ignoreWhenMatched(/数([一二三四五六七八九十壱弐参拾百〇]+)[兆億万]/g ,toNumber)
+                ignoreWhenMatched(/数([一二三四五六七八九十壱弐参拾百〇]+)[兆億万]/g, toNumber)
             );
             matchToReplace(text, /([一二三四五六七八九十壱弐参拾百〇]+)つ/g, toNumber);
             matchToReplace(text, /([一二三四五六七八九十壱弐参拾百〇]+)回/g, toNumber);
@@ -167,8 +168,8 @@ export default function (context) {
             matchToReplace(text, /([一二三四五六七八九十壱弐参拾百〇]+)番目/g, toNumber);
             matchToReplace(text, /([一二三四五六七八九十壱弐参拾百〇]+)進法/g, toNumber);
             matchToReplace(text, /([一二三四五六七八九十壱弐参拾百〇]+)次元/g, toNumber);
-            //  漢数字を使う
-            // 慣用的表現、熟語、概数、固有名詞、副詞など、漢数字を使用することが一般的な語句では漢数字を使いま す。
+            // ＊漢数字を使う
+            // 慣用的表現、熟語、概数、固有名詞、副詞など、漢数字を使用することが一般的な語句では漢数字を使います。
             matchToReplace(text, /世界(1)/g, toKanNumber);
             matchToReplace(text, /(1)時的/g, toKanNumber);
             matchToReplace(text, /(1)部分/g, toKanNumber);
@@ -178,6 +179,7 @@ export default function (context) {
             matchToReplace(text, /(1)番に/g, toKanNumber);
             matchToReplace(text, /数([0-9]+)倍/g, toKanNumber);
             matchToReplace(text, /数([0-9]+)[兆億万]/g, toKanNumber);
+            matchToReplace(text, /数([0-9]+)年/g, toKanNumber);
             matchToReplace(text, /([0-9]+)次関数/g, toKanNumber);
             matchToReplace(text, /(5)大陸/g, toKanNumber);
         }
