@@ -629,6 +629,7 @@ A. 正規表現の辞書ベースのルールが幾つかあります。
         "jtf-style"
     ],
     "rules": {
+        "jtf-style/2.1.2.漢字": true,
         "jtf-style/2.1.5.カタカナ": true,
         "jtf-style/2.1.6.カタカナの長音": true,
         "jtf-style/2.2.1.ひらがなと漢字の使い分け": true
