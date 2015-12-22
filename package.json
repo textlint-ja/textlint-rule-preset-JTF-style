@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/azu/textlint-rule-preset-jtf-style/issues"
   },
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "JTF Style Guide for Translators Working into Japanese for textlint.",
   "main": "lib/index.js",
   "files": [
