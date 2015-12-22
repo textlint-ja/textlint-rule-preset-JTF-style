@@ -158,7 +158,7 @@ export default function (context) {
 
             // ＊数えられる数字は算用数字を使う
             // 数十万、数百億にマッチしないように"数"という文字から始まるものは除外
-            // https://github.com/azu/textlint-plugin-JTF-style/pull/23
+            // https://github.com/azu/textlint-rule-preset-jtf-style/pull/23
             matchToReplace(text, /([一二三四五六七八九十壱弐参拾百〇]+)[兆億万]/g,
                 ignoreWhenMatched(/数([一二三四五六七八九十壱弐参拾百〇]+)[兆億万]/g, toNumber)
             );
