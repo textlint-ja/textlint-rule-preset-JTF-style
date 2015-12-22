@@ -1,10 +1,10 @@
-# textlint-plugin-JTF-style [![Build Status](https://travis-ci.org/azu/textlint-plugin-JTF-style.svg?branch=master)](https://travis-ci.org/azu/textlint-plugin-JTF-style)
+# textlint-rule-preset-JTF-style [![Build Status](https://travis-ci.org/azu/textlint-rule-preset-JTF-style.svg?branch=master)](https://travis-ci.org/azu/textlint-rule-preset-JTF-style)
 
 [JTF日本語標準スタイルガイド（翻訳用）](https://www.jtf.jp/jp/style_guide/styleguide_top.html "JTF日本語標準スタイルガイド（翻訳用）") for [textlint](https://github.com/textlint/textlint "textlint").
 
 ## Installation
 
-    npm install textlint-plugin-jtf-style
+    npm install textlint-rule-preset-jtf-style
 
 ## Usage
 
@@ -14,31 +14,31 @@
 
 ### 最も手軽な方法(グローバル)
 
-npmでグローバルにインストールし、`--plugin`で利用するのが一番お手軽です。
+npmでグローバルにインストールし、`--preset`で利用するのが一番お手軽です。
 
-    npm install -g textlint textlint-plugin-jtf-style
-    textlint --plugin textlint-plugin-jtf-style README.md
+    npm install -g textlint textlint-rule-preset-jtf-style
+    textlint --preset textlint-rule-preset-jtf-style README.md
     # README.mdをLintした結果が出力されます
 
 グローバルにインストールするよりは、次のようにプロジェクト毎のディレクトリにインストールする方法を推奨します。
 
 ### `.textlintrc`を使う方法(推奨)
 
-現在のディレクトリにtextlintとtextlint-plugin-jtf-styleをインストールする方法です。
+現在のディレクトリにtextlintとtextlint-rule-preset-jtf-styleをインストールする方法です。
 (グローバルにインストールしなくていいので環境がキレイに作れます)
 
 ```
 npm init # package.jsonがないなら
-npm install -D textlint textlint-plugin-jtf-style
+npm install -D textlint textlint-rule-preset-jtf-style
 ```
 
-textlintの設定ファイルとなっている`.textlintrc`に次のように`jtf-style`と指定します(`textlint-plugin-`を取り除いたプラグイン名)。
+textlintの設定ファイルとなっている`.textlintrc`に次のように`jtf-style`と指定します(`textlint-rule-`を取り除いたプリセット名)。
 
 ```js
 {
-    "plugins": [
-        "jtf-style"
-    ]
+    "rules": {
+        "preset-jtf-style": true
+    }
 }
 ```
 
@@ -62,7 +62,7 @@ npm run-script経由で実行すれば、`node_modules/.bin/`は省略出来ま�
 
 - [JTF日本語標準スタイルガイド（翻訳用）（PDFファイル）](https://www.jtf.jp/jp/style_guide/pdf/jtf_style_guide.pdf)
 
-`textlint-plugin-JTF-style`で対応するルールと実装状況は以下のとおりです。
+`textlint-rule-preset-jtf-style`で対応するルールと実装状況は以下のとおりです。
 
 辞書ベースと書かれているものは、独自の辞書をベースとしているため精度が曖昧となっています。
 
@@ -569,7 +569,7 @@ npm run-script経由で実行すれば、`node_modules/.bin/`は省略出来ま�
 
 Q. このルールはスタイルガイドと合ってないのでは？
 
-A. [Issue](https://github.com/azu/textlint-plugin-JTF-style/issues/new)に詳細を書いてみるといいと思います。
+A. [Issue](https://github.com/azu/textlint-rule-preset-jtf-style/issues/new)に詳細を書いてみるといいと思います。
 
 Issueには以下の項目が書かれていると問題を解決しやすくなります。
 
@@ -591,15 +591,14 @@ A. `.textlintrc` にルール毎の設定を追加することが出来ます。
 - [textlintで日本語の文章をチェックする | Web Scratch](http://efcl.info/2015/09/10/introduce-textlint/ "textlintで日本語の文章をチェックする | Web Scratch")
 
 `1.2.2.ピリオド(.)とカンマ(,)`のルールを無効化したい場合は、`.textlintrc`に次のように`false`値を設定することで無効化出来ます。
-デフォルトでは`textlint-plugin-JTF-style`に含まれるルールが全て有効化されています。
+デフォルトでは`textlint-rule-preset-jtf-style`に含まれるルールが全て有効化されています。
 
 ```js
 {
-    "plugins": [
-        "jtf-style"
-    ],
     "rules": {
-        "jtf-style/1.2.2.ピリオド(.)とカンマ(,)": false
+        "preset-jtf-style": {
+            "1.2.2.ピリオド(.)とカンマ(,)": false
+        }
     }
 }
 ```
@@ -626,6 +625,31 @@ A. 正規表現の辞書ベースのルールが幾つかあります。
 
 ```js
 {
+    "rules": {
+        "preset-jtf-style": {
+            "2.1.2.漢字": true,
+            "2.1.5.カタカナ": true,
+            "2.1.6.カタカナの長音": true,
+            "2.2.1.ひらがなと漢字の使い分け": true
+        }
+    }
+}
+```
+
+
+## Migration
+
+`textlint-plugin-jtf-style` から `textlint-rule-preset-jtf-style` へ移行したい場合、
+
+```sh
+npm uninstall -D textlint-plugin-jtf-style
+npm install -D textlint-rule-preset-jtf-style
+```
+
+した後、`.textlintrc`を
+
+```js
+{
     "plugins": [
         "jtf-style"
     ],
@@ -634,6 +658,21 @@ A. 正規表現の辞書ベースのルールが幾つかあります。
         "jtf-style/2.1.5.カタカナ": true,
         "jtf-style/2.1.6.カタカナの長音": true,
         "jtf-style/2.2.1.ひらがなと漢字の使い分け": true
+    }
+}
+```
+
+以下のように書き換えれば完了です。
+
+```js
+{
+    "rules": {
+        "preset-jtf-style": {
+            "2.1.2.漢字": true,
+            "2.1.5.カタカナ": true,
+            "2.1.6.カタカナの長音": true,
+            "2.2.1.ひらがなと漢字の使い分け": true
+        }
     }
 }
 ```
