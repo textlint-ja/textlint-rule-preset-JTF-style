@@ -42,6 +42,7 @@
   },
   "dependencies": {
     "analyze-desumasu-dearu": "^2.1.2",
+    "moji": "^0.5.1",
     "regx": "^1.0.4",
     "sorted-joyo-kanji": "^0.2.0",
     "textlint-rule-helper": "^1.1.3",

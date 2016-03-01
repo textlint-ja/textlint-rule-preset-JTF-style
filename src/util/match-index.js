@@ -14,14 +14,19 @@
 export default function matchIndex(text, regExp) {
     const res = [];
     const subs = text.match(regExp);
-
-    for (var cursor = subs.index, l = subs.length, i = 1; i < l; i++) {
+    if (!subs) {
+        return res;
+    }
+    // matches only
+    // if has .input , then slice matches only
+    const matches = subs.input ? subs.slice(1) : subs;
+    for (var cursor = matches.index, l = matches.length, i = 0; i < l; i++) {
         let index = cursor;
 
-        if (i + 1 !== l && subs[i] !== subs[i + 1]) {
-            const nextIndex = text.indexOf(subs[i + 1], cursor);
+        if (i + 1 !== l && matches[i] !== matches[i + 1]) {
+            const nextIndex = text.indexOf(matches[i + 1], cursor);
             while (true) {
-                var currentIndex = text.indexOf(subs[i], index);
+                var currentIndex = text.indexOf(matches[i], index);
                 if (currentIndex !== -1 && currentIndex <= nextIndex) {
                     index = currentIndex + 1;
                 } else {
@@ -30,12 +35,12 @@ export default function matchIndex(text, regExp) {
             }
             index--;
         } else {
-            index = text.indexOf(subs[i], cursor);
+            index = text.indexOf(matches[i], cursor);
         }
-        cursor = index + subs[i].length;
+        cursor = index + matches[i].length;
 
         res.push({
-            text: subs[i],
+            text: matches[i],
             index
         });
     }
