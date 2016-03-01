@@ -3,10 +3,17 @@
 import {isUserWrittenNode} from "./util/node-util";
 /*
 1.2.2. ピリオド(.)とカンマ(,)
-欧文で表記する組織名などの固有名詞や数字にピリオド(.)やカンマ(,)が含まれる場合は、和文中でもピリオ ド(.)とカンマ(,)を使用します。いずれの場合も半角で表記します。「4.1.3 ピリオド(.)、カンマ(,)」を参照してく ださい。
+欧文で表記する組織名などの固有名詞や数字にピリオド(.)やカンマ(,)が含まれる場合は、和文中でもピリオド(.)とカンマ(,)を使用します。
+いずれの場合も半角で表記します。「4.1.3 ピリオド(.)、カンマ(,)」を参照してく ださい。
  */
-export default function (context) {
-    let {Syntax, RuleError, report, getSource} = context;
+
+// . => 。 の置換マップ
+const replaceSymbol = {
+    "．": ".",
+    "，": ","
+};
+function report(context) {
+    let {Syntax, fixer, report, getSource} = context;
     return {
         [Syntax.Str](node){
             if (!isUserWrittenNode(node, context)) {
@@ -15,8 +22,18 @@ export default function (context) {
             let text = getSource(node);
             // 1.2.2. ピリオド(.)とカンマ(,)
             if (/[．，]/.test(text)) {
-                report(node, new RuleError("全角のピリオドとカンマは使用しません。"));
+                const index = text.search(/[．，]/);
+                const symbol = replaceSymbol[text[index]];
+                report(node, {
+                    message: "全角のピリオドとカンマは使用しません。",
+                    column: index,
+                    fix: fixer.replaceTextRange([index, index + 1], symbol)
+                });
             }
         }
     }
+}
+export default {
+    linter: report,
+    fixer: report
 }

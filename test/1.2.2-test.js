@@ -11,14 +11,22 @@ tester.run("1.2.2.ピリオド(.)とカンマ(,)", rule, {
         // text, expected errors
         {
             text: "785，105",
+            output: "785,105",
             errors: [
-                {message: "全角のピリオドとカンマは使用しません。"}
+                {
+                    message: "全角のピリオドとカンマは使用しません。",
+                    column: 4,
+                }
             ]
         },
         {
             text: "785．105",
+            output: "785.105",
             errors: [
-                {message: "全角のピリオドとカンマは使用しません。"}
+                {
+                    message: "全角のピリオドとカンマは使用しません。",
+                    column: 4
+                }
             ]
         }
     ]
