@@ -14,6 +14,7 @@ Pull Request、コミットのやりかたなどが書かれています。`
     invalid: [
         {
             text: "JTF 標準",
+            output: "JTF標準",
             errors: [
                 {
                     message: "原則として、全角文字と半角文字の間にスペースを入れません。",
@@ -23,12 +24,14 @@ Pull Request、コミットのやりかたなどが書かれています。`
         },
         {
             text: "これは Unicode",
+            output: "これはUnicode",
             errors: [
                 {message: "原則として、全角文字と半角文字の間にスペースを入れません。"}
             ]
         },
         {
             text: "これは Unicode",
+            output: "これはUnicode",
             errors: [
                 {message: "原則として、全角文字と半角文字の間にスペースを入れません。"}
             ]
