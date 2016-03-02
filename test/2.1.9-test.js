@@ -12,6 +12,7 @@ tester.run("2.1.9.アルファベット", rule, {
     invalid: [
         {
             text: "ＡＢＣ",
+            ouput: "ABC",
             errors: [
                 {
                     message: "アルファベットは「半角」で表記します。",
@@ -22,6 +23,7 @@ tester.run("2.1.9.アルファベット", rule, {
         },
         {
             text: "これはＡＢＣ全角",
+            output: "これはABC全角",
             errors: [
                 {
                     message: "アルファベットは「半角」で表記します。",
