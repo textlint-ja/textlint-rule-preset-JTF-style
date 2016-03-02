@@ -5,37 +5,50 @@
 かっこの外側、内側ともにスペースを入れません。
  */
 import {isUserWrittenNode} from "./util/node-util";
+import {matchCaptureGroupAll} from "./util/match-index";
+
 const brackets = [
-    "[", "]", "[", "（", "）", "［", "］", "「", "」", "『", "』"
+    "\\[", "\\]", "（", "）", "［", "］", "「", "」", "『", "』"
 ];
 
 const leftBrackets = brackets.map(bracket => {
-    return " " + bracket;
+    return new RegExp("\(\\s\)" + bracket, "g");
 });
 const rightBrackets = brackets.map(bracket => {
-    return bracket + " ";
+    return new RegExp(bracket + "\(\\s\)", "g");
 });
-export default function (context) {
-    let {Syntax, RuleError, report, getSource} = context;
+function reporter(context) {
+    let {Syntax, RuleError, report, fixer, getSource} = context;
     return {
         [Syntax.Str](node){
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
-            let text = getSource(node);
-            // ←にスペース
+            const text = getSource(node);
+            // 左にスペース
             leftBrackets.forEach(pattern => {
-                var index = text.indexOf(pattern);
-                if (index !== -1) {
-                    report(node, new RuleError("かっこの外側、内側ともにスペースを入れません。", index));
-                }
+                matchCaptureGroupAll(text, pattern).forEach(match => {
+                    const {index} = match;
+                    report(node, new RuleError("かっこの外側、内側ともにスペースを入れません。", {
+                        column: index,
+                        fix: fixer.replaceTextRange([index, index + 1], "")
+                    }));
+                })
             });
+            // 右にスペース
             rightBrackets.forEach(pattern => {
-                var index = text.indexOf(pattern);
-                if(index !== -1) {
-                    report(node, new RuleError("かっこの外側、内側ともにスペースを入れません。", index));
-                }
+                matchCaptureGroupAll(text, pattern).forEach(match => {
+                    const {index} = match;
+                    report(node, new RuleError("かっこの外側、内側ともにスペースを入れません。", {
+                        column: index,
+                        fix: fixer.replaceTextRange([index, index + 1], "")
+                    }));
+                })
             })
         }
     }
+}
+export default {
+    linter: reporter,
+    fixer: reporter
 }
