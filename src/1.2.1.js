@@ -3,7 +3,7 @@
 import regx from 'regx';
 import {japaneseRegExp} from "./util/regexp";
 import matchIndex from "./util/match-index";
-const rx = regx();
+const rx = regx("g");
 /*
 1.2.1. 句点(。)と読点(、)
 句読点には全角の「、」と「。」を使います。和文の句読点としてピリオド(.)とカンマ(,)を使用しません。
@@ -19,13 +19,30 @@ const leftTarget = rx`
 // {日本語}[,.]
 const rightTarget = rx`
         ${japaneseRegExp}
-        ([,\.])$
+        ([,\.])
     `;
 // . => 。 の置換マップ
 const replaceSymbol = {
     ".": "。",
     ",": "、"
 };
+
+
+function mergeMatches(...aMatches) {
+    const results = [];
+    aMatches.forEach(matches => {
+        matches.forEach(targetMatch => {
+            const alreadyHave = results.some(match => {
+                const {text, index} = match;
+                return targetMatch.index === index && targetMatch.text === text;
+            });
+            if (!alreadyHave) {
+                results.push(targetMatch);
+            }
+        });
+    });
+    return results;
+}
 
 const reporter = (context) => {
     let {Syntax, report, fixer, getSource} = context;
@@ -34,9 +51,11 @@ const reporter = (context) => {
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
-            let text = getSource(node);
-            if (leftTarget.test(text)) {
-                const [match] = matchIndex(text, leftTarget);
+            const text = getSource(node);
+            const leftMatches = matchIndex(text, leftTarget);
+            const rightMatches = matchIndex(text, rightTarget);
+            const matches = mergeMatches(leftMatches, rightMatches);
+            matches.forEach(match => {
                 const symbol = replaceSymbol[match.text];
                 const indexOfSymbol = match.index;
                 report(node, {
@@ -44,17 +63,7 @@ const reporter = (context) => {
                     column: indexOfSymbol,
                     fix: fixer.replaceTextRange([indexOfSymbol, indexOfSymbol + 1], symbol)
                 });
-            }
-            if (rightTarget.test(text)) {
-                const [match] = matchIndex(text, rightTarget);
-                const symbol = replaceSymbol[match.text];
-                const indexOfSymbol = match.index;
-                report(node, {
-                    message: "句読点には全角の「、」と「。」を使います。和文の句読点としてピリオド(.)とカンマ(,)を使用しません。",
-                    column: indexOfSymbol,
-                    fix: fixer.replaceTextRange([indexOfSymbol, indexOfSymbol + 1], symbol)
-                });
-            }
+            })
         }
     }
 };
