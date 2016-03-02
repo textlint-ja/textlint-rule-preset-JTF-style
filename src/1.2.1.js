@@ -2,7 +2,7 @@
 "use strict";
 import regx from 'regx';
 import {japaneseRegExp} from "./util/regexp";
-import matchIndex from "./util/match-index";
+import {matchCaptureGroupAll} from "./util/match-index";
 const rx = regx("g");
 /*
 1.2.1. 句点(。)と読点(、)
@@ -52,8 +52,8 @@ const reporter = (context) => {
                 return;
             }
             const text = getSource(node);
-            const leftMatches = matchIndex(text, leftTarget);
-            const rightMatches = matchIndex(text, rightTarget);
+            const leftMatches = matchCaptureGroupAll(text, leftTarget);
+            const rightMatches = matchCaptureGroupAll(text, rightTarget);
             const matches = mergeMatches(leftMatches, rightMatches);
             matches.forEach(match => {
                 const symbol = replaceSymbol[match.text];

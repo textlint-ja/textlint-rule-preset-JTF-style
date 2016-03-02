@@ -13,7 +13,7 @@ import {isUserWrittenNode} from "./util/node-util";
 import {hanKarakanaRegExp} from "./util/regexp";
 import prh from "textlint-rule-prh";
 import path from "path";
-import matchIndex from "./util/match-index";
+import {matchCaptureGroupAll} from "./util/match-index";
 import moji from "moji";
 /**
  * 半角カタカナを全角カタカナに変換
@@ -39,7 +39,7 @@ function reporter(context) {
             return;
         }
         const text = getSource(node);
-        const matches = matchIndex(text, /([\uFF65-\uFF9F]+)/);
+        const matches = matchCaptureGroupAll(text, /([\uFF65-\uFF9F]+)/);
         matches.forEach(match => {
             const {index, text} = match;
             report(node, {

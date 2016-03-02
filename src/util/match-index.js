@@ -3,24 +3,34 @@
 
 var flagsGetter = require('regexp.prototype.flags');
 /**
- * @typedef {Object} MatchIndexResult
+ * @typedef {Object} MatchCaptureGroup
  * @property {string} text - text is matched texts
  * @property {number} index - index is start of match
  */
+export function matchCaptureGroupAll(text, regExp) {
+    const all = matchAll(text, regExp);
+    const captureGroups = [];
+    all.forEach(match => {
+        match.captureGroups.forEach(captureGroup => {
+            captureGroups.push(captureGroup);
+        });
+    });
+    return captureGroups;
+}
 /**
  *
  * @param {string} text
  * @param {RegExp} regExp
- * @returns {MatchIndexResult[]}
+ * @returns {Array}
+ * @see reference https://github.com/tc39/String.prototype.matchAll
  */
-export default function matchIndex(text, regExp) {
-    var matches = [];
-    const captureGroupsAll = [];
-    var flags = regExp.flags || flagsGetter(regExp);
+export function matchAll(text, regExp) {
+    const matches = [];
+    let flags = regExp.flags || flagsGetter(regExp);
     if (flags.indexOf('g') === -1) {
         flags = 'g' + flags;
     }
-    var rx = new RegExp(regExp.source, flags);
+    const rx = new RegExp(regExp.source, flags);
     text.replace(rx, function () {
         var matchAll = Array.prototype.slice.call(arguments, 0, -2);
         var match = {};
@@ -31,13 +41,13 @@ export default function matchIndex(text, regExp) {
         const groups = matchAll.slice(1);
 
         const captureGroups = [];
-        for (var cursor = match.index, l = groups.length, i = 0; i < l; i++) {
-            var index = cursor;
+        for (let cursor = match.index, l = groups.length, i = 0; i < l; i++) {
+            let index = cursor;
 
             if (i + 1 !== l && groups[i] !== groups[i + 1]) {
-                var nextIndex = text.indexOf(groups[i + 1], cursor);
+                const nextIndex = text.indexOf(groups[i + 1], cursor);
                 while (true) {
-                    var currentIndex = text.indexOf(groups[i], index);
+                    const currentIndex = text.indexOf(groups[i], index);
                     if (currentIndex !== -1 && currentIndex <= nextIndex) {
                         index = currentIndex + 1;
                     } else {
@@ -54,12 +64,18 @@ export default function matchIndex(text, regExp) {
                 index
             };
             captureGroups.push(captureGroup);
-            // _? resutl
-            captureGroupsAll.push(captureGroup)
         }
         match.captureGroups = captureGroups;
         matches.push(match);
-        // example: ['test1', 'e', 'st1', '1'] with properties `index` and `input`
+        /*
+            index,
+            input
+            all
+            captureGroups = [{
+                text,
+                index
+            }]
+         */
     });
-    return captureGroupsAll;
+    return matches;
 }
