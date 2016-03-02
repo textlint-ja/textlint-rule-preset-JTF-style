@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import assert from "power-assert";
+import assert from "assert";
 import preset from "../src/index";
 import {TextLintCore} from "textlint"
 import * as fs from "fs";
