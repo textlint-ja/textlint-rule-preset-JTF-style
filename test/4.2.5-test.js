@@ -11,10 +11,11 @@ tester.run("4.2.5.波線(~)", rule, {
     invalid: [
         {
             text: "18~22歳まで",
+            output: "18〜22歳まで",
             errors: [
                 {
                     message: "数値の範囲を示す場合には全角の〜を使用します。",
-                    column: 4
+                    column: 3
                 }
             ]
         }
