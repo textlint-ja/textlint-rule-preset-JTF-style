@@ -2,6 +2,8 @@
 
 [JTF日本語標準スタイルガイド（翻訳用）](https://www.jtf.jp/jp/style_guide/styleguide_top.html "JTF日本語標準スタイルガイド（翻訳用）") for [textlint](https://github.com/textlint/textlint "textlint").
 
+2016年2月22日改訂 第2.2版を元にしています。
+
 ## Installation
 
     npm install textlint-rule-preset-jtf-style
