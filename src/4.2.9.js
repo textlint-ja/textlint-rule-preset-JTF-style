@@ -10,6 +10,10 @@ Note: ここでのダッシュはU+2012-U+2015とする
 https://ja.wikipedia.org/wiki/%E3%83%80%E3%83%83%E3%82%B7%E3%83%A5_%28%E8%A8%98%E5%8F%B7%29
  */
 import {isUserWrittenNode} from "./util/node-util";
+import {matchCaptureGroupAll} from "./util/match-index";
+import regx from 'regx';
+import {japaneseRegExp} from "./util/regexp";
+const rx = regx("g");
 export default function (context) {
     let {Syntax, RuleError, report, getSource} = context;
     return {
@@ -17,13 +21,15 @@ export default function (context) {
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
-            let text = getSource(node);
+            const text = getSource(node);
             // 和文でダッシュは使用しない
-            var matchHanQuestion = /([\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]|[\uD840-\uD87F][\uDC00-\uDFFF]|[ぁ-んァ-ヶ])[\u2012-\u2015]/;
-            var index = text.search(matchHanQuestion);
-            if (index !== -1) {
-                return report(node, new RuleError("原則として和文ではダッシュ(―)を使用しません。", index + 1))
-            }
+            const matchRegExp = rx`(?:${japaneseRegExp})([\u2012-\u2015])`;
+            matchCaptureGroupAll(text, matchRegExp).forEach(match => {
+                const {index} = match;
+                report(node, new RuleError("原則として和文ではダッシュ(―)を使用しません。", {
+                    column: index
+                }));
+            })
         }
     };
 }
