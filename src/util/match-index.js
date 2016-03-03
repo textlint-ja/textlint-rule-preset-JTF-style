@@ -1,13 +1,15 @@
 // LICENSE : MIT
 "use strict";
-
-var flagsGetter = require('regexp.prototype.flags');
+const flagsGetter = require('regexp.prototype.flags');
+const assert = require("assert");
 /**
  * @typedef {Object} MatchCaptureGroup
  * @property {string} text - text is matched texts
  * @property {number} index - index is start of match
  */
 export function matchCaptureGroupAll(text, regExp) {
+    const source = regExp.source;
+    assert(source.indexOf("(") >= 0, "RegExp should contain capture group at least one");
     const all = matchAll(text, regExp);
     const captureGroups = [];
     all.forEach(match => {
