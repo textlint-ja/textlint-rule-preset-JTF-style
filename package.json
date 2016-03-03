@@ -40,7 +40,7 @@
     "babel": "^5.8.23",
     "glob": "^7.0.0",
     "mocha": "^2.3.3",
-    "textlint": "^5.5.1-0",
+    "textlint": "^5.5.2-0",
     "textlint-tester": "^0.5.1-0"
   },
   "dependencies": {
@@ -53,6 +53,6 @@
     "textlint-rule-prh": "^2.0.0"
   },
   "peerDependencies": {
-    "textlint": ">= 5.1.0 || ^5.5.1-0"
+    "textlint": ">= 5.1.0 || 5.5.2-0"
   }
 }
