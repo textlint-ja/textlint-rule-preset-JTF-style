@@ -9,20 +9,28 @@
 「･」と「・」
  */
 import {isUserWrittenNode} from "./util/node-util";
-export default function (context) {
-    let {Syntax, RuleError, report, getSource} = context;
+import {matchCaptureGroupAll} from "./util/match-index";
+function reporter(context) {
+    let {Syntax, RuleError, report, fixer, getSource} = context;
     return {
         [Syntax.Str](node){
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
-            let text = getSource(node);
+            const text = getSource(node);
             // 和文で半角の･は利用しない
-            var matchHanNakaguro = /･/;
-            var index = text.search(matchHanNakaguro);
-            if (index !== -1) {
-                return report(node, new RuleError("カタカナ複合語を区切る場合または同格の語句を並列する場合には全角の中黒（・）を使用します。", index));
-            }
+            const matchHanNakaguro = /(･)/g;
+            matchCaptureGroupAll(text, matchHanNakaguro).forEach(match => {
+                const {index} = match;
+                report(node, new RuleError("カタカナ複合語を区切る場合または同格の語句を並列する場合には全角の中黒（・）を使用します。", {
+                    column: index,
+                    fix: fixer.replaceTextRange([index, index + 1], "・")
+                }));
+            })
         }
     };
+}
+export default {
+    linter: reporter,
+    fixer: reporter
 }
