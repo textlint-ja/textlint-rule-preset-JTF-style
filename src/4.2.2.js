@@ -11,8 +11,9 @@
 文中に疑問符を使用する場合はスペースを挿入しません。
  */
 import {isUserWrittenNode} from "./util/node-util";
-export default function (context) {
-    let {Syntax, RuleError, report, getSource} = context;
+import {matchCaptureGroupAll} from "./util/match-index";
+function reporter(context) {
+    let {Syntax, RuleError, report, fixer, getSource} = context;
     return {
         [Syntax.Str](node){
             if (!isUserWrittenNode(node, context)) {
@@ -20,11 +21,28 @@ export default function (context) {
             }
             let text = getSource(node);
             // 和文で半角の?は利用しない
-            var matchHanQuestion = /([\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]|[\uD840-\uD87F][\uDC00-\uDFFF]|[ぁ-んァ-ヶ])\?/;
-            var index = text.search(matchHanQuestion);
-            if (index !== -1) {
-                return report(node, new RuleError("疑問符(？)を使用する場合は「全角」で表記します。", index + 1))
-            }
+            const matchRegExp = /(?:[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]|[\uD840-\uD87F][\uDC00-\uDFFF]|[ぁ-んァ-ヶ])(\?)/;
+            matchCaptureGroupAll(text, matchRegExp).forEach(match => {
+                const {index} = match;
+                return report(node, new RuleError("疑問符(？)を使用する場合は「全角」で表記します。", {
+                    column: index,
+                    fix: fixer.replaceTextRange([index, index + 1], "？")
+                }));
+            });
+            // ？の後ろは全角スペースが推奨
+            // 半角スペースである場合はエラーとする
+            const matchAfter = /？( )[^\n]/;
+            matchCaptureGroupAll(text, matchAfter).forEach(match => {
+                const {index} = match;
+                return report(node, new RuleError("文末に感嘆符を使用し、後に別の文が続く場合は、直後に全角スペースを挿入します。", {
+                    column: index,
+                    fix: fixer.replaceTextRange([index, index + 1], "　")
+                }));
+            });
         }
     };
+}
+export default {
+    linter: reporter,
+    fixer: reporter
 }
