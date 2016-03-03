@@ -19,9 +19,9 @@ function reporter(context) {
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
-            let text = getSource(node);
-            let matchReg = matchCaptureGroupAll(text, /([Ａ-Ｚ]+)/);
-            matchReg.forEach(match => {
+            const text = getSource(node);
+            const matchRegExp = /([Ａ-Ｚ]+)/;
+            matchCaptureGroupAll(text, matchRegExp).forEach(match => {
                 const {index, text} = match;
                 report(node, {
                     message: "アルファベットは「半角」で表記します。",

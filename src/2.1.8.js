@@ -19,9 +19,9 @@ function reporter(context) {
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
-            let text = getSource(node);
-            let matchReg = matchCaptureGroupAll(text, /([０-９]+)/);
-            matchReg.forEach(match => {
+            const text = getSource(node);
+            const matchRegExp = /([０-９]+)/
+            matchCaptureGroupAll(text, matchRegExp).forEach(match => {
                 const {index, text} = match;
                 report(node, {
                     message: "算用数字は「半角」で表記します。",
