@@ -3,6 +3,7 @@
 import regx from 'regx';
 import {japaneseRegExp} from "./util/regexp";
 import {matchCaptureGroupAll} from "./util/match-index";
+import mergeMatches from "./util/merge-matches";
 const rx = regx("g");
 /*
 1.2.1. 句点(。)と読点(、)
@@ -26,23 +27,6 @@ const replaceSymbol = {
     ".": "。",
     ",": "、"
 };
-
-
-function mergeMatches(...aMatches) {
-    const results = [];
-    aMatches.forEach(matches => {
-        matches.forEach(targetMatch => {
-            const alreadyHave = results.some(match => {
-                const {text, index} = match;
-                return targetMatch.index === index && targetMatch.text === text;
-            });
-            if (!alreadyHave) {
-                results.push(targetMatch);
-            }
-        });
-    });
-    return results;
-}
 
 const reporter = (context) => {
     let {Syntax, report, fixer, getSource} = context;

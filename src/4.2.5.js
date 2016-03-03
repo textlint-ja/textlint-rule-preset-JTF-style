@@ -15,7 +15,7 @@ function reporter(context) {
                 return;
             }
             const text = getSource(node);
-            // 和文で半角の?は利用しない
+            // 数値の区切りに半角の~は利用しない
             const matchHanQuestion = /\d(~)\d/g;
             matchCaptureGroupAll(text, matchHanQuestion).forEach(match => {
                 const {index} = match;

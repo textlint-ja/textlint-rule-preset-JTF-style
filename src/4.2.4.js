@@ -10,6 +10,9 @@
  */
 import {isUserWrittenNode} from "./util/node-util";
 import {matchCaptureGroupAll} from "./util/match-index";
+import regx from 'regx';
+import {japaneseRegExp} from "./util/regexp";
+const rx = regx("g");
 function reporter(context) {
     let {Syntax, RuleError, report, fixer, getSource} = context;
     return {
@@ -19,7 +22,7 @@ function reporter(context) {
             }
             const text = getSource(node);
             // 和文で半角の･は利用しない
-            const matchHanNakaguro = /(･)/g;
+            const matchHanNakaguro = rx`(?:${japaneseRegExp}|[a-zA-Z])(･)(?:${japaneseRegExp}|[a-zA-Z])`;
             matchCaptureGroupAll(text, matchHanNakaguro).forEach(match => {
                 const {index} = match;
                 report(node, new RuleError("カタカナ複合語を区切る場合または同格の語句を並列する場合には全角の中黒（・）を使用します。", {

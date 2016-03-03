@@ -2,6 +2,7 @@
 "use strict";
 const flagsGetter = require('regexp.prototype.flags');
 const assert = require("assert");
+
 /**
  * @typedef {Object} MatchCaptureGroup
  * @property {string} text - text is matched texts
