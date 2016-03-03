@@ -6,20 +6,42 @@
 全角の大かっこを使用します
  */
 import {isUserWrittenNode} from "./util/node-util";
-export default function (context) {
-    let {Syntax, RuleError, report, getSource} = context;
+import {matchCaptureGroupAll} from "./util/match-index";
+import regx from 'regx';
+import {japaneseRegExp} from "./util/regexp";
+const rx = regx("g");
+
+const replaceSymbol = (symbol) => {
+    var newSymbol = {
+        "[": "［",
+        "]": "］"
+    }[symbol];
+    if (!newSymbol) {
+        throw new Error("fail to replace symbol");
+    }
+    return newSymbol;
+};
+function reporter(context) {
+    let {Syntax, RuleError, report, fixer, getSource} = context;
     return {
         [Syntax.Str](node){
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
-            let text = getSource(node);
-            // 半角の大かっこ[]は使用しない
-            var matchHanQuestion = /[\[\]]/;
-            var index = text.search(matchHanQuestion);
-            if (index !== -1) {
-                return report(node, new RuleError("半角の大かっこ[]が使用されています。", index + 1))
-            }
+            // 半角のかっこ[]は使用しないで全角のかっこを使用する
+            const text = getSource(node);
+            const matchRegExp = rx`(?:${japaneseRegExp})([\[\]])`;
+            matchCaptureGroupAll(text, matchRegExp).forEach(match => {
+                const {index} = match;
+                report(node, new RuleError("半角の大かっこ[]が使用されています。全角のかっこ［］を使用してください。", {
+                    column: index,
+                    fix: fixer.replaceTextRange([index, index + 1], replaceSymbol(match.text))
+                }));
+            });
         }
     };
+}
+export default {
+    linter: reporter,
+    fixer: reporter
 }
