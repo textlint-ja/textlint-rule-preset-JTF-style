@@ -12,6 +12,9 @@
  */
 import {isUserWrittenNode} from "./util/node-util";
 import {matchCaptureGroupAll} from "./util/match-index";
+import regx from 'regx';
+import {japaneseRegExp} from "./util/regexp";
+const rx = regx("g");
 function reporter(context) {
     let {Syntax, RuleError, report, fixer, getSource} = context;
     return {
@@ -21,7 +24,7 @@ function reporter(context) {
             }
             let text = getSource(node);
             // 和文で半角の?は利用しない
-            const matchRegExp = /(?:[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]|[\uD840-\uD87F][\uDC00-\uDFFF]|[ぁ-んァ-ヶ])(\?)/;
+            const matchRegExp = rx`${japaneseRegExp}(\?)`;
             matchCaptureGroupAll(text, matchRegExp).forEach(match => {
                 const {index} = match;
                 return report(node, new RuleError("疑問符(？)を使用する場合は「全角」で表記します。", {

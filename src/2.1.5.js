@@ -39,7 +39,7 @@ function reporter(context) {
             return;
         }
         const text = getSource(node);
-        const matches = matchCaptureGroupAll(text, /([\uFF65-\uFF9F]+)/);
+        const matches = matchCaptureGroupAll(text, /([\uFF65-\uFF9F]+)/g);
         matches.forEach(match => {
             const {index, text} = match;
             report(node, {

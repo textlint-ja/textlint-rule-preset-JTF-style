@@ -2,7 +2,9 @@
 "use strict";
 import {isUserWrittenNode} from "./util/node-util";
 import {matchAll} from "./util/match-index";
-
+import regx from 'regx';
+import {japaneseRegExp} from "./util/regexp";
+const rx = regx("g");
 /*
 3.1.2. 全角文字どうし
 
@@ -18,7 +20,7 @@ function reporter(context) {
             }
             const text = getSource(node);
             // 全角同士の間は半角スペースを入れない
-            const matchReg = /(?:[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]|[\uD840-\uD87F][\uDC00-\uDFFF]|[ぁ-んァ-ヶ])( )(?:[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]|[\uD840-\uD87F][\uDC00-\uDFFF]|[ぁ-んァ-ヶ])/g;
+            const matchReg = rx`${japaneseRegExp}( )${japaneseRegExp}`;
             const katakakana = /[ァ-ヶ]( )[ァ-ヶ]/;
             matchAll(text, matchReg).forEach(match => {
                 const {input, captureGroups} = match;
