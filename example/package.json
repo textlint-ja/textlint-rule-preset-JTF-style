@@ -6,6 +6,7 @@
   "scripts": {
     "pretest": "npm rm textlint-rule-preset-jtf-style && npm i",
     "textlint": "textlint",
+    "textlint:fix": "textlint --fix ../README.md",
     "test": "npm run textlint -- -f pretty-error ../README.md"
   },
   "author": "azu",
