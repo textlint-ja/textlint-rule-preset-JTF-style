@@ -14,21 +14,34 @@ tester.run("2.1.10.算用数字の位取りの表記", rule, {
     invalid: [
         {
             text: "0,01",
+            output: "0.01",
             errors: [
                 {
                     message: "小数点には「ピリオド」を使います。",
                     line: 1,
-                    column: 1
+                    column: 2
                 }
             ]
         },
         {
             text: "0,1",
+            output: "0.1",
             errors: [
                 {
                     message: "小数点には「ピリオド」を使います。",
                     line: 1,
-                    column: 1
+                    column: 2
+                }
+            ]
+        },
+        {
+            text: "これは10個あるうちの0,1分",
+            output: "これは10個あるうちの0.1分",
+            errors: [
+                {
+                    message: "小数点には「ピリオド」を使います。",
+                    line: 1,
+                    column: 13
                 }
             ]
         }

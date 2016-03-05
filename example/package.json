@@ -6,12 +6,13 @@
   "scripts": {
     "pretest": "npm rm textlint-rule-preset-jtf-style && npm i",
     "textlint": "textlint",
+    "textlint:fix": "textlint --fix ../README.md",
     "test": "npm run textlint -- -f pretty-error ../README.md"
   },
   "author": "azu",
   "license": "MIT",
   "devDependencies": {
-    "textlint": "^5.1.0",
+    "textlint": "^5.5.3",
     "textlint-rule-preset-jtf-style": "file:.."
   }
 }

@@ -13,6 +13,7 @@ tester.run("2.2.2.算用数字と漢数字の使い分け", rule, {
     invalid: [
         {
             text: "一億百十万人",
+            output: "1億百十万人",
             errors: [
                 {
                     message: `一億 => 1億
@@ -24,6 +25,7 @@ tester.run("2.2.2.算用数字と漢数字の使い分け", rule, {
         },
         {
             text: "百八つのボタン",
+            output: "108つのボタン",
             errors: [
                 {
                     message: `百八つ => 108つ
@@ -33,6 +35,7 @@ tester.run("2.2.2.算用数字と漢数字の使い分け", rule, {
         },
         {
             text: "第三回大会",
+            output: "第3回大会",
             errors: [
                 {
                     message: `三回 => 3回
@@ -42,6 +45,7 @@ tester.run("2.2.2.算用数字と漢数字の使い分け", rule, {
         },
         {
             text: "サンフランシスコマラソン第三回大会",
+            output: "サンフランシスコマラソン第3回大会",
             errors: [
                 {
                     message: `三回 => 3回
@@ -77,6 +81,7 @@ tester.run("2.2.2.算用数字と漢数字の使い分け", rule, {
     invalid: [
         {
             text: "これは世界1",
+            output: "これは世界一",
             errors: [
                 {
                     message: `世界1 => 世界一
@@ -86,6 +91,7 @@ tester.run("2.2.2.算用数字と漢数字の使い分け", rule, {
         },
         {
             text: "1部の文章",
+            output: "一部の文章",
             errors: [
                 {
                     message: `1部の => 一部の
@@ -95,6 +101,7 @@ tester.run("2.2.2.算用数字と漢数字の使い分け", rule, {
         },
         {
             text: "朝1番に",
+            output: "朝一番に",
             errors: [
                 {
                     message: `1番に => 一番に
@@ -104,6 +111,7 @@ tester.run("2.2.2.算用数字と漢数字の使い分け", rule, {
         },
         {
             text: "数100倍",
+            output: "数百倍",
             errors: [
                 {
                     message: `数100倍 => 数百倍
@@ -113,6 +121,7 @@ tester.run("2.2.2.算用数字と漢数字の使い分け", rule, {
         },
         {
             text: "数10億",
+            output: "数十億",
             errors: [
                 {
                     message: `数10億 => 数十億
@@ -124,17 +133,19 @@ tester.run("2.2.2.算用数字と漢数字の使い分け", rule, {
         },
         {
             text: "しばしば数10万行以上に",
+            output: "しばしば数十万行以上に",
             errors: [
                 {
                     message: `数10万 => 数十万
 慣用的表現、熟語、概数、固有名詞、副詞など、漢数字を使用することが一般的な語句では漢数字を使います。`,
                     line: 1,
-                    column: 1
+                    column: 5
                 }
             ]
         },
         {
             text: "数10年に一度の奇跡",
+            output: "数十年に一度の奇跡",
             errors: [
                 {
                     message: `数10年 => 数十年

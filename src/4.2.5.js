@@ -5,20 +5,29 @@
 数値の範囲を示す場合に使用します。
  */
 import {isUserWrittenNode} from "./util/node-util";
-export default function (context) {
-    let {Syntax, RuleError, report, getSource} = context;
+import {matchCaptureGroupAll} from "./util/match-index";
+
+function reporter(context) {
+    let {Syntax, RuleError, report, fixer, getSource} = context;
     return {
         [Syntax.Str](node){
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
-            let text = getSource(node);
-            // 和文で半角の?は利用しない
-            var matchHanQuestion = /\d(~)\d/;
-            var index = text.search(matchHanQuestion);
-            if (index !== -1) {
-                return report(node, new RuleError("数値の範囲を示す場合には全角の〜を使用します。", index + 1 + 1));
-            }
+            const text = getSource(node);
+            // 数値の区切りに半角の~は利用しない
+            const matchHanQuestion = /\d(~)\d/g;
+            matchCaptureGroupAll(text, matchHanQuestion).forEach(match => {
+                const {index} = match;
+                report(node, new RuleError("数値の範囲を示す場合には全角の〜を使用します。", {
+                    column: index,
+                    fix: fixer.replaceTextRange([index, index + 1], "〜")
+                }));
+            });
         }
     };
+}
+export default {
+    linter: reporter,
+    fixer: reporter
 }

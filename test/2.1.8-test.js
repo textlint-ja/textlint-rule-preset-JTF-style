@@ -12,6 +12,7 @@ tester.run("2.1.8.算用数字", rule, {
     invalid: [
         {
             text: "２００円はダメ",
+            output: "200円はダメ",
             errors: [
                 {
                     message: "算用数字は「半角」で表記します。",
@@ -22,6 +23,7 @@ tester.run("2.1.8.算用数字", rule, {
         },
         {
             text: "おやつは３００円まで",
+            output: "おやつは300円まで",
             errors: [
                 {
                     message: "算用数字は「半角」で表記します。",

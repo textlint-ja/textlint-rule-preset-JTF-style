@@ -1,6 +1,8 @@
-# textlint-rule-preset-JTF-style [![Build Status](https://travis-ci.org/azu/textlint-rule-preset-JTF-style.svg?branch=master)](https://travis-ci.org/azu/textlint-rule-preset-JTF-style)
+# textlint-rule-preset-JTF-style [![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) [![Build Status](https://travis-ci.org/azu/textlint-rule-preset-JTF-style.svg?branch=master)](https://travis-ci.org/azu/textlint-rule-preset-JTF-style)
 
 [JTF日本語標準スタイルガイド（翻訳用）](https://www.jtf.jp/jp/style_guide/styleguide_top.html "JTF日本語標準スタイルガイド（翻訳用）") for [textlint](https://github.com/textlint/textlint "textlint").
+
+2016年2月22日改訂第2.2版を元にしています。
 
 ## Installation
 
@@ -51,6 +53,22 @@ node_modules/.bin/textlint /path/to/target.md
 npm run-script経由で実行すれば、`node_modules/.bin/`は省略出来ます。
 
 - [npm で依存もタスクも一元化する - Qiita](http://qiita.com/Jxck_/items/efaff21b977ddc782971#%E3%82%BF%E3%82%B9%E3%82%AF%E3%81%AE%E5%AE%9F%E8%A1%8C "npm で依存もタスクも一元化する - Qiita")
+
+## 自動修正
+
+使用するルールの設定が終わったら、`textlint`を実行してみてください。
+沢山のエラーが表示されると思います。
+
+[![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) 
+
+`textlint-rule-preset-JTF-style`の一部ルールは`textlint`の`--fix`にも対応しています。
+`--fix`を使うことで機械的に判断して修正出来る部分は自動修正します。
+
+```sh
+textlint --fix /path/to/target.md
+```
+
+実際にファイルを書き換えるので、必ずファイルをコピーしておくなどしてファイルを戻せるようにしてから実行してください。
 
 ### サンプル
 

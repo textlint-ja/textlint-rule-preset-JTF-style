@@ -104,29 +104,29 @@ function _num2ja(num, opt) {
     return result;
 }
 
-// 2.2.2. 算用数字と漢数字の使い分け
-export default function (context) {
-    let {Syntax, RuleError, report, getSource} = context;
+function reporter(context) {
+    let {Syntax, RuleError, report, fixer, getSource} = context;
     return {
         [Syntax.Str](node){
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
-            let text = getSource(node);
+            const text = getSource(node);
             // 漢数字 -> 算用数字
-            let toNumber = (text, pattern, match) => {
-                let matchedString = match[0];
-                let index = match.index;
-                var expected = matchedString.replace(pattern, function (all, match) {
+            const toNumber = (text, pattern, match) => {
+                const matchedString = match[0];
+                const index = match.index;
+                const expected = matchedString.replace(pattern, function (all, match) {
                     let result = 0;
                     match.split("").forEach(kanNumber => {
                         result += numberMap[kanNumber];
                     });
                     return all.replace(match, result);
                 });
-                var ruleError = new RuleError(`${matchedString} => ${expected}
+                const ruleError = new RuleError(`${matchedString} => ${expected}
 数量を表現し、数を数えられるものは算用数字を使用します。任意の数に置き換えても通用する語句がこれに該当します。`, {
-                    column: index
+                    column: index,
+                    fix: fixer.replaceTextRange([index, index + matchedString.length], expected)
                 });
                 report(node, ruleError);
             };
@@ -134,19 +134,21 @@ export default function (context) {
 
             // 算用数字 -> 漢数字
 
-            let toKanNumber = (text, pattern, match) => {
-                var matchedString = match[0];
-                var expected = matchedString.replace(pattern, function (all, match) {
+            const toKanNumber = (text, pattern, match) => {
+                const matchedString = match[0];
+                const expected = matchedString.replace(pattern, function (all, match) {
                     return all.replace(match, _num2ja(match, {'with_arabic': false}));
                 });
+                const index = match.index;
                 report(node, new RuleError(`${matchedString} => ${expected}
 慣用的表現、熟語、概数、固有名詞、副詞など、漢数字を使用することが一般的な語句では漢数字を使います。`, {
-                    column: matchedString.index
+                    column: index,
+                    fix: fixer.replaceTextRange([index, index + matchedString.length], expected)
                 }));
             };
 
             // ignorePatternにマッチしたらmatchFnを呼ばないようにする(エラーを無視する)
-            let ignoreWhenMatched = (ignorePattern, matchFn) => {
+            const ignoreWhenMatched = (ignorePattern, matchFn) => {
                 return (text, pattern, match) => {
                     if (ignorePattern.test(text)) {
                         return null;
@@ -184,4 +186,10 @@ export default function (context) {
             matchToReplace(text, /(5)大陸/g, toKanNumber);
         }
     }
+}
+
+// 2.2.2. 算用数字と漢数字の使い分け
+export default {
+    linter: reporter,
+    fixer: reporter
 }

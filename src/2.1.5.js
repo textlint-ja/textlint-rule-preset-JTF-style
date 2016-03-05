@@ -10,12 +10,25 @@ Halfwidth Katakana variants（半角片仮名）
 http://www.asahi-net.or.jp/~ax2s-kmtn/ref/unicode/uff00.html
  */
 import {isUserWrittenNode} from "./util/node-util";
+import {hanKarakanaRegExp} from "./util/regexp";
 import prh from "textlint-rule-prh";
 import path from "path";
-export default function (context) {
-    let {Syntax, RuleError, report, getSource} = context;
+import {matchCaptureGroupAll} from "./util/match-index";
+import moji from "moji";
+/**
+ * 半角カタカナを全角カタカナに変換
+ *
+ * @param {String} str 変換したい文字列
+ */
+function toZenkaku(string) {
+    return moji(string).convert('HK', 'ZK').toString();
+}
+
+
+function reporter(context) {
+    let {Syntax, fixer, report, getSource} = context;
     // 辞書ベースのカタカタ表記のチェックを行う
-    let dictRule = prh(context, {
+    let dictRule = prh.fixer(context, {
         rulePaths: [path.join(__dirname, "..", "dict", "2.1.5.yml")]
     });
     let originalStrRule = dictRule[Syntax.Str];
@@ -25,12 +38,21 @@ export default function (context) {
         if (!isUserWrittenNode(node, context)) {
             return;
         }
-        let text = getSource(node);
-        let matchReg = /[\uFF65-\uFF9F]/;
-        let index = text.search(matchReg);
-        if (index !== -1) {
-            report(node, new RuleError("カタカナは「全角」で表記します。", index));
-        }
+        const text = getSource(node);
+        const matches = matchCaptureGroupAll(text, /([\uFF65-\uFF9F]+)/g);
+        matches.forEach(match => {
+            const {index, text} = match;
+            report(node, {
+                message: "カタカナは「全角」で表記します。",
+                column: index,
+                fix: fixer.replaceTextRange([index, index + text.length], toZenkaku(text))
+            });
+
+        });
     };
     return dictRule;
+}
+export default {
+    linter: reporter,
+    fixer: reporter
 }

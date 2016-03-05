@@ -12,6 +12,7 @@ tester.run("1.1.2.見出し", rule, {
     invalid: [
         {
             text: "# 見出し。",
+            output: "# 見出し",
             errors: [
                 {
                     message: "見出しの文末には、句点(。)を付けません。",
@@ -22,6 +23,18 @@ tester.run("1.1.2.見出し", rule, {
         },
         {
             text: "### 見出し。",
+            output: "### 見出し",
+            errors: [
+                {
+                    message: "見出しの文末には、句点(。)を付けません。",
+                    line: 1,
+                    column: 8
+                }
+            ]
+        },
+        {
+            text: "### 見出し。\n test",
+            output: "### 見出し\n test",
             errors: [
                 {
                     message: "見出しの文末には、句点(。)を付けません。",

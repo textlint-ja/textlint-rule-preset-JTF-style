@@ -7,8 +7,9 @@
 。ただしカタカナ複合語の場合を除きます。「2.1.7 カタカナ複合語」を参照してください。
  */
 import {isUserWrittenNode} from "./util/node-util";
-export default function (context) {
-    let {Syntax, RuleError, report, getSource} = context;
+import {matchCaptureGroupAll} from "./util/match-index";
+function reporter(context) {
+    let {Syntax, RuleError, report, fixer, getSource} = context;
     return {
         [Syntax.Str](node){
             if (!isUserWrittenNode(node, context)) {
@@ -16,12 +17,21 @@ export default function (context) {
             }
             let text = getSource(node);
             // アルファベットと全角の間は半角スペースではない
-            let betweenHanAndZen = /[A-Za-z0-9]( )(?:[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]|[\uD840-\uD87F][\uDC00-\uDFFF]|[ぁ-んァ-ヶ])/;
-            let betweenZenAndHan = /(?:[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]|[\uD840-\uD87F][\uDC00-\uDFFF]|[ぁ-んァ-ヶ])( )[A-Za-z0-9]/;
-            var match = text.match(betweenZenAndHan) || text.match(betweenHanAndZen);
-            if (match) {
-                report(node, new RuleError("原則として、全角文字と半角文字の間にスペースを入れません。", match.index + 1));
-            }
+            let betweenHanAndZen = matchCaptureGroupAll(text, /[A-Za-z0-9]( )(?:[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]|[\uD840-\uD87F][\uDC00-\uDFFF]|[ぁ-んァ-ヶ])/);
+            let betweenZenAndHan = matchCaptureGroupAll(text, /(?:[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]|[\uD840-\uD87F][\uDC00-\uDFFF]|[ぁ-んァ-ヶ])( )[A-Za-z0-9]/);
+            const reportMatch = (match) => {
+                const {index} = match;
+                report(node, new RuleError("原則として、全角文字と半角文字の間にスペースを入れません。", {
+                    column: match.index,
+                    fix: fixer.replaceTextRange([index, index + 1], "")
+                }));
+            };
+            betweenHanAndZen.forEach(reportMatch);
+            betweenZenAndHan.forEach(reportMatch);
         }
     }
+}
+export default {
+    linter: reporter,
+    fixer: reporter
 }

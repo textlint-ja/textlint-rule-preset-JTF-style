@@ -8,8 +8,10 @@
 和文の句読点としては使用しません。「1.2.2 ピリオド(.)とカンマ(,)」を 参照してください
  */
 import {isUserWrittenNode} from "./util/node-util";
-export default function (context) {
-    let {Syntax, RuleError, report, getSource} = context;
+import {matchCaptureGroupAll} from "./util/match-index";
+
+function reporter(context) {
+    let {Syntax, RuleError, report, fixer, getSource} = context;
     return {
         [Syntax.Str](node){
             if (!isUserWrittenNode(node, context)) {
@@ -17,9 +19,18 @@ export default function (context) {
             }
             let text = getSource(node);
             // 和文. はエラー
-            if (/([\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]|[\uD840-\uD87F][\uDC00-\uDFFF]|[ぁ-んァ-ヶ])\./.test(text)) {
-                report(node, new RuleError("和文の句読点としてはピリオドを使用しません。"));
-            }
+            const matchReg = /(?:[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]|[\uD840-\uD87F][\uDC00-\uDFFF]|[ぁ-んァ-ヶ])(\.)/g;
+            matchCaptureGroupAll(text, matchReg).forEach(match => {
+                const index = match.index;
+                report(node, new RuleError("和文の句読点としてはピリオドを使用しません。", {
+                    column: index,
+                    fix: fixer.replaceTextRange([index, index + 1], "。")
+                }));
+            });
         }
     };
+}
+export default {
+    linter: reporter,
+    fixer: reporter
 }

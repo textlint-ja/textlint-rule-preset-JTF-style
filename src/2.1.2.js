@@ -7,14 +7,11 @@
  */
 import {isUserWrittenNode} from "./util/node-util";
 import {isJoyo} from "sorted-joyo-kanji";
-
+import {kanjiRegExp}from "./util/regexp";
 // http://qiita.com/YusukeHirao/items/2f0fb8d5bbb981101be0
-function stringToArray (value) {
+function stringToArray(value) {
     return value.match(/[\uD800-\uDBFF][\uDC00-\uDFFF]|[^\uD800-\uDFFF]/g) || [];
 }
-
-// http://tama-san.com/kanji-regex/
-const kanjiReg = /(?:[々〇〻\u3400-\u9FFF\uF900-\uFAFF]|[\uD840-\uD87F][\uDC00-\uDFFF])/;
 
 export default function (context) {
     let {Syntax, RuleError, report, getSource} = context;
@@ -23,11 +20,11 @@ export default function (context) {
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
-            let text = getSource(node);
-            let strArray = stringToArray(text);
-            for(let index = 0; index < strArray.length; index++) {
-                let item = strArray[index];
-                if(kanjiReg.test(item) && !isJoyo(item)) {
+            const text = getSource(node);
+            const strArray = stringToArray(text);
+            for (let index = 0; index < strArray.length; index++) {
+                const item = strArray[index];
+                if (kanjiRegExp.test(item) && !isJoyo(item)) {
                     report(node, new RuleError("「" + item + "」は「常用漢字表」外の漢字です。", index));
                 }
             }

@@ -7,19 +7,32 @@
 ただし、表記をできるだけ統一するため、特別な理由がない限り半角での表記を原則とします。
  */
 import {isUserWrittenNode} from "./util/node-util";
-export default function (context) {
-    let {Syntax, RuleError, report, getSource} = context;
+import {matchCaptureGroupAll} from "./util/match-index";
+import moji from "moji";
+function toHankaku(string) {
+    return moji(string).convert('ZE', 'HE').toString();
+}
+function reporter(context) {
+    let {Syntax, RuleError, report, fixer, getSource} = context;
     return {
         [Syntax.Str](node){
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
-            let text = getSource(node);
-            let matchReg = /[Ａ-Ｚ]/;
-            let index = text.search(matchReg);
-            if (index !== -1) {
-                report(node, new RuleError("アルファベットは「半角」で表記します。", index));
-            }
+            const text = getSource(node);
+            const matchRegExp = /([Ａ-Ｚ]+)/;
+            matchCaptureGroupAll(text, matchRegExp).forEach(match => {
+                const {index, text} = match;
+                report(node, {
+                    message: "アルファベットは「半角」で表記します。",
+                    column: index,
+                    fix: fixer.replaceTextRange([index, index + text.length], toHankaku(text))
+                })
+            });
         }
     }
+}
+export default {
+    linter: reporter,
+    fixer: reporter
 }
