@@ -11,7 +11,7 @@ import prh from "textlint-rule-prh";
 import path from "path";
 export default function (context) {
     // 辞書ベースのカタカナ末尾の長音のチェックを行う
-    return prh(context, {
+    return prh.fixer(context, {
         rulePaths: [path.join(__dirname, "..", "dict", "2.1.6.yml")]
     });
 }

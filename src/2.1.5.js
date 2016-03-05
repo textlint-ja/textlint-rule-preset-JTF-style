@@ -28,7 +28,7 @@ function toZenkaku(string) {
 function reporter(context) {
     let {Syntax, fixer, report, getSource} = context;
     // 辞書ベースのカタカタ表記のチェックを行う
-    let dictRule = prh(context, {
+    let dictRule = prh.fixer(context, {
         rulePaths: [path.join(__dirname, "..", "dict", "2.1.5.yml")]
     });
     let originalStrRule = dictRule[Syntax.Str];
