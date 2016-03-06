@@ -34,7 +34,7 @@ function reporter(context) {
             matchCaptureGroupAll(text, matchRegExp).forEach(match => {
                 const {index} = match;
                 report(node, new RuleError("半角のかっこ()が使用されています。全角のかっこ（）を使用してください。", {
-                    column: index,
+                    index: index,
                     fix: fixer.replaceTextRange([index, index + 1], replaceSymbol(match.text))
                 }));
             });

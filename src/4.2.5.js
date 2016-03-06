@@ -20,7 +20,7 @@ function reporter(context) {
             matchCaptureGroupAll(text, matchHanQuestion).forEach(match => {
                 const {index} = match;
                 report(node, new RuleError("数値の範囲を示す場合には全角の〜を使用します。", {
-                    column: index,
+                    index: index,
                     fix: fixer.replaceTextRange([index, index + 1], "〜")
                 }));
             });

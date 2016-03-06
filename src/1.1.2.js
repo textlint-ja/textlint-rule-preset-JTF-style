@@ -31,7 +31,7 @@ function mixer(context) {
             if (index !== -1) {
                 report(node, {
                     message: "見出しの文末には、句点(。)を付けません。",
-                    column: index,
+                    index: index,
                     fix: fixer.removeRange([index, index + 1])
                 });
             }

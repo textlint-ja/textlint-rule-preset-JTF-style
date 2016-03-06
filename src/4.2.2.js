@@ -28,7 +28,7 @@ function reporter(context) {
             matchCaptureGroupAll(text, matchRegExp).forEach(match => {
                 const {index} = match;
                 return report(node, new RuleError("疑問符(？)を使用する場合は「全角」で表記します。", {
-                    column: index,
+                    index: index,
                     fix: fixer.replaceTextRange([index, index + 1], "？")
                 }));
             });
@@ -38,7 +38,7 @@ function reporter(context) {
             matchCaptureGroupAll(text, matchAfter).forEach(match => {
                 const {index} = match;
                 return report(node, new RuleError("文末に感嘆符を使用し、後に別の文が続く場合は、直後に全角スペースを挿入します。", {
-                    column: index,
+                    index: index,
                     fix: fixer.replaceTextRange([index, index + 1], "　")
                 }));
             });

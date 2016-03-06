@@ -30,7 +30,7 @@ export default function (context) {
                 const {index} = match;
                 report(node, new RuleError(`原則として和文ではハイフン(-)を使用しません。
 例外は、住所や電話番号の区切りに使う場合です。`, {
-                    column: index
+                    index: index
                 }))
             });
         }

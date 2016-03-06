@@ -26,7 +26,7 @@ function reporter(context) {
             matchCaptureGroupAll(text, matchHanNakaguro).forEach(match => {
                 const {index} = match;
                 report(node, new RuleError("カタカナ複合語を区切る場合または同格の語句を並列する場合には全角の中黒（・）を使用します。", {
-                    column: index,
+                    index: index,
                     fix: fixer.replaceTextRange([index, index + 1], "・")
                 }));
             })

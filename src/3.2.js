@@ -22,7 +22,7 @@ export default function (context) {
                 const {text} = match;
                 if (text === "　") {
                     report(node, new RuleError("カタカナ語間は中黒（・）または半角スペースを用いてカタカナ語を区切ります", {
-                        column: match.index
+                        index: match.index
                     }));
                 }
             });

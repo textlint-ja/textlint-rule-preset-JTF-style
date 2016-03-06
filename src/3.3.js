@@ -12,10 +12,10 @@ const brackets = [
 ];
 
 const leftBrackets = brackets.map(bracket => {
-    return new RegExp("\(\\s\)" + bracket, "g");
+    return new RegExp("\([ 　]\)" + bracket, "g");
 });
 const rightBrackets = brackets.map(bracket => {
-    return new RegExp(bracket + "\(\\s\)", "g");
+    return new RegExp(bracket + "\([ 　])", "g");
 });
 function reporter(context) {
     let {Syntax, RuleError, report, fixer, getSource} = context;
@@ -30,21 +30,21 @@ function reporter(context) {
                 matchCaptureGroupAll(text, pattern).forEach(match => {
                     const {index} = match;
                     report(node, new RuleError("かっこの外側、内側ともにスペースを入れません。", {
-                        column: index,
+                        index: index,
                         fix: fixer.replaceTextRange([index, index + 1], "")
                     }));
-                })
+                });
             });
             // 右にスペース
             rightBrackets.forEach(pattern => {
                 matchCaptureGroupAll(text, pattern).forEach(match => {
-                    const {index} = match;
+                    const {index, text} = match;
                     report(node, new RuleError("かっこの外側、内側ともにスペースを入れません。", {
-                        column: index,
+                        index: index,
                         fix: fixer.replaceTextRange([index, index + 1], "")
                     }));
-                })
-            })
+                });
+            });
         }
     }
 }

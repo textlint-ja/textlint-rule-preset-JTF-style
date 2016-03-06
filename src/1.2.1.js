@@ -44,7 +44,7 @@ const reporter = (context) => {
                 const indexOfSymbol = match.index;
                 report(node, {
                     message: "句読点には全角の「、」と「。」を使います。和文の句読点としてピリオド(.)とカンマ(,)を使用しません。",
-                    column: indexOfSymbol,
+                    index: indexOfSymbol,
                     fix: fixer.replaceTextRange([indexOfSymbol, indexOfSymbol + 1], symbol)
                 });
             })

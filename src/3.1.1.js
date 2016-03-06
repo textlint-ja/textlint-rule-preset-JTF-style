@@ -22,7 +22,7 @@ function reporter(context) {
             const reportMatch = (match) => {
                 const {index} = match;
                 report(node, new RuleError("原則として、全角文字と半角文字の間にスペースを入れません。", {
-                    column: match.index,
+                    index: match.index,
                     fix: fixer.replaceTextRange([index, index + 1], "")
                 }));
             };

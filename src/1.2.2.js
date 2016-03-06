@@ -26,7 +26,7 @@ function report(context) {
                 const symbol = replaceSymbol[text[index]];
                 report(node, {
                     message: "全角のピリオドとカンマは使用しません。",
-                    column: index,
+                    index: index,
                     fix: fixer.replaceTextRange([index, index + 1], symbol)
                 });
             }

@@ -31,7 +31,7 @@ function reporter(context) {
                 captureGroups.forEach(captureGroup => {
                     const index = captureGroup.index;
                     report(node, new RuleError("原則として、全角文字どうしの間にスペースを入れません。", {
-                        column: index,
+                        index: index,
                         fix: fixer.replaceTextRange([index, index + 1], "")
                     }));
                 });

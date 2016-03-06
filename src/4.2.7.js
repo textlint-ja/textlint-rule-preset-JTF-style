@@ -25,7 +25,7 @@ function reporter(context) {
             matchCaptureGroupAll(text, matchHanQuestion).forEach(match => {
                 const {index} = match;
                 report(node, new RuleError("コロン(：)を使用する場合は「全角」で表記します。", {
-                    column: index,
+                    index: index,
                     fix: fixer.replaceTextRange([index, index + 1], "：")
                 }))
             })

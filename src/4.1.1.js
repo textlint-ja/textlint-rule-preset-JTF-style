@@ -27,7 +27,7 @@ var reporter = function reporter(context) {
                 matchCaptureGroupAll(text, pattern).forEach(match => {
                     const {index} = match;
                     report(node, new RuleError("文中にかぎかっこが入る場合は、閉じかっこの前に句点を打ちません。", {
-                        column: index,
+                        index: index,
                         fix: fixer.replaceTextRange([index, index + 1], "")
                     }));
                 });

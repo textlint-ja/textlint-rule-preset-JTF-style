@@ -9,7 +9,7 @@
  */
 import assert from "assert";
 import {RuleHelper} from "textlint-rule-helper";
-export function checkPair(context, { left, right }) {
+export function checkPair(context, {left, right}) {
     assert(left);
     assert(right);
     let {Syntax, RuleError, report, getSource} = context;
@@ -50,7 +50,9 @@ export function checkPair(context, { left, right }) {
             }
 
             matchParentheses.forEach(({node, index}) => {
-                report(node, new RuleError(`${left}の対となる${right}が見つかりません。${left}${right}`, index));
+                report(node, new RuleError(`${left}の対となる${right}が見つかりません。${left}${right}`, {
+                    index
+                }));
             });
             // clear state
             matchParentheses = [];

@@ -23,7 +23,7 @@ export default function (context) {
             matchCaptureGroupAll(text, matchRegExp).forEach(match => {
                 const {index} = match;
                 report(node, new RuleError("原則として和文ではセミコロン(;)を使用しません。", {
-                    column: index
+                    index: index
                 }));
             })
         }

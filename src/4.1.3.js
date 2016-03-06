@@ -23,7 +23,7 @@ function reporter(context) {
             matchCaptureGroupAll(text, matchReg).forEach(match => {
                 const index = match.index;
                 report(node, new RuleError("和文の句読点としてはピリオドを使用しません。", {
-                    column: index,
+                    index: index,
                     fix: fixer.replaceTextRange([index, index + 1], "。")
                 }));
             });

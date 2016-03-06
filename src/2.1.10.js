@@ -27,7 +27,7 @@ function reporter(context) {
                 matchCaptureGroupAll(matchedString, strictMatchReg).forEach(subMatch => {
                     const {index} = subMatch;
                     report(node, new RuleError("小数点には「ピリオド」を使います。", {
-                        column: match.index + index,
+                        index: match.index + index,
                         fix: fixer.replaceTextRange([match.index + index, match.index + index + 1], ".")
                     }));
                 });

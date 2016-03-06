@@ -25,7 +25,9 @@ export default function (context) {
             for (let index = 0; index < strArray.length; index++) {
                 const item = strArray[index];
                 if (kanjiRegExp.test(item) && !isJoyo(item)) {
-                    report(node, new RuleError("「" + item + "」は「常用漢字表」外の漢字です。", index));
+                    report(node, new RuleError("「" + item + "」は「常用漢字表」外の漢字です。", {
+                        index
+                    }));
                 }
             }
         }

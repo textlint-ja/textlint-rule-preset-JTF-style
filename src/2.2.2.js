@@ -125,7 +125,7 @@ function reporter(context) {
                 });
                 const ruleError = new RuleError(`${matchedString} => ${expected}
 数量を表現し、数を数えられるものは算用数字を使用します。任意の数に置き換えても通用する語句がこれに該当します。`, {
-                    column: index,
+                    index: index,
                     fix: fixer.replaceTextRange([index, index + matchedString.length], expected)
                 });
                 report(node, ruleError);
@@ -142,7 +142,7 @@ function reporter(context) {
                 const index = match.index;
                 report(node, new RuleError(`${matchedString} => ${expected}
 慣用的表現、熟語、概数、固有名詞、副詞など、漢数字を使用することが一般的な語句では漢数字を使います。`, {
-                    column: index,
+                    index: index,
                     fix: fixer.replaceTextRange([index, index + matchedString.length], expected)
                 }));
             };

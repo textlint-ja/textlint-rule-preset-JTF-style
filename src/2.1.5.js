@@ -44,7 +44,7 @@ function reporter(context) {
             const {index, text} = match;
             report(node, {
                 message: "カタカナは「全角」で表記します。",
-                column: index,
+                index: index,
                 fix: fixer.replaceTextRange([index, index + text.length], toZenkaku(text))
             });
 
