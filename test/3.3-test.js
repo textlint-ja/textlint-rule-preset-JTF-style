@@ -32,6 +32,26 @@ tester.run("3.3.かっこ類と隣接する文字の間のスペースの有無"
                     column: 4
                 }
             ]
+        },{
+            text: `TEST
+
+- TODO
+
+これは 「ダメ」です
+`,
+            output: `TEST
+
+- TODO
+
+これは「ダメ」です
+`,
+            errors: [
+                {
+                    message: "かっこの外側、内側ともにスペースを入れません。",
+                    line: 5,
+                    column: 4
+                }
+            ]
         }
     ]
 });
