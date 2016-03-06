@@ -20,7 +20,7 @@ function reporter(context) {
                 return;
             }
             const text = getSource(node);
-            const matchRegExp = /([０-９]+)/
+            const matchRegExp = /([０-９]+)/;
             matchCaptureGroupAll(text, matchRegExp).forEach(match => {
                 const {index, text} = match;
                 report(node, {
