@@ -29,11 +29,10 @@ function mixer(context) {
             let matchReg = /。(\s*?)$/;
             let index = text.search(matchReg);
             if (index !== -1) {
-                report(node, {
-                    message: "見出しの文末には、句点(。)を付けません。",
+                report(node, new RuleError("見出しの文末には、句点(。)を付けません。", {
                     index: index,
                     fix: fixer.removeRange([index, index + 1])
-                });
+                }));
             }
             // TODO: いずれの場合も、すべての見出しを通して複数の文体をできるだけ混在させないことが重要です。
         }

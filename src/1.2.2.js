@@ -13,7 +13,7 @@ const replaceSymbol = {
     "，": ","
 };
 function report(context) {
-    let {Syntax, fixer, report, getSource} = context;
+    let {Syntax, RuleError, fixer, report, getSource} = context;
     return {
         [Syntax.Str](node){
             if (!isUserWrittenNode(node, context)) {
@@ -24,11 +24,10 @@ function report(context) {
             if (/[．，]/.test(text)) {
                 const index = text.search(/[．，]/);
                 const symbol = replaceSymbol[text[index]];
-                report(node, {
-                    message: "全角のピリオドとカンマは使用しません。",
+                report(node, new RuleError("全角のピリオドとカンマは使用しません。", {
                     index: index,
                     fix: fixer.replaceTextRange([index, index + 1], symbol)
-                });
+                }));
             }
         }
     }

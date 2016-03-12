@@ -26,7 +26,7 @@ function toZenkaku(string) {
 
 
 function reporter(context) {
-    let {Syntax, fixer, report, getSource} = context;
+    let {Syntax, RuleError, fixer, report, getSource} = context;
     // 辞書ベースのカタカタ表記のチェックを行う
     let dictRule = prh.fixer(context, {
         rulePaths: [path.join(__dirname, "..", "dict", "2.1.5.yml")]
@@ -42,11 +42,10 @@ function reporter(context) {
         const matches = matchCaptureGroupAll(text, /([\uFF65-\uFF9F]+)/g);
         matches.forEach(match => {
             const {index, text} = match;
-            report(node, {
-                message: "カタカナは「全角」で表記します。",
+            report(node, new RuleError("カタカナは「全角」で表記します。", {
                 index: index,
                 fix: fixer.replaceTextRange([index, index + text.length], toZenkaku(text))
-            });
+            }));
 
         });
     };

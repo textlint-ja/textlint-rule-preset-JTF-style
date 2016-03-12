@@ -29,7 +29,7 @@ const replaceSymbol = {
 };
 
 const reporter = (context) => {
-    let {Syntax, report, fixer, getSource} = context;
+    let {Syntax, RuleError, report, fixer, getSource} = context;
     return {
         [Syntax.Str](node){
             if (!isUserWrittenNode(node, context)) {
@@ -42,11 +42,10 @@ const reporter = (context) => {
             matches.forEach(match => {
                 const symbol = replaceSymbol[match.text];
                 const indexOfSymbol = match.index;
-                report(node, {
-                    message: "句読点には全角の「、」と「。」を使います。和文の句読点としてピリオド(.)とカンマ(,)を使用しません。",
+                report(node, new RuleError("句読点には全角の「、」と「。」を使います。和文の句読点としてピリオド(.)とカンマ(,)を使用しません。", {
                     index: indexOfSymbol,
                     fix: fixer.replaceTextRange([indexOfSymbol, indexOfSymbol + 1], symbol)
-                });
+                }));
             })
         }
     }

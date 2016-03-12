@@ -23,11 +23,10 @@ function reporter(context) {
             const matchRegExp = /([Ａ-Ｚ]+)/;
             matchCaptureGroupAll(text, matchRegExp).forEach(match => {
                 const {index, text} = match;
-                report(node, {
-                    message: "アルファベットは「半角」で表記します。",
+                report(node, new RuleError("アルファベットは「半角」で表記します。", {
                     index: index,
                     fix: fixer.replaceTextRange([index, index + text.length], toHankaku(text))
-                })
+                }));
             });
         }
     }

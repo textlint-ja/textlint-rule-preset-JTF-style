@@ -23,11 +23,10 @@ function reporter(context) {
             const matchRegExp = /([０-９]+)/;
             matchCaptureGroupAll(text, matchRegExp).forEach(match => {
                 const {index, text} = match;
-                report(node, {
-                    message: "算用数字は「半角」で表記します。",
+                report(node, new RuleError("算用数字は「半角」で表記します。", {
                     index: index,
                     fix: fixer.replaceTextRange([index, index + text.length], toHankaku(text))
-                })
+                }));
             });
         }
     };
