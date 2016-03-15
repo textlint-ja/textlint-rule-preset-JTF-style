@@ -35,8 +35,8 @@ export function matchAll(text, regExp) {
     }
     const rx = new RegExp(regExp.source, flags);
     text.replace(rx, function () {
-        var matchAll = Array.prototype.slice.call(arguments, 0, -2);
-        var match = {};
+        const matchAll = Array.prototype.slice.call(arguments, 0, -2);
+        const match = {};
         match.all = matchAll;
 
         match.input = arguments[arguments.length - 1];
@@ -72,8 +72,8 @@ export function matchAll(text, regExp) {
         matches.push(match);
         /*
             index,
-            input
-            all
+            input,
+            all,
             captureGroups = [{
                 text,
                 index
