@@ -6,7 +6,8 @@ var tester = new TextLintTester();
 tester.run("1.1.5.図表のキャプション", rule, {
     valid: [
         "![これは図です。](http://example.com/img) と ![これは図です。](http://example.com/img)",
-        "![これは図である。](http://example.com/img) と ![これは図である。](http://example.com/img)"
+        "![これは図である。](http://example.com/img) と ![これは図である。](http://example.com/img)",
+        "![](http://example.com/img)"
     ],
     invalid: [
         {

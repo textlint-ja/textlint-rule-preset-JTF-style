@@ -42,7 +42,7 @@ export default function (context) {
         [Syntax.Image](node){
             let text = node.alt;
             // alt がない場合は無視する
-            if (text === undefined) {
+            if (text === undefined || text === null) {
                 return;
             }
             let retDesumasu = analyzeDesumasu(text);
