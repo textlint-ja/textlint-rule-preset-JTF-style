@@ -8,7 +8,7 @@
 和文の句読点としては使用しません。「1.2.2 ピリオド(.)とカンマ(,)」を 参照してください
  */
 import {isUserWrittenNode} from "./util/node-util";
-import {matchCaptureGroupAll} from "./util/match-index";
+import {matchCaptureGroupAll} from "match-index";
 
 function reporter(context) {
     let {Syntax, RuleError, report, fixer, getSource} = context;

@@ -5,7 +5,7 @@
 かっこの外側、内側ともにスペースを入れません。
  */
 import {isUserWrittenNode} from "./util/node-util";
-import {matchCaptureGroupAll} from "./util/match-index";
+import {matchCaptureGroupAll} from "match-index";
 
 const brackets = [
     "\\[", "\\]", "（", "）", "［", "］", "「", "」", "『", "』"

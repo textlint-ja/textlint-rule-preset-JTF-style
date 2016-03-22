@@ -5,7 +5,7 @@
 数値の範囲を示す場合に使用します。
  */
 import {isUserWrittenNode} from "./util/node-util";
-import {matchCaptureGroupAll} from "./util/match-index";
+import {matchCaptureGroupAll} from "match-index";
 
 function reporter(context) {
     let {Syntax, RuleError, report, fixer, getSource} = context;

@@ -12,7 +12,7 @@
 文中に感嘆符を使用する場合はスペースを挿入しません。下記を参考にしてください。
  */
 import {isUserWrittenNode} from "./util/node-util";
-import {matchCaptureGroupAll} from "./util/match-index";
+import {matchCaptureGroupAll} from "match-index";
 
 function reporter(context) {
     let {Syntax, RuleError, report, fixer, getSource} = context;

@@ -7,7 +7,7 @@
 ただし和文でも、見出し語とその説明の間にコロンを使う場合があります。使用する場合は全角で表記します。
  */
 import {isUserWrittenNode} from "./util/node-util";
-import {matchCaptureGroupAll} from "./util/match-index";
+import {matchCaptureGroupAll} from "match-index";
 import regx from 'regx';
 import {japaneseRegExp} from "./util/regexp";
 const rx = regx("g");

@@ -7,7 +7,7 @@
 ただし、表記をできるだけ統一するため、特別な理由がない限り半角での表記を原則とします。
  */
 import {isUserWrittenNode} from "./util/node-util";
-import {matchCaptureGroupAll} from "./util/match-index";
+import {matchCaptureGroupAll} from "match-index";
 import moji from "moji";
 function toHankaku(string) {
     return moji(string).convert('ZE', 'HE').toString();

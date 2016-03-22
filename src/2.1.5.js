@@ -13,7 +13,7 @@ import {isUserWrittenNode} from "./util/node-util";
 import {hanKarakanaRegExp} from "./util/regexp";
 import prh from "textlint-rule-prh";
 import path from "path";
-import {matchCaptureGroupAll} from "./util/match-index";
+import {matchCaptureGroupAll} from "match-index";
 import moji from "moji";
 /**
  * 半角カタカナを全角カタカナに変換

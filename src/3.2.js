@@ -6,7 +6,7 @@
 「2.1.7 カタカナ複合語」を参照してください。
  */
 import {isUserWrittenNode} from "./util/node-util";
-import {matchCaptureGroupAll} from "./util/match-index";
+import {matchCaptureGroupAll} from "match-index";
 
 export default function (context) {
     let {Syntax, RuleError, report, getSource} = context;

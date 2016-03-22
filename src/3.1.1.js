@@ -7,7 +7,7 @@
 。ただしカタカナ複合語の場合を除きます。「2.1.7 カタカナ複合語」を参照してください。
  */
 import {isUserWrittenNode} from "./util/node-util";
-import {matchCaptureGroupAll} from "./util/match-index";
+import {matchCaptureGroupAll} from "match-index";
 function reporter(context) {
     let {Syntax, RuleError, report, fixer, getSource} = context;
     return {

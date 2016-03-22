@@ -8,7 +8,7 @@
 文中に丸かっこが入る場合も閉じかっこの前に句点を打ちません。。
  */
 import {isUserWrittenNode} from "./util/node-util";
-import {matchCaptureGroupAll} from "./util/match-index";
+import {matchCaptureGroupAll} from "match-index";
 const brackets = [
     "」", "）", "\\)"
 ];

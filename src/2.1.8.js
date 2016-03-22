@@ -8,7 +8,7 @@
  */
 import {isUserWrittenNode} from "./util/node-util";
 import moji from "moji";
-import {matchCaptureGroupAll} from "./util/match-index";
+import {matchCaptureGroupAll} from "match-index";
 function toHankaku(string) {
     return moji(string).convert('ZE', 'HE').toString();
 }

@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import {isUserWrittenNode} from "./util/node-util";
-import {matchAll} from "./util/match-index";
+import {matchAll} from "match-index";
 import regx from 'regx';
 import {japaneseRegExp} from "./util/regexp";
 const rx = regx("g");

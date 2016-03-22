@@ -7,7 +7,7 @@
 例外は、住所や電話番号の区切りに使う場合です。
  */
 import {isUserWrittenNode} from "./util/node-util";
-import {matchCaptureGroupAll} from "./util/match-index";
+import {matchCaptureGroupAll} from "match-index";
 import regx from 'regx';
 import {japaneseRegExp} from "./util/regexp";
 import mergeMatches from "./util/merge-matches";

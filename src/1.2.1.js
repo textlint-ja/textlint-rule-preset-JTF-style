@@ -2,7 +2,7 @@
 "use strict";
 import regx from 'regx';
 import {japaneseRegExp} from "./util/regexp";
-import {matchCaptureGroupAll} from "./util/match-index";
+import {matchCaptureGroupAll} from "match-index";
 import mergeMatches from "./util/merge-matches";
 const rx = regx("g");
 /*

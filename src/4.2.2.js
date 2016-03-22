@@ -11,7 +11,7 @@
 文中に疑問符を使用する場合はスペースを挿入しません。
  */
 import {isUserWrittenNode} from "./util/node-util";
-import {matchCaptureGroupAll} from "./util/match-index";
+import {matchCaptureGroupAll} from "match-index";
 import regx from 'regx';
 import {japaneseRegExp} from "./util/regexp";
 const rx = regx("g");
