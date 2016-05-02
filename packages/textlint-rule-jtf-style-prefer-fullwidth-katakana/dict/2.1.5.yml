@@ -1,0 +1,433 @@
+# This dictionary is based on http://www.jtf.jp/jp/style_guide/jtfstylechecker.html
+# テクニカルコミュニケーター協会> 外来語（カタカナ）表記ガイドライン http://www.jtca.org/standardization/
+# TODO: [WIP] not complete
+version: 1
+rules:
+  - expected: アジア
+    patterns: アジヤ
+
+  - expected: アトランティック
+    patterns: アトランチック
+
+  - expected: アベレージ
+    patterns: アヴェレージ
+
+  - expected: アベレージ
+    patterns: アベレイジ
+
+  - expected: アンチ
+    patterns: アンティ
+
+  - expected: アンティーク
+    patterns: アンチーク
+
+  - expected: アンモニア
+    patterns: アンモニヤ
+
+  - expected: イタリア
+    patterns: イタリヤ
+
+  - expected: イニシアチブ
+    patterns: イニシアティブ
+
+  - expected: イベント
+    patterns: イヴェント
+
+  - expected: イミテーション
+    patterns: イミテイション
+
+  - expected: イヤホン
+    patterns: イアホン
+
+  - expected: イヤホン
+    patterns: イヤフォン
+
+  - expected: インジケーター
+    patterns: インディケータ
+
+  - expected: インターフェイス
+    patterns: インタフェイス
+
+  - expected: インターフェイス
+    patterns: インターフェース
+
+  - expected: インターフェイス
+    patterns: インタフェース
+
+  - expected: インターホン
+    patterns: インターフォン
+
+  - expected: インフォメーション
+    patterns: インホメーション
+
+  - expected: ウェア
+    patterns: ウエア
+
+  - expected: エジソン
+    patterns: エディソン
+
+  - expected: エスカレーター
+    patterns: エスカレイタ
+
+  - expected: エラー
+    patterns: エラア
+
+  - expected: エレベーター
+    patterns: エレベイタ
+
+  - expected: オーディオ
+    patterns: オウディオ
+
+  - expected: オートマチック
+    patterns: オートマチック
+
+  - expected: オーナー
+    patterns: オウナー
+
+  - expected: オーバー
+    patterns: オウバー
+
+  - expected: オーバーコート
+    patterns: オウバーコート
+
+  - expected: カバー
+    patterns: カバア
+
+  - expected: カフェテリア
+    patterns: カフェテリヤ
+
+  - expected: カラー
+    patterns: カラア
+
+  - expected: ギア
+    patterns: ギヤ
+
+  - expected: キー
+    patterns: キイ
+
+  - expected: キャラバン
+    patterns: キャラヴァン
+
+  - expected: グラビア
+    patterns: グラビヤ
+
+  - expected: クリエーティブ
+    patterns: クリエイティブ
+
+  - expected: ケア
+    patterns: ケアー
+
+  - expected: ケース
+    patterns: ケイス
+
+  - expected: ゲーム
+    patterns: ゲイム
+
+  - expected: コピー
+    patterns: コピイ
+
+  - expected: コンディション
+    patterns: コンデション
+
+  - expected: サービス
+    patterns: サーヴィス
+
+  - expected: サーベイ
+    patterns: サーヴェイ
+
+  - expected: サラダボウル
+    patterns: サラダボール
+
+  - expected: シェード
+    patterns: シェイド
+
+  - expected: ジフテリア
+    patterns: ジフテリヤ
+
+  - expected: シミュレーション
+    patterns: シミュレイション
+
+  - expected: シミュレーション
+    patterns: シュミレーション
+
+  - expected: シミュレーター
+    patterns: シュミレータ
+
+  - expected: ショー
+    patterns: ショウ
+
+  - expected: スーパー
+    patterns: スーパア
+
+  - expected: スケール
+    patterns: スケイル
+
+  - expected: スタジアム
+    patterns: スタディアム
+
+  - expected: ストア
+    patterns: ストアー
+
+  - expected: スペース
+    patterns: スペイス
+
+  - expected: スリッパ
+    patterns: スリッパー
+
+  - expected: セーフティー
+    patterns: セイフティー
+
+  - expected: セピア
+    patterns: セピヤ
+
+  - expected: セロハン
+    patterns: セロファン
+
+  - expected: ソフトウェア
+    patterns: ソフトウエア
+
+  - expected: タイヤ
+    patterns: タイア
+
+  - expected: ダイヤグラム
+    patterns: ダイアグラム
+
+  - expected: ダイヤモンド
+    patterns: ダイアモンド
+
+  - expected: ダイヤラー
+    patterns: ダイアラ
+
+  - expected: ダイヤル
+    patterns: ダイアル
+
+  - expected: ダミー
+    patterns: ダミイ
+
+  - expected: チアミン
+    patterns: ティアミン
+
+  - expected: チェーン
+    patterns: チェイン
+
+  - expected: チケット
+    patterns: ティケット
+
+  - expected: チップ
+    patterns: ティップ
+
+  - expected: ディスカッション
+    patterns: デスカッション
+
+  - expected: ディスカバリー
+    patterns: デスカバリ
+
+  - expected: ディズニー
+    patterns: デズニー
+
+  - expected: ディスプレー
+    patterns: ディスプレイ
+
+  - expected: ディスプレー
+    patterns: デスプレー
+
+  - expected: ディスプレー
+    patterns: デスプレイ
+
+  - expected: デジタル
+    patterns: ディジタル
+
+  - expected: テレフォンサービス
+    patterns: テレホンサービス
+
+  - expected: ドア
+    patterns: ドアー
+
+  - expected: トナー
+    patterns: トナア
+
+  - expected: ドメイン
+    patterns: ドメーン
+
+  - expected: トライアル
+    patterns: トライヤル
+
+  - expected: ドリア
+    patterns: ドリヤ
+
+  - expected: トレーナー
+    patterns: トレイナー
+
+  - expected: ニュートン
+    patterns: ニュウトン
+
+  - expected: ネーチャー
+    patterns: ネイチャー
+
+  - expected: ネーム
+    patterns: ネイム
+
+  - expected: ネガティブ
+    patterns: ネガティヴ
+
+  - expected: バージョン
+    patterns: ヴァージョン
+
+  - expected: ハードウェア
+    patterns: ハードウエア
+
+  - expected: バイアス
+    patterns: バイヤス
+
+  - expected: バイオリン
+    patterns: ヴァイオリン
+
+  - expected: バクテリア
+    patterns: バクテリヤ
+
+  - expected: バニラ
+    patterns: ヴァニラ
+
+  - expected: バリエーション
+    patterns: ヴァリエーション
+
+  - expected: バルブ
+    patterns: ヴァルブ
+
+  - expected: バレエ
+    patterns: バレー
+
+  - expected: ハンチング
+    patterns: ハンティング
+
+  - expected: ピアノ
+    patterns: ピヤノ
+
+  - expected: ビジー
+    patterns: ビジイ
+
+  - expected: ビデオ
+    patterns: ヴィデオ
+
+  - expected: ビリヤード
+    patterns: ビリアード
+
+  - expected: ファンタスティック
+    patterns: ファンタスチック
+
+  - expected: フォークダンス
+    patterns: ホークダンス
+
+  - expected: フォルダー
+    patterns: ホルダー
+
+  - expected: フォワード
+    patterns: ホワード
+
+  - expected: プラスチック
+    patterns: プラスティック
+
+  - expected: プラットホーム
+    patterns: プラットフォーム
+
+  - expected: プレーヤー
+    patterns: プレイヤー
+
+  - expected: ページ
+    patterns: ペイジ
+
+  - expected: ペーパー
+    patterns: ペイパー
+
+  - expected: ベール
+    patterns: ヴェール
+
+  - expected: ベテラン
+    patterns: ヴェテラン
+
+  - expected: ベニヤ
+    patterns: ベニア
+
+  - expected: ボーカル
+    patterns: ヴォーカル
+
+  - expected: ボランティア
+    patterns: ヴォランティア
+
+  - expected: ボランティア
+    patterns: ボランティヤ
+
+  - expected: ボリューム
+    patterns: ヴォリューム
+
+  - expected: ホルマリン
+    patterns: フォルマリン
+
+  - expected: マルチ
+    patterns: マルティ
+
+  - expected: ミラー
+    patterns: ミラア
+
+  - expected: メイン
+    patterns: メーン
+
+  - expected: メーカー
+    patterns: メイカー
+
+  - expected: メール
+    patterns: メイル
+
+  - expected: メガホン
+    patterns: メガフォン
+
+  - expected: メッセージ
+    patterns: メッセイジ
+
+  - expected: メディア
+    patterns: メディヤ
+
+  - expected: メンテナンス
+    patterns: メインテナンス
+
+  - expected: モルヒネ
+    patterns: モルフィネ
+
+  - expected: ユニバーサル
+    patterns: ユニヴァーサル
+
+  - expected: ユニフォーム
+    patterns: ユニホーム
+
+  - expected: ラジアル
+    patterns: ラジヤル
+
+  - expected: ラジオ
+    patterns: ラディオ
+
+  - expected: リバイバル
+    patterns: リヴァイヴァル
+
+  - expected: レイアウト
+    patterns: レーアウト
+
+  - expected: レイヤー
+    patterns: レイアー
+
+  - expected: レインコート
+    patterns: レーンコート
+
+  - expected: レーザー
+    patterns: レイザー
+
+  - expected: レーダー
+    patterns: レイダー
+
+  - expected: レター
+    patterns: レタア
+
+  - expected: レビュー
+    patterns: レヴュー
+
+  - expected: レベル
+    patterns: レヴェル

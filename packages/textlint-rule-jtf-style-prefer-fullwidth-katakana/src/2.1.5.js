@@ -20,7 +20,7 @@ import moji from "moji";
  *
  * @param {String} str 変換したい文字列
  */
-function toZenkaku(string) {
+function toZenkaku(str) {
     return moji(string).convert('HK', 'ZK').toString();
 }
 

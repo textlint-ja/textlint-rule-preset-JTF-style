@@ -1,5 +1,10 @@
 // LICENSE : MIT
 "use strict";
+/**
+ * merge MatchCaptureGroup
+ * @param {...MatchCaptureGroup} aMatches
+ * @returns {Array}
+ */
 export default function mergeMatches(...aMatches) {
     const results = [];
     aMatches.forEach(matches => {
