@@ -47,7 +47,7 @@
     "textlint-tester": "^1.0.0"
   },
   "dependencies": {
-    "analyze-desumasu-dearu": "^2.1.2",
+    "analyze-desumasu-dearu": "^3.0.4",
     "match-index": "^1.0.1",
     "moji": "^0.5.1",
     "regexp.prototype.flags": "^1.1.1",
