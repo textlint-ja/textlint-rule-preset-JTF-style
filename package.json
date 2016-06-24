@@ -44,7 +44,7 @@
     "glob": "^7.0.0",
     "mocha": "^2.3.3",
     "textlint": "^6.2.0",
-    "textlint-tester": "^1.0.0"
+    "textlint-tester": "^2.0.0"
   },
   "dependencies": {
     "analyze-desumasu-dearu": "^2.1.2",
