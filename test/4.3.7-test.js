@@ -6,6 +6,7 @@ var tester = new TextLintTester();
 tester.run('4.3.7.山かっこ<>', rule, {
     valid: [
         '彼は<×××>を参照してくださいと言った。',
+        '彼は<`×××`>を参照してくださいと言った。',
         '- 彼は<×××>を参照してくださいと言った。'
     ],
     invalid: [
