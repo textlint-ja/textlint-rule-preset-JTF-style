@@ -1,6 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import {isUserWrittenNode} from "./util/node-util";
+import ja2num from 'japanese-numerals-to-number';
 function matchToReplace(text, pattern, matchFn) {
     var match = pattern.exec(text);
     if (match) {
@@ -9,24 +10,6 @@ function matchToReplace(text, pattern, matchFn) {
     return null
 }
 
-const numberMap = {
-    "一": 1,
-    "二": 2,
-    "三": 3,
-    "四": 4,
-    "五": 5,
-    "六": 6,
-    "七": 7,
-    "八": 8,
-    "九": 9,
-    "十": 10,
-    "壱": 1,
-    "弐": 2,
-    "参": 3,
-    "拾": 10,
-    "百": 100,
-    "〇": 0
-};
 // http://www.drk7.jp/MT/archives/001587.html
 function _num2ja(num, opt) {
     var sign = {
@@ -117,11 +100,7 @@ function reporter(context) {
                 const matchedString = match[0];
                 const index = match.index;
                 const expected = matchedString.replace(pattern, function (all, match) {
-                    let result = 0;
-                    match.split("").forEach(kanNumber => {
-                        result += numberMap[kanNumber];
-                    });
-                    return all.replace(match, result);
+                    return all.replace(match, ja2num(match));
                 });
                 const ruleError = new RuleError(`${matchedString} => ${expected}
 数量を表現し、数を数えられるものは算用数字を使用します。任意の数に置き換えても通用する語句がこれに該当します。`, {
