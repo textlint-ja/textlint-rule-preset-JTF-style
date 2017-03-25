@@ -48,6 +48,7 @@
   },
   "dependencies": {
     "analyze-desumasu-dearu": "^2.1.2",
+    "japanese-numerals-to-number": "^1.0.0",
     "match-index": "^1.0.1",
     "moji": "^0.5.1",
     "regexp.prototype.flags": "^1.1.1",
