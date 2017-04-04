@@ -10,7 +10,7 @@
 
 ## Usage
 
-基本的に[textlint](https://github.com/textlint-ja/textlint "textlint")の使い方と同じです。
+基本的に[textlint](https://github.com/textlint/textlint "textlint")の使い方と同じです。
 
 - [textlintで日本語の文章をチェックする | Web Scratch](http://efcl.info/2015/09/10/introduce-textlint/ "textlintで日本語の文章をチェックする | Web Scratch")
 
