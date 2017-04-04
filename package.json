@@ -2,14 +2,14 @@
   "name": "textlint-rule-preset-jtf-style",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/azu/textlint-rule-preset-jtf-style.git"
+    "url": "git+https://github.com/textlint-ja/textlint-rule-preset-jtf-style.git"
   },
   "author": "azu",
   "email": "azuciao@gmail.com",
-  "homepage": "https://github.com/azu/textlint-rule-preset-jtf-style",
+  "homepage": "https://github.com/textlint-ja/textlint-rule-preset-jtf-style",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/azu/textlint-rule-preset-jtf-style/issues"
+    "url": "https://github.com/textlint-ja/textlint-rule-preset-jtf-style/issues"
   },
   "version": "2.2.4",
   "description": "JTF Style Guide for Translators Working into Japanese for textlint.",

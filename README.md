@@ -1,4 +1,4 @@
-# textlint-rule-preset-JTF-style [![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) [![Build Status](https://travis-ci.org/azu/textlint-rule-preset-JTF-style.svg?branch=master)](https://travis-ci.org/azu/textlint-rule-preset-JTF-style)
+# textlint-rule-preset-JTF-style [![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) [![Build Status](https://travis-ci.org/textlint-ja/textlint-rule-preset-JTF-style.svg?branch=master)](https://travis-ci.org/textlint-ja/textlint-rule-preset-JTF-style)
 
 [JTF日本語標準スタイルガイド（翻訳用）](https://www.jtf.jp/jp/style_guide/styleguide_top.html "JTF日本語標準スタイルガイド（翻訳用）") for [textlint](https://github.com/textlint/textlint "textlint").
 
@@ -10,7 +10,7 @@
 
 ## Usage
 
-基本的に[textlint](https://github.com/azu/textlint "textlint")の使い方と同じです。
+基本的に[textlint](https://github.com/textlint-ja/textlint "textlint")の使い方と同じです。
 
 - [textlintで日本語の文章をチェックする | Web Scratch](http://efcl.info/2015/09/10/introduce-textlint/ "textlintで日本語の文章をチェックする | Web Scratch")
 
@@ -587,7 +587,7 @@ textlint --fix /path/to/target.md
 
 Q. このルールはスタイルガイドと合ってないのでは？
 
-A. [Issue](https://github.com/azu/textlint-rule-preset-jtf-style/issues/new)に詳細を書いてみるといいと思います。
+A. [Issue](https://github.com/textlint-ja/textlint-rule-preset-jtf-style/issues/new)に詳細を書いてみるといいと思います。
 
 Issueには以下の項目が書かれていると問題を解決しやすくなります。
 
