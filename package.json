@@ -58,6 +58,6 @@
     "textlint-rule-prh": "^3.0.1"
   },
   "peerDependencies": {
-    "textlint": ">= 5.6.0"
+    "textlint": ">=7.0.0"
   }
 }
