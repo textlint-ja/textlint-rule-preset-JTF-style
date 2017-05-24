@@ -12,7 +12,7 @@
   "author": "azu",
   "license": "MIT",
   "devDependencies": {
-    "textlint": "^6.0.0",
+    "textlint": "^8.2.1",
     "textlint-rule-preset-jtf-style": "file:.."
   }
 }
