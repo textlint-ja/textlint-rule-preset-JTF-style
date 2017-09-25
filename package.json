@@ -28,7 +28,7 @@
     "prepublish": "npm run --if-present build",
     "pretest": "node tool/create-fixtures.js",
     "test": "mocha && npm run test:textlint",
-    "test:textlint": "(cd example && npm t)"
+    "test:textlint": "(cd example && npm it)"
   },
   "keywords": [
     "textlint",
