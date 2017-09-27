@@ -8,9 +8,9 @@
 
 キャプション間で文体が混ざっていないことを確認する。
  */
-import {analyzeDesumasu, analyzeDearu} from "analyze-desumasu-dearu";
-export default function (context) {
-    let {Syntax, RuleError, report, getSource} = context;
+import { analyzeDesumasu, analyzeDearu } from "analyze-desumasu-dearu";
+module.exports = function(context) {
+    let { Syntax, RuleError, report, getSource } = context;
     let desumasuList = [];
     let dearuList = [];
 
@@ -19,27 +19,30 @@ export default function (context) {
         dearuList = [];
     }
 
-    const imagePaddingLet = 2;// ![ の分paddingを付ける
-    function reportResult(list, {desumasu,dearu}) {
-        list.forEach(({node, matches}) => {
+    const imagePaddingLet = 2; // ![ の分paddingを付ける
+    function reportResult(list, { desumasu, dearu }) {
+        list.forEach(({ node, matches }) => {
             matches.forEach(match => {
                 let message;
                 if (desumasu) {
-                    message = `図表のキャプションを敬体(ですます調)に統一して下さい。\n図表のキャプション内で敬体、常体を混在させないことが重要です。\n"${match.value}"が常体(である調)です。`
+                    message = `図表のキャプションを敬体(ですます調)に統一して下さい。\n図表のキャプション内で敬体、常体を混在させないことが重要です。\n"${match.value}"が常体(である調)です。`;
                 } else if (dearu) {
-                    message = `図表のキャプションを常体(である調)に統一して下さい。\n図表のキャプション内で敬体、常体を混在させないことが重要です。\n"${match.value}"が敬体(ですます調)です。`
+                    message = `図表のキャプションを常体(である調)に統一して下さい。\n図表のキャプション内で敬体、常体を混在させないことが重要です。\n"${match.value}"が敬体(ですます調)です。`;
                 }
-                report(node, new RuleError(message, {
-                    line: match.lineNumber - 1,
-                    column: match.columnIndex + imagePaddingLet
-                }));
+                report(
+                    node,
+                    new RuleError(message, {
+                        line: match.lineNumber - 1,
+                        column: match.columnIndex + imagePaddingLet
+                    })
+                );
             });
         });
     }
 
     return {
         [Syntax.Document]: resetState,
-        [Syntax.Image](node){
+        [Syntax.Image](node) {
             let text = node.alt;
             // alt がない場合は無視する
             if (text === undefined || text === null) {
@@ -60,9 +63,9 @@ export default function (context) {
                 });
             }
         },
-        [`${Syntax.Document}:exit`](){
-            let desumasuCount = desumasuList.reduce((count, {matches}) => count + matches.length, 0);
-            let dearuCount = dearuList.reduce((count, {matches}) => count + matches.length, 0);
+        [`${Syntax.Document}:exit`]() {
+            let desumasuCount = desumasuList.reduce((count, { matches }) => count + matches.length, 0);
+            let dearuCount = dearuList.reduce((count, { matches }) => count + matches.length, 0);
             if (desumasuCount === 0 || dearuCount === 0) {
                 return;
             }
@@ -80,5 +83,5 @@ export default function (context) {
                 });
             }
         }
-    }
-}
+    };
+};

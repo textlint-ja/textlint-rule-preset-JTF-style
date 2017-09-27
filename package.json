@@ -28,7 +28,10 @@
     "prepublish": "npm run --if-present build",
     "pretest": "node tool/create-fixtures.js",
     "test": "mocha && npm run test:textlint",
-    "test:textlint": "(cd example && npm i && npm test)"
+    "test:textlint": "(cd example && npm i && npm test)",
+    "precommit": "lint-staged",
+    "postcommit": "git reset",
+    "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,css}'"
   },
   "keywords": [
     "textlint",
@@ -38,11 +41,14 @@
   ],
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-plugin-add-module-exports": "^0.1.2",
+    "babel-preset-env": "^1.6.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-register": "^6.26.0",
     "glob": "^7.1.2",
+    "husky": "^0.14.3",
+    "lint-staged": "^4.2.3",
     "mocha": "^3.5.3",
+    "prettier": "^1.7.0",
     "textlint": "^8.2.1",
     "textlint-tester": "^2.2.4"
   },
@@ -54,10 +60,20 @@
     "regexp.prototype.flags": "^1.1.1",
     "regx": "^1.0.4",
     "sorted-joyo-kanji": "^0.2.0",
-    "textlint-rule-helper": "^1.2.0",
-    "textlint-rule-prh": "^4.0.1"
+    "textlint-rule-helper": "^2.0.0",
+    "textlint-rule-prh": "^5.0.0"
   },
   "peerDependencies": {
     "textlint": ">= 5.6.0"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "tabWidth": 4
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,css}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }

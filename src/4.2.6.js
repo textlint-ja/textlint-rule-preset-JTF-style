@@ -6,16 +6,16 @@
 使用する場合は半角で表記します。原文でハイフンが使われている場合も、和文では使用しません。
 例外は、住所や電話番号の区切りに使う場合です。
  */
-import {isUserWrittenNode} from "./util/node-util";
-import {matchCaptureGroupAll} from "match-index";
-import regx from 'regx';
-import {japaneseRegExp} from "./util/regexp";
+import { isUserWrittenNode } from "./util/node-util";
+import { matchCaptureGroupAll } from "match-index";
+import regx from "regx";
+import { japaneseRegExp } from "./util/regexp";
 import mergeMatches from "./util/merge-matches";
 const rx = regx("g");
-export default function (context) {
-    let {Syntax, RuleError, report, getSource} = context;
+module.exports = function(context) {
+    let { Syntax, RuleError, report, getSource } = context;
     return {
-        [Syntax.Str](node){
+        [Syntax.Str](node) {
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
@@ -27,12 +27,18 @@ export default function (context) {
             const leftMatches = matchCaptureGroupAll(text, rx`(\-)${japaneseRegExp}`);
             const matches = mergeMatches(leftMatches, rightMatches);
             matches.forEach(match => {
-                const {index} = match;
-                report(node, new RuleError(`原則として和文ではハイフン(-)を使用しません。
-例外は、住所や電話番号の区切りに使う場合です。`, {
-                    index: index
-                }))
+                const { index } = match;
+                report(
+                    node,
+                    new RuleError(
+                        `原則として和文ではハイフン(-)を使用しません。
+例外は、住所や電話番号の区切りに使う場合です。`,
+                        {
+                            index: index
+                        }
+                    )
+                );
             });
         }
     };
-}
+};

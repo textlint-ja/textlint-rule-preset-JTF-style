@@ -6,7 +6,7 @@ var tester = new TextLintTester();
 tester.run("1.2.1.句点(。)と読点(、)", rule, {
     valid: [
         "これは、見本となる例です。",
-        "[これは,見本となる例です.](http://example.com)"// ignore link
+        "[これは,見本となる例です.](http://example.com)" // ignore link
     ],
     invalid: [
         // text, expected errors

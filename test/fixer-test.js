@@ -2,10 +2,10 @@
 "use strict";
 import assert from "assert";
 import preset from "../src/index";
-import {TextLintCore} from "textlint"
+import { TextLintCore } from "textlint";
 import * as fs from "fs";
-describe("fixer-test", function () {
-    it("should convert expected", function () {
+describe("fixer-test", function() {
+    it("should convert expected", function() {
         const expected = fs.readFileSync(__dirname + "/fixtures/output.md", "utf-8");
         const textlint = new TextLintCore();
         // all true

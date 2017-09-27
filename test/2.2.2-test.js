@@ -4,15 +4,7 @@ import TextLintTester from "textlint-tester";
 import rule from "../src/2.2.2";
 var tester = new TextLintTester();
 tester.run("2.2.2.算用数字と漢数字の使い分け", rule, {
-    valid: [
-        "1億2805 万人",
-        "3つのボタン",
-        "第3回大会",
-        "第3章",
-        "20回",
-        "第3節",
-        "4種類"
-    ],
+    valid: ["1億2805 万人", "3つのボタン", "第3回大会", "第3章", "20回", "第3節", "4種類"],
     invalid: [
         {
             text: "第三章",
@@ -88,8 +80,8 @@ tester.run("2.2.2.算用数字と漢数字の使い分け", rule, {
 tester.run("2.2.2.算用数字と漢数字の使い分け", rule, {
     valid: [
         "世界一",
-        "世界１",// 大文字
-        "世界2位",// 数えられる数字
+        "世界１", // 大文字
+        "世界2位", // 数えられる数字
         "一時的",
         "一部分",
         "第三者",

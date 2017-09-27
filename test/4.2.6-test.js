@@ -4,12 +4,7 @@ import TextLintTester from "textlint-tester";
 import rule from "../src/4.2.6";
 var tester = new TextLintTester();
 tester.run("4.2.6.ハイフン(-)", rule, {
-    valid: [
-        "千代田区一番町 1-1-1",
-        "03-5555-xxxxx",
-        "電話番号は090-1234-5678です",
-        "Allen Wirfs-Brock(アレン・ワーフスブラック)"
-    ],
+    valid: ["千代田区一番町 1-1-1", "03-5555-xxxxx", "電話番号は090-1234-5678です", "Allen Wirfs-Brock(アレン・ワーフスブラック)"],
     invalid: [
         {
             text: "渋谷-東京",

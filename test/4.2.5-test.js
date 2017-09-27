@@ -4,10 +4,7 @@ import TextLintTester from "textlint-tester";
 import rule from "../src/4.2.5";
 var tester = new TextLintTester();
 tester.run("4.2.5.波線(~)", rule, {
-    valid: [
-        "18〜22 歳まで",
-        "これ〜から"
-    ],
+    valid: ["18〜22 歳まで", "これ〜から"],
     invalid: [
         {
             text: "18~22歳まで",

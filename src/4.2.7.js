@@ -6,15 +6,15 @@
 原文でコロンが使われている場合も、和文では使用しません。
 ただし和文でも、見出し語とその説明の間にコロンを使う場合があります。使用する場合は全角で表記します。
  */
-import {isUserWrittenNode} from "./util/node-util";
-import {matchCaptureGroupAll} from "match-index";
-import regx from 'regx';
-import {japaneseRegExp} from "./util/regexp";
+import { isUserWrittenNode } from "./util/node-util";
+import { matchCaptureGroupAll } from "match-index";
+import regx from "regx";
+import { japaneseRegExp } from "./util/regexp";
 const rx = regx("g");
 function reporter(context) {
-    let {Syntax, RuleError, report, fixer, getSource} = context;
+    let { Syntax, RuleError, report, fixer, getSource } = context;
     return {
-        [Syntax.Str](node){
+        [Syntax.Str](node) {
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
@@ -23,16 +23,19 @@ function reporter(context) {
 
             const matchHanQuestion = rx`(?:${japaneseRegExp})(:)`;
             matchCaptureGroupAll(text, matchHanQuestion).forEach(match => {
-                const {index} = match;
-                report(node, new RuleError("コロン(：)を使用する場合は「全角」で表記します。", {
-                    index: index,
-                    fix: fixer.replaceTextRange([index, index + 1], "：")
-                }))
-            })
+                const { index } = match;
+                report(
+                    node,
+                    new RuleError("コロン(：)を使用する場合は「全角」で表記します。", {
+                        index: index,
+                        fix: fixer.replaceTextRange([index, index + 1], "：")
+                    })
+                );
+            });
         }
     };
 }
-export default {
+module.exports = {
     linter: reporter,
     fixer: reporter
-}
+};

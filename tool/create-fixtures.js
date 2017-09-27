@@ -13,7 +13,7 @@ function processFile(filePath) {
     const lines = contents.split(/\n/);
     const inputRegExp = /text:\s*?"(.*?)"/;
     const outputRegExp = /output:\s*?"(.*?)"/;
-    lines.forEach(function (line, index) {
+    lines.forEach(function(line, index) {
         const nextLine = lines[index + 1];
         if (inputRegExp.test(line) && outputRegExp.test(nextLine)) {
             const inputMatch = line.match(inputRegExp)[1];
@@ -25,7 +25,6 @@ function processFile(filePath) {
         }
     });
 }
-
 
 const testDir = path.join(__dirname, "..", "test");
 const filePathList = glob.sync(testDir + "/*-test.js");
