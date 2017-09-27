@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-export default {
+module.exports = {
     rules: {
         "1.1.1.本文": require("./1.1.1"),
         "1.1.2.見出し": require("./1.1.2"),

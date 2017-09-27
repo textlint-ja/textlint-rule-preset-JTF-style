@@ -11,7 +11,8 @@ tester.run("1.1.5.図表のキャプション", rule, {
     ],
     invalid: [
         {
-            text: "![これは図です。](http://example.com/img) と ![これは図です。](http://example.com/img)  と ![これは図である。](http://example.com/img).",
+            text:
+                "![これは図です。](http://example.com/img) と ![これは図です。](http://example.com/img)  と ![これは図である。](http://example.com/img).",
             errors: [
                 {
                     message: '図表のキャプションを敬体(ですます調)に統一して下さい。\n図表のキャプション内で敬体、常体を混在させないことが重要です。\n"である。"が常体(である調)です。',
@@ -21,7 +22,8 @@ tester.run("1.1.5.図表のキャプション", rule, {
             ]
         },
         {
-            text: "![これは図です。](http://example.com/img) と ![これは図である。](http://example.com/img)  と ![これは図である。](http://example.com/img).",
+            text:
+                "![これは図です。](http://example.com/img) と ![これは図である。](http://example.com/img)  と ![これは図である。](http://example.com/img).",
             errors: [
                 {
                     message: '図表のキャプションを常体(である調)に統一して下さい。\n図表のキャプション内で敬体、常体を混在させないことが重要です。\n"です。"が敬体(ですます調)です。',

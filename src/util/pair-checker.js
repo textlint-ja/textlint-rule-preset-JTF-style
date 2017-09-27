@@ -8,11 +8,11 @@
  * @returns {object}
  */
 import assert from "assert";
-import {RuleHelper} from "textlint-rule-helper";
-export function checkPair(context, {left, right}) {
+import { RuleHelper } from "textlint-rule-helper";
+export function checkPair(context, { left, right }) {
     assert(left);
     assert(right);
-    let {Syntax, RuleError, report, getSource} = context;
+    let { Syntax, RuleError, report, getSource } = context;
     let helper = new RuleHelper(context);
     let isInParagraph = false;
     let currentStrInParagraph = [];
@@ -21,7 +21,7 @@ export function checkPair(context, {left, right}) {
      * @param {Object} currentStrInParagraph
      * @returns {{node, index}[]}
      */
-    const foundMissingPairNodes = (currentStrInParagraph) => {
+    const foundMissingPairNodes = currentStrInParagraph => {
         let foundLeft = false;
         let matchParentheses = [];
         currentStrInParagraph.forEach(node => {
@@ -35,7 +35,7 @@ export function checkPair(context, {left, right}) {
                         node,
                         index: leftIndex
                     });
-                    foundLeft = true
+                    foundLeft = true;
                 }
             }
             // right を探す
@@ -48,20 +48,20 @@ export function checkPair(context, {left, right}) {
         return matchParentheses;
     };
     return {
-        [Syntax.Paragraph](node){
+        [Syntax.Paragraph](node) {
             if (helper.isChildNode(node, [Syntax.BlockQuote])) {
                 return;
             }
             currentStrInParagraph = [];
-            isInParagraph = true
+            isInParagraph = true;
         },
-        [Syntax.Str](node){
+        [Syntax.Str](node) {
             if (!isInParagraph) {
                 return;
             }
             currentStrInParagraph.push(node);
         },
-        [`${Syntax.Paragraph}:exit`](){
+        [`${Syntax.Paragraph}:exit`]() {
             const missingPairList = foundMissingPairNodes(currentStrInParagraph);
             // 探索おわり
             isInParagraph = false;
@@ -69,12 +69,14 @@ export function checkPair(context, {left, right}) {
             if (missingPairList.length === 0) {
                 return;
             }
-            missingPairList.forEach(({node, index}) => {
-                report(node, new RuleError(`${left}の対となる${right}が見つかりません。${left}${right}`, {
-                    index
-                }));
+            missingPairList.forEach(({ node, index }) => {
+                report(
+                    node,
+                    new RuleError(`${left}の対となる${right}が見つかりません。${left}${right}`, {
+                        index
+                    })
+                );
             });
         }
     };
-
 }

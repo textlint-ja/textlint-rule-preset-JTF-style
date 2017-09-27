@@ -5,13 +5,13 @@
 直前の内容を補足して説明する場合や言い換える場合に使用します。
 全角のかっこを使用します
  */
-import {isUserWrittenNode} from "./util/node-util";
-import {matchCaptureGroupAll} from "match-index";
-import regx from 'regx';
-import {japaneseRegExp} from "./util/regexp";
+import { isUserWrittenNode } from "./util/node-util";
+import { matchCaptureGroupAll } from "match-index";
+import regx from "regx";
+import { japaneseRegExp } from "./util/regexp";
 const rx = regx("g");
 
-const replaceSymbol = (symbol) => {
+const replaceSymbol = symbol => {
     var newSymbol = {
         "(": "（",
         ")": "）"
@@ -22,9 +22,9 @@ const replaceSymbol = (symbol) => {
     return newSymbol;
 };
 function reporter(context) {
-    let {Syntax, RuleError, report, fixer, getSource} = context;
+    let { Syntax, RuleError, report, fixer, getSource } = context;
     return {
-        [Syntax.Str](node){
+        [Syntax.Str](node) {
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
@@ -32,16 +32,19 @@ function reporter(context) {
             const text = getSource(node);
             const matchRegExp = rx`(?:${japaneseRegExp})([\(\)])`;
             matchCaptureGroupAll(text, matchRegExp).forEach(match => {
-                const {index} = match;
-                report(node, new RuleError("半角のかっこ()が使用されています。全角のかっこ（）を使用してください。", {
-                    index: index,
-                    fix: fixer.replaceTextRange([index, index + 1], replaceSymbol(match.text))
-                }));
+                const { index } = match;
+                report(
+                    node,
+                    new RuleError("半角のかっこ()が使用されています。全角のかっこ（）を使用してください。", {
+                        index: index,
+                        fix: fixer.replaceTextRange([index, index + 1], replaceSymbol(match.text))
+                    })
+                );
             });
         }
     };
 }
-export default {
+module.exports = {
     linter: reporter,
     fixer: reporter
-}
+};

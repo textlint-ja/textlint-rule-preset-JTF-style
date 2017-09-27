@@ -1,8 +1,8 @@
 // LICENSE : MIT
 "use strict";
-import regx from 'regx';
-import {japaneseRegExp} from "./util/regexp";
-import {matchCaptureGroupAll} from "match-index";
+import regx from "regx";
+import { japaneseRegExp } from "./util/regexp";
+import { matchCaptureGroupAll } from "match-index";
 import mergeMatches from "./util/merge-matches";
 const rx = regx("g");
 /*
@@ -10,7 +10,7 @@ const rx = regx("g");
 句読点には全角の「、」と「。」を使います。和文の句読点としてピリオド(.)とカンマ(,)を使用しません。
 「4.1.1 句点(。)」と「4.1.2 読点(、)」を参照してください。
  */
-import {isUserWrittenNode} from "./util/node-util";
+import { isUserWrittenNode } from "./util/node-util";
 
 // [,.]{日本語}
 const leftTarget = rx`
@@ -28,10 +28,10 @@ const replaceSymbol = {
     ",": "、"
 };
 
-const reporter = (context) => {
-    let {Syntax, RuleError, report, fixer, getSource} = context;
+const reporter = context => {
+    let { Syntax, RuleError, report, fixer, getSource } = context;
     return {
-        [Syntax.Str](node){
+        [Syntax.Str](node) {
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
@@ -42,15 +42,18 @@ const reporter = (context) => {
             matches.forEach(match => {
                 const symbol = replaceSymbol[match.text];
                 const indexOfSymbol = match.index;
-                report(node, new RuleError("句読点には全角の「、」と「。」を使います。和文の句読点としてピリオド(.)とカンマ(,)を使用しません。", {
-                    index: indexOfSymbol,
-                    fix: fixer.replaceTextRange([indexOfSymbol, indexOfSymbol + 1], symbol)
-                }));
-            })
+                report(
+                    node,
+                    new RuleError("句読点には全角の「、」と「。」を使います。和文の句読点としてピリオド(.)とカンマ(,)を使用しません。", {
+                        index: indexOfSymbol,
+                        fix: fixer.replaceTextRange([indexOfSymbol, indexOfSymbol + 1], symbol)
+                    })
+                );
+            });
         }
-    }
+    };
 };
-export default {
+module.exports = {
     linter: reporter,
     fixer: reporter
-}
+};

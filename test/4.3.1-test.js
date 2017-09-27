@@ -4,9 +4,7 @@ import TextLintTester from "textlint-tester";
 import rule from "../src/4.3.1.js";
 var tester = new TextLintTester();
 tester.run("4.3.1.丸かっこ()", rule, {
-    valid: [
-        "クォーク（物質の素粒子）"
-    ],
+    valid: ["クォーク（物質の素粒子）"],
     invalid: [
         {
             // 半角かっこ
@@ -34,6 +32,5 @@ tester.run("4.3.1.丸かっこ()", rule, {
                 }
             ]
         }
-
     ]
 });

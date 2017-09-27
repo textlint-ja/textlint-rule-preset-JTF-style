@@ -6,32 +6,37 @@
 用途によっては全角を許容します。
 ただし、表記をできるだけ統一するため、特別な理由がない限り半角での表記を原則とします。
  */
-import {isUserWrittenNode} from "./util/node-util";
-import {matchCaptureGroupAll} from "match-index";
+import { isUserWrittenNode } from "./util/node-util";
+import { matchCaptureGroupAll } from "match-index";
 import moji from "moji";
 function toHankaku(string) {
-    return moji(string).convert('ZE', 'HE').toString();
+    return moji(string)
+        .convert("ZE", "HE")
+        .toString();
 }
 function reporter(context) {
-    let {Syntax, RuleError, report, fixer, getSource} = context;
+    let { Syntax, RuleError, report, fixer, getSource } = context;
     return {
-        [Syntax.Str](node){
+        [Syntax.Str](node) {
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
             const text = getSource(node);
             const matchRegExp = /([Ａ-Ｚ]+)/;
             matchCaptureGroupAll(text, matchRegExp).forEach(match => {
-                const {index, text} = match;
-                report(node, new RuleError("アルファベットは「半角」で表記します。", {
-                    index: index,
-                    fix: fixer.replaceTextRange([index, index + text.length], toHankaku(text))
-                }));
+                const { index, text } = match;
+                report(
+                    node,
+                    new RuleError("アルファベットは「半角」で表記します。", {
+                        index: index,
+                        fix: fixer.replaceTextRange([index, index + text.length], toHankaku(text))
+                    })
+                );
             });
         }
-    }
+    };
 }
-export default {
+module.exports = {
     linter: reporter,
     fixer: reporter
-}
+};

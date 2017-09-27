@@ -4,10 +4,7 @@ import TextLintTester from "textlint-tester";
 import rule from "../src/2.1.2";
 var tester = new TextLintTester();
 tester.run("2.1.2.漢字", rule, {
-    valid: [
-        "今日は日本語の勉強をします。",
-        "度々問題が起きる。"
-    ],
+    valid: ["今日は日本語の勉強をします。", "度々問題が起きる。"],
     invalid: [
         {
             text: "文章を推敲する",
@@ -29,6 +26,5 @@ tester.run("2.1.2.漢字", rule, {
                 }
             ]
         }
-
     ]
 });

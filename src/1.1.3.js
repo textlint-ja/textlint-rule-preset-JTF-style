@@ -9,48 +9,51 @@
 本文が「常体」である場合、箇条書きには「常体」または「体言止め」を使います。「敬体」は使いません。
 いずれの場合も、ひとまとまりの箇条書きでは、敬体と常体を混在させません。文末に句点(。)を付けるかどうかも統一します。
  */
-import {analyzeDesumasu, analyzeDearu} from "analyze-desumasu-dearu";
-export default function (context) {
-    let {Syntax, RuleError, report, getSource} = context;
+import { analyzeDesumasu, analyzeDearu } from "analyze-desumasu-dearu";
+module.exports = function(context) {
+    let { Syntax, RuleError, report, getSource } = context;
     let desumasuList = [];
     let dearuList = [];
     // 。付きのListItem
     let withPointList = [];
     // 。なしのListItem
     let withoutPointList = [];
-    
+
     function resetList() {
         dearuList = [];
         desumasuList = [];
         withPointList = [];
         withoutPointList = [];
     }
-    
-    function reportPointResult(nodeList, {shouldUsePoint}) {
+
+    function reportPointResult(nodeList, { shouldUsePoint }) {
         nodeList.forEach(node => {
             let message;
             if (shouldUsePoint) {
-                message = `箇条書きの文末に句点(。)を付けて下さい。\n箇条書きの文末に句点(。)を付けるかを統一します。`
+                message = `箇条書きの文末に句点(。)を付けて下さい。\n箇条書きの文末に句点(。)を付けるかを統一します。`;
             } else {
-                message = `箇条書きの文末から句点(。)を外して下さい。\n箇条書きの文末に句点(。)を付けるかを統一します。`
+                message = `箇条書きの文末から句点(。)を外して下さい。\n箇条書きの文末に句点(。)を付けるかを統一します。`;
             }
             report(node, new RuleError(message));
         });
     }
-    
-    function reportDesumaruDearuResult(list, {desumasu,dearu}) {
-        list.forEach(({node, matches}) => {
+
+    function reportDesumaruDearuResult(list, { desumasu, dearu }) {
+        list.forEach(({ node, matches }) => {
             matches.forEach(match => {
                 let message;
                 if (desumasu) {
-                    message = `箇条書きを敬体(ですます調)に統一して下さい。\nひとまとまりの箇条書きでは、敬体と常体を混在させません。\n"${match.value}"が常体(である調)です。`
+                    message = `箇条書きを敬体(ですます調)に統一して下さい。\nひとまとまりの箇条書きでは、敬体と常体を混在させません。\n"${match.value}"が常体(である調)です。`;
                 } else if (dearu) {
-                    message = `箇条書きを常体(である調)に統一して下さい。\nひとまとまりの箇条書きでは、敬体と常体を混在させません。\n"${match.value}"が敬体(ですます調)です。`
+                    message = `箇条書きを常体(である調)に統一して下さい。\nひとまとまりの箇条書きでは、敬体と常体を混在させません。\n"${match.value}"が敬体(ですます調)です。`;
                 }
-                report(node, new RuleError(message, {
-                    line: match.lineNumber - 1,
-                    column: match.columnIndex
-                }));
+                report(
+                    node,
+                    new RuleError(message, {
+                        line: match.lineNumber - 1,
+                        column: match.columnIndex
+                    })
+                );
             });
         });
     }
@@ -80,8 +83,8 @@ export default function (context) {
 
     // 敬体(ですます調)あるいは常体(である調)なのかのチェック
     function countingDesumasuDearu(desumasuList, dearuList) {
-        let desumasuCount = desumasuList.reduce((count, {matches}) => count + matches.length, 0);
-        let dearuCount = dearuList.reduce((count, {matches}) => count + matches.length, 0);
+        let desumasuCount = desumasuList.reduce((count, { matches }) => count + matches.length, 0);
+        let dearuCount = dearuList.reduce((count, { matches }) => count + matches.length, 0);
         if (desumasuCount === 0 || dearuCount === 0) {
             return;
         }
@@ -102,12 +105,12 @@ export default function (context) {
             });
         }
     }
-    
+
     return {
-        [Syntax.List](node){
-            resetList()
+        [Syntax.List](node) {
+            resetList();
         },
-        [Syntax.ListItem](node){
+        [Syntax.ListItem](node) {
             let text = getSource(node);
             // 末尾に。があるかが統一されているのチェック
             let matchPointReg = /。(\s*?)$/;
@@ -134,10 +137,10 @@ export default function (context) {
                 });
             }
         },
-        [`${Syntax.List}:exit`](node){
+        [`${Syntax.List}:exit`](node) {
             countingPoint(withPointList, withoutPointList);
-            
+
             countingDesumasuDearu(desumasuList, dearuList);
         }
-    }
-}
+    };
+};

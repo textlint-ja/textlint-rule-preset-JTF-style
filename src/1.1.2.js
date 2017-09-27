@@ -16,11 +16,11 @@ Header
 
 は無視する
  */
-import {isUserWrittenNode} from "./util/node-util";
+import { isUserWrittenNode } from "./util/node-util";
 function mixer(context) {
-    let {Syntax, RuleError, report, getSource, fixer} = context;
+    let { Syntax, RuleError, report, getSource, fixer } = context;
     return {
-        [Syntax.Header](node){
+        [Syntax.Header](node) {
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
@@ -29,16 +29,19 @@ function mixer(context) {
             let matchReg = /。(\s*?)$/;
             let index = text.search(matchReg);
             if (index !== -1) {
-                report(node, new RuleError("見出しの文末には、句点(。)を付けません。", {
-                    index: index,
-                    fix: fixer.removeRange([index, index + 1])
-                }));
+                report(
+                    node,
+                    new RuleError("見出しの文末には、句点(。)を付けません。", {
+                        index: index,
+                        fix: fixer.removeRange([index, index + 1])
+                    })
+                );
             }
             // TODO: いずれの場合も、すべての見出しを通して複数の文体をできるだけ混在させないことが重要です。
         }
-    }
+    };
 }
-export default {
+module.exports = {
     linter: mixer,
     fixer: mixer
-}
+};

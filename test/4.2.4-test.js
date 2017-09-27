@@ -4,10 +4,7 @@ import TextLintTester from "textlint-tester";
 import rule from "../src/4.2.4";
 var tester = new TextLintTester();
 tester.run("4.2.4.中黒(・)", rule, {
-    valid: [
-        "小・中学校",
-        "パーソナル・コンピューター"
-    ],
+    valid: ["小・中学校", "パーソナル・コンピューター"],
     invalid: [
         {
             text: "小･中学校",
