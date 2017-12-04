@@ -167,7 +167,7 @@ function reporter(context) {
             matchToReplace(
                 text,
                 /([一二三四五六七八九十壱弐参拾百〇]+)[兆億万]/g,
-                ignoreWhenMatched(/数([一二三四五六七八九十壱弐参拾百〇]+)[兆億万]/g, toNumber)
+                ignoreWhenMatched(/(数|何)([一二三四五六七八九十壱弐参拾百〇]+)[兆億万]/g, toNumber)
             );
             matchToReplace(text, /([一二三四五六七八九十壱弐参拾百〇]+)つ/g, toNumber);
             matchToReplace(text, /([一二三四五六七八九十壱弐参拾百〇]+)回/g, toNumber);
