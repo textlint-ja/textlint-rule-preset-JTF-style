@@ -36,7 +36,7 @@ npm install -D textlint textlint-rule-preset-jtf-style
 
 textlintの設定ファイルとなっている`.textlintrc`に次のように`jtf-style`と指定します(`textlint-rule-`を取り除いたプリセット名)。
 
-```js
+```json5
 {
     "rules": {
         "preset-jtf-style": true
@@ -611,7 +611,7 @@ A. `.textlintrc` にルール毎の設定を追加することが出来ます。
 `1.2.2.ピリオド(.)とカンマ(,)`のルールを無効化したい場合は、`.textlintrc`に次のように`false`値を設定することで無効化出来ます。
 デフォルトでは`textlint-rule-preset-jtf-style`に含まれるルールが全て有効化されています。
 
-```js
+```json5
 {
     "rules": {
         "preset-jtf-style": {
@@ -632,7 +632,7 @@ A. 正規表現の辞書ベースのルールが幾つかあります。
 その他のtextlintルールと衝突が発生しやすい辞書ベースのルールとなっています。
 そのため、辞書を改善していくかルール自体を無効化するアプローチを取る必要あります。
 
-デフォルトでは辞書ベースのルールである次のルールが無効化されています。
+デフォルトでは次の辞書ベースのルールは無効化されています。
 
 - [2.1.2.漢字](./src/2.1.2.js)
 - [2.1.5.カタカナ](./src/2.1.5.js)
@@ -641,7 +641,7 @@ A. 正規表現の辞書ベースのルールが幾つかあります。
 
 これらのルールを有効化したい場合は、`.textlintrc`で明示的に有効化する必要があります。
 
-```js
+```json5
 {
     "rules": {
         "preset-jtf-style": {
@@ -655,18 +655,20 @@ A. 正規表現の辞書ベースのルールが幾つかあります。
 ```
 
 
-## Migration
+## Migration: `textlint-plugin-jtf-style` to `textlint-rule-preset-jtf-style` 
 
-`textlint-plugin-jtf-style` から `textlint-rule-preset-jtf-style` へ移行したい場合、
+`textlint-plugin-jtf-style` から `textlint-rule-preset-jtf-style` へ移行したい場合の移行手順です。
+
+次のようにモジュールを切り替えます。
 
 ```sh
 npm uninstall -D textlint-plugin-jtf-style
 npm install -D textlint-rule-preset-jtf-style
 ```
 
-した後、`.textlintrc`を
+その後、`.textlintrc`にかかれている設定を
 
-```js
+```json5
 {
     "plugins": [
         "jtf-style"
@@ -682,7 +684,7 @@ npm install -D textlint-rule-preset-jtf-style
 
 以下のように書き換えれば完了です。
 
-```js
+```json5
 {
     "rules": {
         "preset-jtf-style": {
