@@ -56,13 +56,14 @@ npm run-script経由で実行すれば、`node_modules/.bin/`は省略出来ま�
 
 ## 自動修正
 
-使用するルールの設定が終わったら、`textlint`を実行してみてください。
-沢山のエラーが表示されると思います。
+ルールの設定して`textlint`コマンドでチェックするとたくさんのエラーが表示されると思います。
 
-[![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) 
+```
+textlint /path/to/target.md
+```
 
 `textlint-rule-preset-JTF-style`の一部ルールは`textlint`の`--fix`にも対応しています。
-`--fix`を使うことで機械的に判断して修正出来る部分は自動修正します。
+`--fix`を使うことで機械的に判断して修正できる部分は自動修正します。
 
 ```sh
 textlint --fix /path/to/target.md
