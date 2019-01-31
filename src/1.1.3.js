@@ -43,9 +43,13 @@ module.exports = function(context) {
             matches.forEach(match => {
                 let message;
                 if (desumasu) {
-                    message = `箇条書きを敬体(ですます調)に統一して下さい。\nひとまとまりの箇条書きでは、敬体と常体を混在させません。\n"${match.value}"が常体(である調)です。`;
+                    message = `箇条書きを敬体(ですます調)に統一して下さい。\nひとまとまりの箇条書きでは、敬体と常体を混在させません。\n"${
+                        match.value
+                    }"が常体(である調)です。`;
                 } else if (dearu) {
-                    message = `箇条書きを常体(である調)に統一して下さい。\nひとまとまりの箇条書きでは、敬体と常体を混在させません。\n"${match.value}"が敬体(ですます調)です。`;
+                    message = `箇条書きを常体(である調)に統一して下さい。\nひとまとまりの箇条書きでは、敬体と常体を混在させません。\n"${
+                        match.value
+                    }"が敬体(ですます調)です。`;
                 }
                 report(
                     node,

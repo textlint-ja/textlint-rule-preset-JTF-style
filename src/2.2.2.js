@@ -2,6 +2,7 @@
 "use strict";
 import { isUserWrittenNode } from "./util/node-util";
 import ja2num from "japanese-numerals-to-number";
+
 function matchToReplace(text, pattern, matchFn) {
     var match = pattern.exec(text);
     if (match) {
@@ -129,8 +130,12 @@ function reporter(context) {
                 report(node, ruleError);
             };
 
-            // 算用数字 -> 漢数字
-
+            /**
+             * 算用数字 -> 漢数字
+             * @param {string} text
+             * @param {RegExp} pattern
+             * @param {*[]} match
+             */
             const toKanNumber = (text, pattern, match) => {
                 const matchedString = match[0];
                 const expected = matchedString.replace(pattern, function(all, match) {
@@ -183,7 +188,8 @@ function reporter(context) {
             matchToReplace(text, /(1)時的/g, toKanNumber);
             matchToReplace(text, /(1)部分/g, toKanNumber);
             matchToReplace(text, /第(3)者/g, toKanNumber);
-            matchToReplace(text, /(1)種/g, toKanNumber);
+            // 1種 -> 一種: 11種類などにはマッチしない
+            matchToReplace(text, /[^\d](1)種(?!類)/g, toKanNumber);
             matchToReplace(text, /(1)部の/g, toKanNumber);
             matchToReplace(text, /(1)番に/g, toKanNumber);
             matchToReplace(text, /数([0-9]+)倍/g, toKanNumber);
