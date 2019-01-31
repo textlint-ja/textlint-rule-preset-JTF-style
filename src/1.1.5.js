@@ -25,9 +25,13 @@ module.exports = function(context) {
             matches.forEach(match => {
                 let message;
                 if (desumasu) {
-                    message = `図表のキャプションを敬体(ですます調)に統一して下さい。\n図表のキャプション内で敬体、常体を混在させないことが重要です。\n"${match.value}"が常体(である調)です。`;
+                    message = `図表のキャプションを敬体(ですます調)に統一して下さい。\n図表のキャプション内で敬体、常体を混在させないことが重要です。\n"${
+                        match.value
+                    }"が常体(である調)です。`;
                 } else if (dearu) {
-                    message = `図表のキャプションを常体(である調)に統一して下さい。\n図表のキャプション内で敬体、常体を混在させないことが重要です。\n"${match.value}"が敬体(ですます調)です。`;
+                    message = `図表のキャプションを常体(である調)に統一して下さい。\n図表のキャプション内で敬体、常体を混在させないことが重要です。\n"${
+                        match.value
+                    }"が敬体(ですます調)です。`;
                 }
                 report(
                     node,
