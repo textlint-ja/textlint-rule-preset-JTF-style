@@ -23,14 +23,12 @@
     "test": "test"
   },
   "scripts": {
-    "build": "babel src --out-dir lib --source-maps",
-    "watch": "babel src --out-dir lib --watch --source-maps",
+    "build": "textlint-scripts build",
+    "watch": "textlint-scripts build --watch",
     "prepublish": "npm run --if-present build",
     "pretest": "node tool/create-fixtures.js",
-    "test": "mocha && npm run test:textlint",
-    "test:textlint": "(cd example && npm i && npm test)",
-    "precommit": "lint-staged",
-    "postcommit": "git reset",
+    "test": "textlint-scripts test && npm run test:textlint",
+    "test:textlint": "(cd example && npm i --no-save && npm test)",
     "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,css}'"
   },
   "keywords": [
@@ -40,17 +38,11 @@
     "translation"
   ],
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.6.0",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-register": "^6.26.0",
     "glob": "^7.1.2",
-    "husky": "^0.14.3",
-    "lint-staged": "^4.2.3",
-    "mocha": "^3.5.3",
+    "husky": "^1.3.1",
+    "lint-staged": "^8.1.1",
     "prettier": "^1.7.0",
-    "textlint": "^8.2.1",
-    "textlint-tester": "^2.2.4"
+    "textlint-scripts": "^2.1.0"
   },
   "dependencies": {
     "analyze-desumasu-dearu": "^2.1.2",
@@ -75,5 +67,11 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "post-commit": "git reset",
+      "pre-commit": "lint-staged"
+    }
   }
 }
