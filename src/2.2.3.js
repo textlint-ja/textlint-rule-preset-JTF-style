@@ -6,8 +6,9 @@
  */
 import prh from "textlint-rule-prh";
 import path from "path";
+import fs from "fs";
 module.exports = function(context) {
     return prh.fixer(context, {
-        rulePaths: [path.join(__dirname, "..", "dict", "2.2.3.yml")]
+        ruleContents: [fs.readFileSync(path.join(__dirname, "..", "dict", "2.2.3.yml"), "utf-8")]
     });
 };
