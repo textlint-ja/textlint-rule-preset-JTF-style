@@ -39,10 +39,10 @@
   ],
   "devDependencies": {
     "glob": "^7.1.4",
-    "husky": "^3.0.0",
-    "lint-staged": "^9.2.0",
+    "husky": "^3.0.9",
+    "lint-staged": "^9.4.2",
     "prettier": "^1.18.2",
-    "textlint-scripts": "^3.0.0-beta.1"
+    "textlint-scripts": "^3.0.0"
   },
   "dependencies": {
     "analyze-desumasu-dearu": "^2.1.2",
