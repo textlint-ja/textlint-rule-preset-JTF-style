@@ -30,17 +30,23 @@ function reporter(context) {
             }
             // 半角のかっこ()は使用しないで全角のかっこを使用する
             const text = getSource(node);
-            const matchRegExp = rx`(?:${japaneseRegExp})([\(\)])`;
-            matchCaptureGroupAll(text, matchRegExp).forEach(match => {
-                const { index } = match;
-                report(
-                    node,
-                    new RuleError("半角のかっこ()が使用されています。全角のかっこ（）を使用してください。", {
-                        index: index,
-                        fix: fixer.replaceTextRange([index, index + 1], replaceSymbol(match.text))
-                    })
-                );
-            });
+            const matchRegExps = [
+                rx`([\(\)])(?:.*${japaneseRegExp}+.*)([\(\)])`,
+                rx`([\(\)])(?:.*${japaneseRegExp})`,
+                rx`(?:${japaneseRegExp}.*)([\(\)])`
+            ];
+            for (const matchRegExp of matchRegExps) {
+                matchCaptureGroupAll(text, matchRegExp).forEach(match => {
+                    const { index } = match;
+                    report(
+                        node,
+                        new RuleError("半角のかっこ()が使用されています。全角のかっこ（）を使用してください。", {
+                            index: index,
+                            fix: fixer.replaceTextRange([index, index + 1], replaceSymbol(match.text))
+                        })
+                    );
+                });
+            }
         }
     };
 }
