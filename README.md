@@ -1,6 +1,6 @@
 # textlint-rule-preset-JTF-style [![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) [![Build Status](https://travis-ci.org/textlint-ja/textlint-rule-preset-JTF-style.svg?branch=master)](https://travis-ci.org/textlint-ja/textlint-rule-preset-JTF-style)
 
-[JTF日本語標準スタイルガイド（翻訳用）](https://www.jtf.jp/jp/style_guide/styleguide_top.html "JTF日本語標準スタイルガイド（翻訳用）") for [textlint](https://github.com/textlint/textlint "textlint").
+[JTF日本語標準スタイルガイド（翻訳用）](https://www.jtf.jp/tips/styleguide "JTF日本語標準スタイルガイド（翻訳用）") for [textlint](https://github.com/textlint/textlint "textlint").
 
 2016年2月22日改訂第2.2版を元にしています。
 
@@ -79,7 +79,7 @@ textlint --fix /path/to/target.md
 
 それぞれのルールの詳細は以下を読んでください。
 
-- [JTF日本語標準スタイルガイド（翻訳用）（PDFファイル）](https://www.jtf.jp/jp/style_guide/pdf/jtf_style_guide.pdf)
+- [JTF日本語標準スタイルガイド（翻訳用）（PDFファイル）](https://www.jtf.jp/pdf/jtf_style_guide.pdf)
 
 `textlint-rule-preset-jtf-style`で対応するルールと実装状況は以下のとおりです。
 
@@ -598,7 +598,7 @@ Issueには以下の項目が書かれていると問題を解決しやすくな
 - 実際の結果
     - 例) 実際にはエラーとならなかった
 
-また、[JTF日本語標準スタイルガイド（翻訳用）](https://www.jtf.jp/jp/style_guide/pdf/jtf_style_guide.pdf)に記載されてる全てのルールが実装済みではないため、
+また、[JTF日本語標準スタイルガイド（翻訳用）](https://www.jtf.jp/pdf/jtf_style_guide.pdf)に記載されてる全てのルールが実装済みではないため、
 Pull Requestも歓迎しています。
 
 -----
