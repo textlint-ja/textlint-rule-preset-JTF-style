@@ -35,7 +35,7 @@ function reporter(context) {
                 rx`([\(\)])(?:.*${japaneseRegExp})`,
                 rx`(?:${japaneseRegExp}.*)([\(\)])`
             ];
-            for (const matchRegExp of matchRegExps) {
+            matchRegExps.forEach(matchRegExp => {
                 matchCaptureGroupAll(text, matchRegExp).forEach(match => {
                     const { index } = match;
                     report(
@@ -46,7 +46,7 @@ function reporter(context) {
                         })
                     );
                 });
-            }
+            });
         }
     };
 }
