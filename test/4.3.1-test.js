@@ -4,7 +4,13 @@ import TextLintTester from "textlint-tester";
 import rule from "../src/4.3.1.js";
 var tester = new TextLintTester();
 tester.run("4.3.1.丸かっこ()", rule, {
-    valid: ["クォーク（物質の素粒子）", "（物質の素粒子）", "（npm 2.x以上をインストールしている必要があります）"],
+    valid: [
+        "クォーク（物質の素粒子）",
+        "（物質の素粒子）",
+        "（npm 2.x以上をインストールしている必要があります）",
+        "Homebrew( https://brew.sh/index_ja ) （そしてXcode）",
+        "インストール方法(macOS/Linux)"
+    ],
     invalid: [
         {
             // 半角かっこ
@@ -48,6 +54,21 @@ tester.run("4.3.1.丸かっこ()", rule, {
                 {
                     message: "半角のかっこ()が使用されています。全角のかっこ（）を使用してください。",
                     column: 29
+                }
+            ]
+        },
+        {
+            // 半角かっこ
+            text: "Homebrew( https://brew.sh/index_ja ) (そしてXcode)",
+            output: "Homebrew( https://brew.sh/index_ja ) （そしてXcode）",
+            errors: [
+                {
+                    message: "半角のかっこ()が使用されています。全角のかっこ（）を使用してください。",
+                    column: 38
+                },
+                {
+                    message: "半角のかっこ()が使用されています。全角のかっこ（）を使用してください。",
+                    column: 47
                 }
             ]
         },

@@ -89,6 +89,8 @@ A氏は「5月に新製品を発売します」と述べました。
 
 （npm 2.x以上をインストールしている必要があります）
 
+Homebrew( https://brew.sh/index_ja ) （そしてXcode）
+
 例）test
 
 半角［かっこ
