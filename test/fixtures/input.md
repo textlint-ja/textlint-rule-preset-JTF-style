@@ -91,6 +91,8 @@ A氏は「5月に新製品を発売します。」と述べました。
 
 Homebrew( https://brew.sh/index_ja ) (そしてXcode)
 
+インストール方法(macOS/Linux)
+
 例)test
 
 半角[かっこ

@@ -89,7 +89,9 @@ A氏は「5月に新製品を発売します」と述べました。
 
 （npm 2.x以上をインストールしている必要があります）
 
-Homebrew( https://brew.sh/index_ja ) （そしてXcode）
+Homebrew（ https://brew.sh/index_ja ） （そしてXcode）
+
+インストール方法（macOS/Linux）
 
 例）test
 

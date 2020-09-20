@@ -30,11 +30,7 @@ function reporter(context) {
             }
             // 半角のかっこ()は使用しないで全角のかっこを使用する
             const text = getSource(node);
-            const matchRegExps = [
-                rx`([\(])(?:[^\)]*${japaneseRegExp}+[^\)]*)([\)])`,
-                rx`([\(])(?:[^\)]*${japaneseRegExp})`,
-                rx`(?:${japaneseRegExp}[^\(]*)([\)])`
-            ];
+            const matchRegExps = [rx`(\()(?:[^\)]*)(\))`, rx`(\()(?:[^\)]*)`, rx`(?:[^\(]*)(\))`];
             matchRegExps.forEach(matchRegExp => {
                 matchCaptureGroupAll(text, matchRegExp).forEach(match => {
                     const { index } = match;
