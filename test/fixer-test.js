@@ -18,7 +18,7 @@ describe("fixer-test", function() {
             for (var i = 0; i < inputs.length; i++) {
                 const input = inputs[i];
                 const output = outputs[i];
-                assert.equal(input, output);
+                assert.strictEqual(input, output);
             }
         });
     });

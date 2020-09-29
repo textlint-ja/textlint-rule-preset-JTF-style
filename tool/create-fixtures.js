@@ -11,8 +11,8 @@ const RESULT = {
 function processFile(filePath) {
     const contents = fs.readFileSync(filePath, "utf-8");
     const lines = contents.split(/\n/);
-    const inputRegExp = /text:\s*?"(.*?)"/;
-    const outputRegExp = /output:\s*?"(.*?)"/;
+    const inputRegExp = /^\s+text:\s*?"(.*?)"/;
+    const outputRegExp = /^\s+output:\s*?"(.*?)"/;
     lines.forEach(function(line, index) {
         const nextLine = lines[index + 1];
         if (inputRegExp.test(line) && outputRegExp.test(nextLine)) {
