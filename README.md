@@ -2,7 +2,7 @@
 
 [JTF日本語標準スタイルガイド（翻訳用）](https://www.jtf.jp/tips/styleguide "JTF日本語標準スタイルガイド（翻訳用）") for [textlint](https://github.com/textlint/textlint "textlint").
 
-2016年2月22日改訂第2.2版を元にしています。
+[2016年2月22日改訂第2.2版](https://github.com/textlint-ja/textlint-rule-preset-JTF-style/blob/master/jtf_style_guide2.2.pdf)を元にしています。
 
 ## Installation
 
