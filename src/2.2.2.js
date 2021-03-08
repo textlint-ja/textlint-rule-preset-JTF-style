@@ -192,9 +192,9 @@ function reporter(context) {
             matchToReplace(text, /[^\d](1)種(?!類)/g, toKanNumber);
             matchToReplace(text, /(1)部の/g, toKanNumber);
             matchToReplace(text, /(1)番に/g, toKanNumber);
-            matchToReplace(text, /数([0-9]+)倍/g, toKanNumber);
-            matchToReplace(text, /数([0-9]+)[兆億万]/g, toKanNumber);
-            matchToReplace(text, /数([0-9]+)年/g, toKanNumber);
+            matchToReplace(text, /数(10+)倍/g, toKanNumber);
+            matchToReplace(text, /数(10+)[兆億万]/g, toKanNumber);
+            matchToReplace(text, /数(10+)年/g, toKanNumber);
             matchToReplace(text, /([0-9]+)次関数/g, toKanNumber);
             matchToReplace(text, /(5)大陸/g, toKanNumber);
         }
