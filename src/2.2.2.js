@@ -156,9 +156,9 @@ function reporter(context) {
             };
 
             // ignorePatternにマッチしたらmatchFnを呼ばないようにする(エラーを無視する)
-            const ignoreWhenMatched = (ignorePattern, matchFn) => {
+            const ignoreWhenMatched = (ignorePatterns, matchFn) => {
                 return (text, pattern, match) => {
-                    if (ignorePattern.test(text)) {
+                    if (ignorePatterns.some(p => p.test(text))) {
                         return null;
                     } else {
                         return matchFn(text, pattern, match);
@@ -172,9 +172,19 @@ function reporter(context) {
             matchToReplace(
                 text,
                 /([一二三四五六七八九十壱弐参拾百〇]+)[兆億万]/g,
-                ignoreWhenMatched(/(数|何)([一二三四五六七八九十壱弐参拾百〇]+)[兆億万]/g, toNumber)
+                ignoreWhenMatched([/(数|何)([一二三四五六七八九十壱弐参拾百〇]+)[兆億万]/g], toNumber)
             );
-            matchToReplace(text, /([一二三四五六七八九十壱弐参拾百〇]+)つ/g, toNumber);
+            matchToReplace(
+                text,
+                /([一二三四五六七八九十壱弐参拾百〇]+)つ/g,
+                ignoreWhenMatched(
+                    [
+                        /[一二三四五六七八九]つ(返事|子|ひとつ|星|編|葉|橋|と[無な]い|に一つ)/g,
+                        /(ただ|唯|[女男]手|穴|瓜|馬鹿の)[一二]つ/g
+                    ],
+                    toNumber
+                )
+            );
             matchToReplace(text, /([一二三四五六七八九十壱弐参拾百〇]+)回/g, toNumber);
             matchToReplace(text, /([一二三四五六七八九十壱弐参拾百〇]+)か月/g, toNumber);
             matchToReplace(text, /([一二三四五六七八九十壱弐参拾百〇]+)番目/g, toNumber);
