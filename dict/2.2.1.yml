@@ -184,8 +184,11 @@ rules:
         to:   （例）思いを致す。
   # （接続詞の場合）ひらがなを使う
   - expected: したがって
-    patterns: 従って
+    patterns: /(に)?従って/
+    regexpMustEmpty: $1
   #（動詞の場合）漢字を使う
+  - expected: に従って
+    pattern: にしたがって
   - expected: 従う
     patterns: したがう
   - expected: $1だす
