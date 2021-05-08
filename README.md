@@ -1,4 +1,4 @@
-# textlint-rule-preset-JTF-style [![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) [![Build Status](https://travis-ci.org/textlint-ja/textlint-rule-preset-JTF-style.svg?branch=master)](https://travis-ci.org/textlint-ja/textlint-rule-preset-JTF-style)
+# textlint-rule-preset-JTF-style [![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) [![Actions Status: test](https://github.com/textlint-ja/textlint-rule-preset-JTF-style/workflows/test/badge.svg)](https://github.com/textlint-ja/textlint-rule-preset-JTF-style/actions?query=workflow%3A"test")
 
 [JTF日本語標準スタイルガイド（翻訳用）](https://www.jtf.jp/tips/styleguide "JTF日本語標準スタイルガイド（翻訳用）") for [textlint](https://github.com/textlint/textlint "textlint").
 

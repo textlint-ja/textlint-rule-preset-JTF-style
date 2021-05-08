@@ -1,6 +1,5 @@
 // LICENSE : MIT
 "use strict";
-require("../src/");
 // test prh rule
 import TextLintTester from "textlint-tester";
 var tester = new TextLintTester();
