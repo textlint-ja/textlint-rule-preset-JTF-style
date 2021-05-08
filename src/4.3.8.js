@@ -6,7 +6,7 @@
 原文で一重引用符が使用されており、原文どおりに使用する必要がある場合のみ使用します。
  */
 import { checkPair } from "./util/pair-checker";
-module.exports = function(context) {
+module.exports = function (context) {
     // do no anything
     return {};
 };

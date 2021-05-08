@@ -9,10 +9,10 @@ import { matchCaptureGroupAll } from "match-index";
 
 const brackets = ["\\[", "\\]", "（", "）", "［", "］", "「", "」", "『", "』"];
 
-const leftBrackets = brackets.map(bracket => {
+const leftBrackets = brackets.map((bracket) => {
     return new RegExp("([ 　])" + bracket, "g");
 });
-const rightBrackets = brackets.map(bracket => {
+const rightBrackets = brackets.map((bracket) => {
     return new RegExp(bracket + "([ 　])", "g");
 });
 function reporter(context) {
@@ -24,8 +24,8 @@ function reporter(context) {
             }
             const text = getSource(node);
             // 左にスペース
-            leftBrackets.forEach(pattern => {
-                matchCaptureGroupAll(text, pattern).forEach(match => {
+            leftBrackets.forEach((pattern) => {
+                matchCaptureGroupAll(text, pattern).forEach((match) => {
                     const { index } = match;
                     report(
                         node,
@@ -37,8 +37,8 @@ function reporter(context) {
                 });
             });
             // 右にスペース
-            rightBrackets.forEach(pattern => {
-                matchCaptureGroupAll(text, pattern).forEach(match => {
+            rightBrackets.forEach((pattern) => {
+                matchCaptureGroupAll(text, pattern).forEach((match) => {
                     const { index, text } = match;
                     report(
                         node,

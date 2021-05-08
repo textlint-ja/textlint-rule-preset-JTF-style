@@ -22,13 +22,13 @@ function reporter(context) {
             // 全角同士の間は半角スペースを入れない
             const matchReg = rx`${japaneseRegExp}( )${japaneseRegExp}`;
             const katakakana = /[ァ-ヶ]( )[ァ-ヶ]/;
-            matchAll(text, matchReg).forEach(match => {
+            matchAll(text, matchReg).forEach((match) => {
                 const { input, captureGroups } = match;
                 // ただしカタカナ複合語の場合を除きます。
                 if (katakakana.test(input)) {
                     return;
                 }
-                captureGroups.forEach(captureGroup => {
+                captureGroups.forEach((captureGroup) => {
                     const index = captureGroup.index;
                     report(
                         node,

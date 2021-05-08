@@ -24,7 +24,7 @@ function reporter(context) {
             let text = getSource(node);
             // 半角の!は利用しない
             const matchRegExp = /(?:[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]|[\uD840-\uD87F][\uDC00-\uDFFF]|[ぁ-んァ-ヶ])(!)/;
-            matchCaptureGroupAll(text, matchRegExp).forEach(match => {
+            matchCaptureGroupAll(text, matchRegExp).forEach((match) => {
                 const { index } = match;
                 return report(
                     node,
@@ -37,7 +37,7 @@ function reporter(context) {
             // ！の後ろは全角スペースが推奨
             // 半角スペースである場合
             const matchAfter = /！( )[^\n]/;
-            matchCaptureGroupAll(text, matchAfter).forEach(match => {
+            matchCaptureGroupAll(text, matchAfter).forEach((match) => {
                 const { index } = match;
                 return report(
                     node,

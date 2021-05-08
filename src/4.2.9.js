@@ -14,7 +14,7 @@ import { matchCaptureGroupAll } from "match-index";
 import regx from "regx";
 import { japaneseRegExp } from "./util/regexp";
 const rx = regx("g");
-module.exports = function(context) {
+module.exports = function (context) {
     let { Syntax, RuleError, report, getSource } = context;
     return {
         [Syntax.Str](node) {
@@ -24,7 +24,7 @@ module.exports = function(context) {
             const text = getSource(node);
             // 和文でダッシュは使用しない
             const matchRegExp = rx`(?:${japaneseRegExp})([\u2012-\u2015])`;
-            matchCaptureGroupAll(text, matchRegExp).forEach(match => {
+            matchCaptureGroupAll(text, matchRegExp).forEach((match) => {
                 const { index } = match;
                 report(
                     node,

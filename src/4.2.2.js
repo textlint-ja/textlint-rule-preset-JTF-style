@@ -25,7 +25,7 @@ function reporter(context) {
             let text = getSource(node);
             // 和文で半角の?は利用しない
             const matchRegExp = rx`${japaneseRegExp}(\?)`;
-            matchCaptureGroupAll(text, matchRegExp).forEach(match => {
+            matchCaptureGroupAll(text, matchRegExp).forEach((match) => {
                 const { index } = match;
                 return report(
                     node,
@@ -38,7 +38,7 @@ function reporter(context) {
             // ？の後ろは全角スペースが推奨
             // 半角スペースである場合はエラーとする
             const matchAfter = /？( )[^\n]/;
-            matchCaptureGroupAll(text, matchAfter).forEach(match => {
+            matchCaptureGroupAll(text, matchAfter).forEach((match) => {
                 const { index } = match;
                 return report(
                     node,

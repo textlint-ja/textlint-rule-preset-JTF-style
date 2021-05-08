@@ -13,7 +13,7 @@ function stringToArray(value) {
     return value.match(/[\uD800-\uDBFF][\uDC00-\uDFFF]|[^\uD800-\uDFFF]/g) || [];
 }
 
-module.exports = function(context) {
+module.exports = function (context) {
     let { Syntax, RuleError, report, getSource } = context;
     return {
         [Syntax.Str](node) {

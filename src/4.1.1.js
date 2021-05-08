@@ -10,7 +10,7 @@
 import { isUserWrittenNode } from "./util/node-util";
 import { matchCaptureGroupAll } from "match-index";
 const brackets = ["」", "）", "\\)"];
-const leftBrackets = brackets.map(bracket => {
+const leftBrackets = brackets.map((bracket) => {
     return new RegExp("(。)" + bracket, "g");
 });
 var reporter = function reporter(context) {
@@ -21,8 +21,8 @@ var reporter = function reporter(context) {
                 return;
             }
             let text = getSource(node);
-            leftBrackets.forEach(pattern => {
-                matchCaptureGroupAll(text, pattern).forEach(match => {
+            leftBrackets.forEach((pattern) => {
+                matchCaptureGroupAll(text, pattern).forEach((match) => {
                     const { index } = match;
                     report(
                         node,

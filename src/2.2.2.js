@@ -116,7 +116,7 @@ function reporter(context) {
             const toNumber = (text, pattern, match) => {
                 const matchedString = match[0];
                 const index = match.index;
-                const expected = matchedString.replace(pattern, function(all, match) {
+                const expected = matchedString.replace(pattern, function (all, match) {
                     return all.replace(match, ja2num(match));
                 });
                 const ruleError = new RuleError(
@@ -138,7 +138,7 @@ function reporter(context) {
              */
             const toKanNumber = (text, pattern, match) => {
                 const matchedString = match[0];
-                const expected = matchedString.replace(pattern, function(all, match) {
+                const expected = matchedString.replace(pattern, function (all, match) {
                     return all.replace(match, _num2ja(match, { with_arabic: false }));
                 });
                 const index = match.index;
@@ -158,7 +158,7 @@ function reporter(context) {
             // ignorePatternにマッチしたらmatchFnを呼ばないようにする(エラーを無視する)
             const ignoreWhenMatched = (ignorePatterns, matchFn) => {
                 return (text, pattern, match) => {
-                    if (ignorePatterns.some(p => p.test(text))) {
+                    if (ignorePatterns.some((p) => p.test(text))) {
                         return null;
                     } else {
                         return matchFn(text, pattern, match);

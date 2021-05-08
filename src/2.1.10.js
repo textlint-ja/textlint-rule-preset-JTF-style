@@ -24,7 +24,7 @@ function reporter(context) {
                 // この段階では 10,000 も含まれている
                 // ^0,xxx をだけを取り出す
                 let matchedString = match[0];
-                matchCaptureGroupAll(matchedString, strictMatchReg).forEach(subMatch => {
+                matchCaptureGroupAll(matchedString, strictMatchReg).forEach((subMatch) => {
                     const { index } = subMatch;
                     report(
                         node,

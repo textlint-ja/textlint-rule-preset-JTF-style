@@ -10,7 +10,7 @@ import { matchCaptureGroupAll } from "match-index";
 import regx from "regx";
 import { japaneseRegExp } from "./util/regexp";
 const rx = regx("g");
-module.exports = function(context) {
+module.exports = function (context) {
     let { Syntax, RuleError, report, getSource } = context;
     return {
         [Syntax.Str](node) {
@@ -20,7 +20,7 @@ module.exports = function(context) {
             const text = getSource(node);
             // "和文;" というような半角;は使用しない
             const matchRegExp = rx`(?:${japaneseRegExp})(;)`;
-            matchCaptureGroupAll(text, matchRegExp).forEach(match => {
+            matchCaptureGroupAll(text, matchRegExp).forEach((match) => {
                 const { index } = match;
                 report(
                     node,

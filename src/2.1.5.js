@@ -21,9 +21,7 @@ import moji from "moji";
  * @param {String} str 変換したい文字列
  */
 function toZenkaku(string) {
-    return moji(string)
-        .convert("HK", "ZK")
-        .toString();
+    return moji(string).convert("HK", "ZK").toString();
 }
 
 function reporter(context) {
@@ -34,14 +32,14 @@ function reporter(context) {
     });
     let originalStrRule = dictRule[Syntax.Str];
     // 半角カタカナの使用をチェックする
-    dictRule[Syntax.Str] = function(node) {
+    dictRule[Syntax.Str] = function (node) {
         originalStrRule(node);
         if (!isUserWrittenNode(node, context)) {
             return;
         }
         const text = getSource(node);
         const matches = matchCaptureGroupAll(text, /([\uFF65-\uFF9F]+)/g);
-        matches.forEach(match => {
+        matches.forEach((match) => {
             const { index, text } = match;
             report(
                 node,

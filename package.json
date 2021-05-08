@@ -29,7 +29,8 @@
     "pretest": "node tool/create-fixtures.js",
     "test": "textlint-scripts test && npm run test:textlint",
     "test:textlint": "(cd example && npm i --no-save && npm test)",
-    "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,css}'"
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
+    "prepare": "git config --local core.hooksPath .githooks"
   },
   "keywords": [
     "textlint",
@@ -39,9 +40,8 @@
   ],
   "devDependencies": {
     "glob": "^7.1.4",
-    "husky": "^3.0.9",
-    "lint-staged": "^9.4.2",
-    "prettier": "^1.18.2",
+    "lint-staged": "^11.0.0",
+    "prettier": "^2.2.1",
     "textlint-scripts": "^3.0.0"
   },
   "dependencies": {
@@ -59,19 +59,14 @@
     "textlint": ">= 5.6.0"
   },
   "prettier": {
+    "singleQuote": false,
     "printWidth": 120,
-    "tabWidth": 4
+    "tabWidth": 4,
+    "trailingComma": "none"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,css}": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "post-commit": "git reset",
-      "pre-commit": "lint-staged"
-    }
   }
 }

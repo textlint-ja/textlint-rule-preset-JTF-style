@@ -10,7 +10,7 @@
 いずれの場合も、ひとまとまりの箇条書きでは、敬体と常体を混在させません。文末に句点(。)を付けるかどうかも統一します。
  */
 import { analyzeDesumasu, analyzeDearu } from "analyze-desumasu-dearu";
-module.exports = function(context) {
+module.exports = function (context) {
     let { Syntax, RuleError, report, getSource } = context;
     let desumasuList = [];
     let dearuList = [];
@@ -27,7 +27,7 @@ module.exports = function(context) {
     }
 
     function reportPointResult(nodeList, { shouldUsePoint }) {
-        nodeList.forEach(node => {
+        nodeList.forEach((node) => {
             let message;
             if (shouldUsePoint) {
                 message = `箇条書きの文末に句点(。)を付けて下さい。\n箇条書きの文末に句点(。)を付けるかを統一します。`;
@@ -40,16 +40,12 @@ module.exports = function(context) {
 
     function reportDesumaruDearuResult(list, { desumasu, dearu }) {
         list.forEach(({ node, matches }) => {
-            matches.forEach(match => {
+            matches.forEach((match) => {
                 let message;
                 if (desumasu) {
-                    message = `箇条書きを敬体(ですます調)に統一して下さい。\nひとまとまりの箇条書きでは、敬体と常体を混在させません。\n"${
-                        match.value
-                    }"が常体(である調)です。`;
+                    message = `箇条書きを敬体(ですます調)に統一して下さい。\nひとまとまりの箇条書きでは、敬体と常体を混在させません。\n"${match.value}"が常体(である調)です。`;
                 } else if (dearu) {
-                    message = `箇条書きを常体(である調)に統一して下さい。\nひとまとまりの箇条書きでは、敬体と常体を混在させません。\n"${
-                        match.value
-                    }"が敬体(ですます調)です。`;
+                    message = `箇条書きを常体(である調)に統一して下さい。\nひとまとまりの箇条書きでは、敬体と常体を混在させません。\n"${match.value}"が敬体(ですます調)です。`;
                 }
                 report(
                     node,

@@ -11,7 +11,7 @@ import regx from "regx";
 import { japaneseRegExp } from "./util/regexp";
 const rx = regx("g");
 
-const replaceSymbol = symbol => {
+const replaceSymbol = (symbol) => {
     var newSymbol = {
         "(": "（",
         ")": "）"
@@ -36,8 +36,8 @@ function reporter(context) {
                 // rx`([\(\)])(?:${japaneseRegExp})`,
                 rx`(?:${japaneseRegExp})([\(\)])`
             ];
-            matchRegExps.forEach(matchRegExp => {
-                matchCaptureGroupAll(text, matchRegExp).forEach(match => {
+            matchRegExps.forEach((matchRegExp) => {
+                matchCaptureGroupAll(text, matchRegExp).forEach((match) => {
                     const { index } = match;
                     report(
                         node,

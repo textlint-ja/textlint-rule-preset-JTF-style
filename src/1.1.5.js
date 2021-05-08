@@ -9,7 +9,7 @@
 キャプション間で文体が混ざっていないことを確認する。
  */
 import { analyzeDesumasu, analyzeDearu } from "analyze-desumasu-dearu";
-module.exports = function(context) {
+module.exports = function (context) {
     let { Syntax, RuleError, report, getSource } = context;
     let desumasuList = [];
     let dearuList = [];
@@ -22,16 +22,12 @@ module.exports = function(context) {
     const imagePaddingLet = 2; // ![ の分paddingを付ける
     function reportResult(list, { desumasu, dearu }) {
         list.forEach(({ node, matches }) => {
-            matches.forEach(match => {
+            matches.forEach((match) => {
                 let message;
                 if (desumasu) {
-                    message = `図表のキャプションを敬体(ですます調)に統一して下さい。\n図表のキャプション内で敬体、常体を混在させないことが重要です。\n"${
-                        match.value
-                    }"が常体(である調)です。`;
+                    message = `図表のキャプションを敬体(ですます調)に統一して下さい。\n図表のキャプション内で敬体、常体を混在させないことが重要です。\n"${match.value}"が常体(である調)です。`;
                 } else if (dearu) {
-                    message = `図表のキャプションを常体(である調)に統一して下さい。\n図表のキャプション内で敬体、常体を混在させないことが重要です。\n"${
-                        match.value
-                    }"が敬体(ですます調)です。`;
+                    message = `図表のキャプションを常体(である調)に統一して下さい。\n図表のキャプション内で敬体、常体を混在させないことが重要です。\n"${match.value}"が敬体(ですます調)です。`;
                 }
                 report(
                     node,

@@ -17,7 +17,7 @@
  */
 import { analyzeDesumasu, analyzeDearu } from "analyze-desumasu-dearu";
 import { RuleHelper } from "textlint-rule-helper";
-module.exports = function(context) {
+module.exports = function (context) {
     let { Syntax, RuleError, report, getSource } = context;
     let helper = new RuleHelper(context);
     let desumasuList = [];
@@ -25,16 +25,12 @@ module.exports = function(context) {
 
     function reportResult(list, { desumasu, dearu }) {
         list.forEach(({ node, matches }) => {
-            matches.forEach(match => {
+            matches.forEach((match) => {
                 let message;
                 if (desumasu) {
-                    message = `本文を常体(である調)に統一して下さい。\n本文の文体は、敬体(ですます調)あるいは常体(である調)のどちらかで統一します。\n"${
-                        match.value
-                    }"が敬体(ですます調)です。`;
+                    message = `本文を常体(である調)に統一して下さい。\n本文の文体は、敬体(ですます調)あるいは常体(である調)のどちらかで統一します。\n"${match.value}"が敬体(ですます調)です。`;
                 } else if (dearu) {
-                    message = `本文を敬体(ですます調)に統一して下さい。\n本文の文体は、敬体(ですます調)あるいは常体(である調)のどちらかで統一します。\n"${
-                        match.value
-                    }"が常体(である調)です。`;
+                    message = `本文を敬体(ですます調)に統一して下さい。\n本文の文体は、敬体(ですます調)あるいは常体(である調)のどちらかで統一します。\n"${match.value}"が常体(である調)です。`;
                 }
                 report(
                     node,

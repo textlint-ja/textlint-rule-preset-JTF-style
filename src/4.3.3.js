@@ -7,7 +7,7 @@
 パラグラフをまたぐかぎかっこが存在しないことを検証する
  */
 import { checkPair } from "./util/pair-checker";
-module.exports = function(context) {
+module.exports = function (context) {
     return checkPair(context, {
         left: "「",
         right: "」"

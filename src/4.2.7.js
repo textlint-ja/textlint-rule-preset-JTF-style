@@ -22,7 +22,7 @@ function reporter(context) {
             // "和文:" というような半角:は使用しない
 
             const matchHanQuestion = rx`(?:${japaneseRegExp})(:)`;
-            matchCaptureGroupAll(text, matchHanQuestion).forEach(match => {
+            matchCaptureGroupAll(text, matchHanQuestion).forEach((match) => {
                 const { index } = match;
                 report(
                     node,

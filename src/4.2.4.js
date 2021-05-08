@@ -23,7 +23,7 @@ function reporter(context) {
             const text = getSource(node);
             // 和文で半角の･は利用しない
             const matchHanNakaguro = rx`(?:${japaneseRegExp}|[a-zA-Z])(･)(?:${japaneseRegExp}|[a-zA-Z])`;
-            matchCaptureGroupAll(text, matchHanNakaguro).forEach(match => {
+            matchCaptureGroupAll(text, matchHanNakaguro).forEach((match) => {
                 const { index } = match;
                 report(
                     node,

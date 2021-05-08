@@ -12,7 +12,7 @@ import regx from "regx";
 import { japaneseRegExp } from "./util/regexp";
 import mergeMatches from "./util/merge-matches";
 const rx = regx("g");
-module.exports = function(context) {
+module.exports = function (context) {
     let { Syntax, RuleError, report, getSource } = context;
     return {
         [Syntax.Str](node) {
@@ -26,7 +26,7 @@ module.exports = function(context) {
             // left
             const leftMatches = matchCaptureGroupAll(text, rx`(\-)${japaneseRegExp}`);
             const matches = mergeMatches(leftMatches, rightMatches);
-            matches.forEach(match => {
+            matches.forEach((match) => {
                 const { index } = match;
                 report(
                     node,

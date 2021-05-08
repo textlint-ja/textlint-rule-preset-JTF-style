@@ -5,13 +5,13 @@ import preset from "../src/index";
 import { TextLintCore } from "textlint";
 import fs from "fs";
 
-describe("fixer-test", function() {
-    it("should convert expected", function() {
+describe("fixer-test", function () {
+    it("should convert expected", function () {
         const expected = fs.readFileSync(__dirname + "/fixtures/output.md", "utf-8");
         const textlint = new TextLintCore();
         // all true
         textlint.setupRules(preset.rules);
-        return textlint.fixFile(__dirname + "/fixtures/input.md").then(result => {
+        return textlint.fixFile(__dirname + "/fixtures/input.md").then((result) => {
             assert.equal(result.remainingMessages.length, 0);
             const inputs = result.output.split("\n");
             const outputs = expected.split("\n");

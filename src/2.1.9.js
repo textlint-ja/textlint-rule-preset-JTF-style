@@ -10,9 +10,7 @@ import { isUserWrittenNode } from "./util/node-util";
 import { matchCaptureGroupAll } from "match-index";
 import moji from "moji";
 function toHankaku(string) {
-    return moji(string)
-        .convert("ZE", "HE")
-        .toString();
+    return moji(string).convert("ZE", "HE").toString();
 }
 function reporter(context) {
     let { Syntax, RuleError, report, fixer, getSource } = context;
@@ -23,7 +21,7 @@ function reporter(context) {
             }
             const text = getSource(node);
             const matchRegExp = /([Ａ-Ｚ]+)/;
-            matchCaptureGroupAll(text, matchRegExp).forEach(match => {
+            matchCaptureGroupAll(text, matchRegExp).forEach((match) => {
                 const { index, text } = match;
                 report(
                     node,

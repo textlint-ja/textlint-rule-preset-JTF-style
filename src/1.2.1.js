@@ -28,7 +28,7 @@ const replaceSymbol = {
     ",": "、"
 };
 
-const reporter = context => {
+const reporter = (context) => {
     let { Syntax, RuleError, report, fixer, getSource } = context;
     return {
         [Syntax.Str](node) {
@@ -39,7 +39,7 @@ const reporter = context => {
             const leftMatches = matchCaptureGroupAll(text, leftTarget);
             const rightMatches = matchCaptureGroupAll(text, rightTarget);
             const matches = mergeMatches(leftMatches, rightMatches);
-            matches.forEach(match => {
+            matches.forEach((match) => {
                 const symbol = replaceSymbol[match.text];
                 const indexOfSymbol = match.index;
                 report(

@@ -20,7 +20,7 @@ function reporter(context) {
             let text = getSource(node);
             // 和文. はエラー
             const matchReg = /(?:[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]|[\uD840-\uD87F][\uDC00-\uDFFF]|[ぁ-んァ-ヶ])(\.)/g;
-            matchCaptureGroupAll(text, matchReg).forEach(match => {
+            matchCaptureGroupAll(text, matchReg).forEach((match) => {
                 const index = match.index;
                 report(
                     node,

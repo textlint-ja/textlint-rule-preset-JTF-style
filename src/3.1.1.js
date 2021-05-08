@@ -25,7 +25,7 @@ function reporter(context) {
                 text,
                 /(?:[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]|[\uD840-\uD87F][\uDC00-\uDFFF]|[ぁ-んァ-ヶ])( )[A-Za-z0-9]/
             );
-            const reportMatch = match => {
+            const reportMatch = (match) => {
                 const { index } = match;
                 report(
                     node,

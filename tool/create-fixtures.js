@@ -13,7 +13,7 @@ function processFile(filePath) {
     const lines = contents.split(/\n/);
     const inputRegExp = /^\s+text:\s*?"(.*?)"/;
     const outputRegExp = /^\s+output:\s*?"(.*?)"/;
-    lines.forEach(function(line, index) {
+    lines.forEach(function (line, index) {
         const nextLine = lines[index + 1];
         if (inputRegExp.test(line) && outputRegExp.test(nextLine)) {
             const inputMatch = line.match(inputRegExp)[1];

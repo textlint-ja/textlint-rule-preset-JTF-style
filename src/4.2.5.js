@@ -17,7 +17,7 @@ function reporter(context) {
             const text = getSource(node);
             // 数値の区切りに半角の~は利用しない
             const matchHanQuestion = /\d(~)\d/g;
-            matchCaptureGroupAll(text, matchHanQuestion).forEach(match => {
+            matchCaptureGroupAll(text, matchHanQuestion).forEach((match) => {
                 const { index } = match;
                 report(
                     node,

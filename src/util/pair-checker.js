@@ -21,10 +21,10 @@ export function checkPair(context, { left, right }) {
      * @param {Object} currentStrInParagraph
      * @returns {{node, index}[]}
      */
-    const foundMissingPairNodes = currentStrInParagraph => {
+    const foundMissingPairNodes = (currentStrInParagraph) => {
         let foundLeft = false;
         let matchParentheses = [];
-        currentStrInParagraph.forEach(node => {
+        currentStrInParagraph.forEach((node) => {
             const text = getSource(node);
             // left を探す
             let leftIndex = -1;
