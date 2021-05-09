@@ -24,27 +24,31 @@ export function checkPair(context, { left, right }) {
     const foundMissingPairNodes = (currentStrInParagraph) => {
         let foundLeft = false;
         let matchParentheses = [];
-        currentStrInParagraph.forEach((node) => {
-            const text = getSource(node);
-            // left を探す
-            let leftIndex = -1;
+        let leftIndex = 0;
+        const text = currentStrInParagraph.map((node) => getSource(node)).join("");
+
+        while (leftIndex >= 0) {
             if (!foundLeft) {
-                leftIndex = text.indexOf(left);
+                // left を探す
+                leftIndex = text.indexOf(left, leftIndex);
                 if (leftIndex !== -1) {
                     matchParentheses.push({
-                        node,
                         index: leftIndex
                     });
                     foundLeft = true;
                 }
+            } else {
+                // right を探す
+                let pairIndex = text.indexOf(right, leftIndex + 1);
+                if (pairIndex !== -1) {
+                    matchParentheses.pop();
+                    foundLeft = false;
+                    leftIndex = pairIndex + 1;
+                } else {
+                    break;
+                }
             }
-            // right を探す
-            let pairIndex = text.indexOf(right, leftIndex + 1);
-            if (pairIndex !== -1) {
-                matchParentheses.pop();
-                foundLeft = false;
-            }
-        });
+        }
         return matchParentheses;
     };
     return {
@@ -55,13 +59,27 @@ export function checkPair(context, { left, right }) {
             currentStrInParagraph = [];
             isInParagraph = true;
         },
+        [Syntax.Code](node) {
+            const missingPairList = foundMissingPairNodes([node]);
+            if (missingPairList.length === 0) {
+                return;
+            }
+            missingPairList.forEach(({ index }) => {
+                report(
+                    node,
+                    new RuleError(`${left}の対となる${right}が見つかりません。${left}${right}`, {
+                        index
+                    })
+                );
+            });
+        },
         [Syntax.Str](node) {
             if (!isInParagraph) {
                 return;
             }
             currentStrInParagraph.push(node);
         },
-        [`${Syntax.Paragraph}:exit`]() {
+        [`${Syntax.Paragraph}:exit`](node) {
             const missingPairList = foundMissingPairNodes(currentStrInParagraph);
             // 探索おわり
             isInParagraph = false;
@@ -69,7 +87,7 @@ export function checkPair(context, { left, right }) {
             if (missingPairList.length === 0) {
                 return;
             }
-            missingPairList.forEach(({ node, index }) => {
+            missingPairList.forEach(({ index }) => {
                 report(
                     node,
                     new RuleError(`${left}の対となる${right}が見つかりません。${left}${right}`, {
