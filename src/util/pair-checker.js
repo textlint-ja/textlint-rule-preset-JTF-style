@@ -25,8 +25,9 @@ export function checkPair(context, { left, right }) {
         let foundLeft = false;
         let matchParentheses = [];
         let leftIndex = 0;
-        const text = currentStrInParagraph.map((node) => getSource(node)).join("");
-
+        const text = currentStrInParagraph
+            .map((node) => (node.type == "Str" ? getSource(node) : " ".repeat(getSource(node).length)))
+            .join("");
         while (leftIndex >= 0) {
             if (!foundLeft) {
                 // left を探す
@@ -60,18 +61,10 @@ export function checkPair(context, { left, right }) {
             isInParagraph = true;
         },
         [Syntax.Code](node) {
-            const missingPairList = foundMissingPairNodes([node]);
-            if (missingPairList.length === 0) {
+            if (!isInParagraph) {
                 return;
             }
-            missingPairList.forEach(({ index }) => {
-                report(
-                    node,
-                    new RuleError(`${left}の対となる${right}が見つかりません。${left}${right}`, {
-                        index
-                    })
-                );
-            });
+            currentStrInParagraph.push(node);
         },
         [Syntax.Str](node) {
             if (!isInParagraph) {
