@@ -56,9 +56,8 @@ export function checkPair(context, { left, right }) {
             }
         } else {
             const lastUnmatchParences = [];
-            while (matchParentheses) {
+            while (matchParentheses.length > 0) {
                 const item = matchParentheses.shift();
-                if (item === undefined) break;
                 if (item.symbol == left) {
                     lastUnmatchParences.push(item);
                 } else {
