@@ -12,8 +12,8 @@ import { RuleHelper } from "textlint-rule-helper";
 export function checkPair(context, { left, right }) {
     assert(left);
     assert(right);
-    let { Syntax, RuleError, report, getSource } = context;
-    let helper = new RuleHelper(context);
+    const { Syntax, RuleError, report, getSource } = context;
+    const helper = new RuleHelper(context);
     let isInParagraph = false;
     let currentStrInParagraph = [];
     /**
@@ -21,31 +21,60 @@ export function checkPair(context, { left, right }) {
      * @param {Object} currentStrInParagraph
      * @returns {{node, index}[]}
      */
+    const findAllSymbolLocations = (symbol, text) => {
+        let index = 0;
+        const symbolLocations = [];
+        while (index < text.length) {
+            index = text.indexOf(symbol, index);
+            if (index < 0) break;
+            symbolLocations.push({
+                index,
+                symbol
+            });
+            index += 1;
+        }
+        return symbolLocations;
+    };
     const foundMissingPairNodes = (currentStrInParagraph) => {
-        let foundLeft = false;
-        let matchParentheses = [];
-        currentStrInParagraph.forEach((node) => {
-            const text = getSource(node);
-            // left を探す
-            let leftIndex = -1;
-            if (!foundLeft) {
-                leftIndex = text.indexOf(left);
-                if (leftIndex !== -1) {
-                    matchParentheses.push({
-                        node,
-                        index: leftIndex
-                    });
-                    foundLeft = true;
+        let matchParentheses = currentStrInParagraph
+            .map((node) => {
+                let text = getSource(node);
+                const leftSymbolLocations = findAllSymbolLocations(left, text);
+                const rightSymbolLocations = left !== right ? findAllSymbolLocations(right, text) : [];
+                const allSymbolLocations = [...leftSymbolLocations, ...rightSymbolLocations].sort(
+                    (a, b) => a.index - b.index
+                );
+                return allSymbolLocations.map((loc) => ({ ...loc, ...{ node } }));
+            })
+            .flat();
+        if (left === right) {
+            const isCompletedParentheses = matchParentheses.length % 2 == 0;
+            if (isCompletedParentheses) {
+                return [];
+            } else {
+                return [matchParentheses[matchParentheses.length - 1]];
+            }
+        } else {
+            const lastUnmatchParences = [];
+            while (matchParentheses.length > 0) {
+                const item = matchParentheses.shift();
+                if (item.symbol == left) {
+                    lastUnmatchParences.push(item);
+                } else {
+                    // right
+                    const last = lastUnmatchParences.pop();
+                    if (last) {
+                        if (last.symbol == right) {
+                            lastUnmatchParences.push(last);
+                            lastUnmatchParences.push(item);
+                        }
+                    } else {
+                        lastUnmatchParences.push(item);
+                    }
                 }
             }
-            // right を探す
-            let pairIndex = text.indexOf(right, leftIndex + 1);
-            if (pairIndex !== -1) {
-                matchParentheses.pop();
-                foundLeft = false;
-            }
-        });
-        return matchParentheses;
+            return lastUnmatchParences;
+        }
     };
     return {
         [Syntax.Paragraph](node) {
@@ -69,13 +98,12 @@ export function checkPair(context, { left, right }) {
             if (missingPairList.length === 0) {
                 return;
             }
-            missingPairList.forEach(({ node, index }) => {
-                report(
-                    node,
-                    new RuleError(`${left}の対となる${right}が見つかりません。${left}${right}`, {
-                        index
-                    })
-                );
+            missingPairList.forEach(({ index, node, symbol }) => {
+                let message =
+                    symbol === left
+                        ? `${left}の対となる${right}が見つかりません。${left}${right}`
+                        : `${right}の対となる${left}が見つかりません。${left}${right}`;
+                report(node, new RuleError(message, { index }));
             });
         }
     };
