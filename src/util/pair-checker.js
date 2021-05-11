@@ -47,7 +47,7 @@ export function checkPair(context, { left, right }) {
                 const allSymbolLocations = [...leftSymbolLocations, ...rightSymbolLocations].sort(
                     (a, b) => a.index - b.index
                 );
-                return allSymbolLocations.map((loc) => ({ ...loc, ...{ node } }));
+                return allSymbolLocations.map((loc) => ({ ...loc, node }));
             })
         );
         if (left === right) {
