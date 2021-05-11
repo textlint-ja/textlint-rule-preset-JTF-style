@@ -9,6 +9,9 @@
  */
 import assert from "assert";
 import { RuleHelper } from "textlint-rule-helper";
+const flat = (array) => {
+    return [].concat.apply([], array);
+};
 export function checkPair(context, { left, right }) {
     assert(left);
     assert(right);
@@ -36,17 +39,17 @@ export function checkPair(context, { left, right }) {
         return symbolLocations;
     };
     const foundMissingPairNodes = (currentStrInParagraph) => {
-        let matchParentheses = currentStrInParagraph
-            .map((node) => {
+        const matchParentheses = flat(
+            currentStrInParagraph.map((node) => {
                 let text = getSource(node);
                 const leftSymbolLocations = findAllSymbolLocations(left, text);
                 const rightSymbolLocations = left !== right ? findAllSymbolLocations(right, text) : [];
                 const allSymbolLocations = [...leftSymbolLocations, ...rightSymbolLocations].sort(
                     (a, b) => a.index - b.index
                 );
-                return allSymbolLocations.map((loc) => ({ ...loc, ...{ node } }));
+                return allSymbolLocations.map((loc) => ({ ...loc, node }));
             })
-            .flat();
+        );
         if (left === right) {
             const isCompletedParentheses = matchParentheses.length % 2 == 0;
             if (isCompletedParentheses) {
