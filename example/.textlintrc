@@ -1,7 +1,5 @@
 {
   "rules": {
-    "preset-jtf-style": {
-      "4.3.1.丸かっこ（）": false
-    }
+    "preset-jtf-style": true
   }
 }

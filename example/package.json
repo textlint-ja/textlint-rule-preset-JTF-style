@@ -1,16 +1,19 @@
 {
-  "name": "example",
+  "name": "textlint-rule-preset-jtf-style",
   "version": "1.0.0",
-  "description": "",
+  "description": "JTF Style Guide for Translators Working into Japanese for textlint.",
   "main": "index.js",
+  "homepage": "https://github.com/textlint-ja/textlint-rule-preset-jtf-style",
   "scripts": {
     "textlint": "textlint",
     "textlint:fix": "textlint --fix ../README.md",
-    "test": "npm run textlint -- -f pretty-error ../README.md"
+    "test": "npm run textlint -- -f pretty-error ../README.md",
+    "website": "textlint-website-generator --output-dir dist"
   },
   "author": "azu",
   "license": "MIT",
   "devDependencies": {
+    "@textlint/website-generator": "^0.11.3",
     "textlint": "^11.4.0"
   },
   "dependencies": {
