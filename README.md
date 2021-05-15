@@ -14,7 +14,7 @@
 
 - [textlintで日本語の文章をチェックする | Web Scratch](http://efcl.info/2015/09/10/introduce-textlint/ "textlintで日本語の文章をチェックする | Web Scratch")
 
-### 最も手軽な方法(グローバル)
+### 最も手軽な方法（グローバル）
 
 npmでグローバルにインストールし、`--preset`で利用するのが一番お手軽です。
 
@@ -24,17 +24,17 @@ npmでグローバルにインストールし、`--preset`で利用するのが�
 
 グローバルにインストールするよりは、次のようにプロジェクト毎のディレクトリにインストールする方法を推奨します。
 
-### `.textlintrc`を使う方法(推奨)
+### `.textlintrc`を使う方法（推奨）
 
 現在のディレクトリにtextlintとtextlint-rule-preset-jtf-styleをインストールする方法です。
-(グローバルにインストールしなくていいので環境がキレイに作れます)
+(グローバルにインストールしなくていいので環境がキレイに作れます）
 
 ```
 npm init # package.jsonがないなら
 npm install -D textlint textlint-rule-preset-jtf-style
 ```
 
-textlintの設定ファイルとなっている`.textlintrc`に次のように`jtf-style`と指定します(`textlint-rule-`を取り除いたプリセット名)。
+textlintの設定ファイルとなっている`.textlintrc`に次のように`jtf-style`と指定します（`textlint-rule-`を取り除いたプリセット名）。
 
 ```json5
 {
@@ -592,11 +592,11 @@ A. [Issue](https://github.com/textlint-ja/textlint-rule-preset-jtf-style/issues/
 
 Issueには以下の項目が書かれていると問題を解決しやすくなります。
 
-- 試した文章(もしくはファイル)
+- 試した文章（もしくはファイル）
 - 期待する結果
-    - 例) このルール(1.2.3)でエラーとなるはず
+    - 例： このルール（1.2.3)でエラーとなるはず
 - 実際の結果
-    - 例) 実際にはエラーとならなかった
+    - 例： 実際にはエラーとならなかった
 
 また、[JTF日本語標準スタイルガイド（翻訳用）](https://www.jtf.jp/pdf/jtf_style_guide.pdf)に記載されてる全てのルールが実装済みではないため、
 Pull Requestも歓迎しています。
