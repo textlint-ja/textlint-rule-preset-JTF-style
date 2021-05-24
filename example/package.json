@@ -7,7 +7,7 @@
   "scripts": {
     "textlint": "textlint",
     "textlint:fix": "textlint --fix ../README.md",
-    "test": "npm run textlint -- -f pretty-error ./README.md",
+    "test": "npm run textlint -- -f pretty-error ../README.md",
     "website": "textlint-website-generator --output-dir dist"
   },
   "author": "azu",
