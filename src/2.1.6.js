@@ -10,9 +10,13 @@ import fs from "fs";
 import path from "path";
 import prh from "textlint-rule-prh";
 
-module.exports = function (context) {
+const report = function (context) {
     // 辞書ベースのカタカナ末尾の長音のチェックを行う
     return prh.fixer(context, {
         ruleContents: [fs.readFileSync(path.join(__dirname, "..", "dict", "2.1.6.yml"), "utf-8")]
     });
+};
+module.exports = {
+    linter: report,
+    fixer: report
 };

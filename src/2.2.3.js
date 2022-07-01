@@ -7,8 +7,13 @@
 import prh from "textlint-rule-prh";
 import path from "path";
 import fs from "fs";
-module.exports = function (context) {
+
+const report = function (context) {
     return prh.fixer(context, {
         ruleContents: [fs.readFileSync(path.join(__dirname, "..", "dict", "2.2.3.yml"), "utf-8")]
     });
+};
+module.exports = {
+    linter: report,
+    fixer: report
 };

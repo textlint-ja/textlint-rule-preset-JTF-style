@@ -11,6 +11,7 @@ tester.run("2.1.6.カタカナの長音", rule, {
     invalid: [
         {
             text: "フィルタをかける",
+            output: "フィルターをかける",
             errors: [
                 {
                     message: "フィルタをか => フィルターをか"
