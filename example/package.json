@@ -13,8 +13,8 @@
   "author": "azu",
   "license": "MIT",
   "devDependencies": {
-    "@textlint/website-generator": "^0.11.3",
-    "textlint": "^12.0.0"
+    "@textlint/website-generator": "^0.16.1",
+    "textlint": "^13.4.1"
   },
   "dependencies": {
     "textlint-rule-preset-jtf-style": "file:.."
