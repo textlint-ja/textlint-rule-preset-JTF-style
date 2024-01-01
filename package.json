@@ -52,7 +52,6 @@
     "moji": "^0.5.1",
     "regexp.prototype.flags": "^1.4.3",
     "regx": "^1.0.4",
-    "sorted-joyo-kanji": "^0.2.0",
     "textlint-rule-helper": "^2.2.1",
     "textlint-rule-prh": "^5.2.1"
   },
