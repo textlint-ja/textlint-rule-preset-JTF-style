@@ -31,10 +31,10 @@ function reporter(context) {
             // 半角のかっこ()は使用しないで全角のかっこを使用する
             const text = getSource(node);
             const matchRegExps = [
-                // FIXME: https://github.com/textlint-ja/textlint-rule-preset-JTF-style/issues/79
-                // rx`([\(\)])(?:${japaneseRegExp}+)([\(\)])`,
-                // rx`([\(\)])(?:${japaneseRegExp})`,
-                rx`(?:${japaneseRegExp})([\(\)])`
+                rx`([\(\)])(?:.*${japaneseRegExp}.*)([\(\)])`,
+                rx`(?:${japaneseRegExp})([\(\)])(?:${japaneseRegExp})`,
+                rx`^(\()(?:${japaneseRegExp})`,
+                rx`(?:${japaneseRegExp})(\))$`
             ];
             matchRegExps.forEach((matchRegExp) => {
                 matchCaptureGroupAll(text, matchRegExp).forEach((match) => {
