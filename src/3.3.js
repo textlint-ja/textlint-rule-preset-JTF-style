@@ -7,8 +7,7 @@
 import { isUserWrittenNode } from "./util/node-util";
 import { matchCaptureGroupAll } from "match-index";
 
-const brackets = ["\\[", "\\]", "（", "）", "［", "］", "「", "」", "『", "』"];
-
+const brackets = ["\\(", "\\)", "\\[", "\\]", "（", "）", "［", "］", "「", "」", "『", "』"];
 const leftBrackets = brackets.map((bracket) => {
     return new RegExp("([ 　])" + bracket, "g");
 });
