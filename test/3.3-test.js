@@ -13,7 +13,13 @@ tester.run("3.3.かっこ類と隣接する文字の間のスペースの有無"
 そのため、特別な実装は必要なく
 「拡張する時は\`calculator.prototype\`の代わりに\`calculator.fn\`を拡張してください」
 というルールがあるだけとも言えます。
-`
+`,
+        {
+            text: "Page(s)",
+            options: {
+                requireOutsideHalfParentheses: true
+            }
+        }
     ],
     invalid: [
         {
@@ -64,6 +70,25 @@ tester.run("3.3.かっこ類と隣接する文字の間のスペースの有無"
                     message: "かっこの外側、内側ともにスペースを入れません。",
                     line: 1,
                     column: 13
+                }
+            ]
+        },
+        {
+            text: "これはダメ(test)です",
+            output: "これはダメ (test) です",
+            options: {
+                requireOutsideHalfParentheses: true
+            },
+            errors: [
+                {
+                    message: "半角かっこの外側に半角スペースが必要です。",
+                    line: 1,
+                    column: 6
+                },
+                {
+                    message: "半角かっこの外側に半角スペースが必要です。",
+                    line: 1,
+                    column: 11
                 }
             ]
         },

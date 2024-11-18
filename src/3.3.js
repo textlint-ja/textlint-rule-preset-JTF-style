@@ -6,6 +6,7 @@
  */
 import { isUserWrittenNode } from "./util/node-util";
 import { matchCaptureGroupAll } from "match-index";
+import { japaneseRegExp } from "./util/regexp";
 
 const brackets = ["\\(", "\\)", "\\[", "\\]", "（", "）", "［", "］", "「", "」", "『", "』"];
 const leftBrackets = brackets.map((bracket) => {
@@ -14,13 +15,18 @@ const leftBrackets = brackets.map((bracket) => {
 const rightBrackets = brackets.map((bracket) => {
     return new RegExp(bracket + "([ 　])", "g");
 });
+const leftHalfParentheses = new RegExp(`${japaneseRegExp.source}(\\()`, "g");
+const rightHalfParentheses = new RegExp(`(\\))${japaneseRegExp.source}`, "g");
 const defaultOptions = {
-    allowOutsideHalfParentheses: true
+    allowOutsideHalfParentheses: true,
+    requireOutsideHalfParentheses: false
 };
 function reporter(context, options) {
     let { Syntax, RuleError, report, fixer, getSource } = context;
     const allowOutsideHalfParentheses =
         options.allowOutsideHalfParentheses ?? defaultOptions.allowOutsideHalfParentheses;
+    const requireOutsideHalfParentheses =
+        options.requireOutsideHalfParentheses ?? defaultOptions.requireOutsideHalfParentheses;
     return {
         [Syntax.Str](node) {
             if (!isUserWrittenNode(node, context)) {
@@ -59,6 +65,30 @@ function reporter(context, options) {
                     );
                 });
             });
+            if (requireOutsideHalfParentheses) {
+                // 左にスペース必須
+                matchCaptureGroupAll(text, leftHalfParentheses).forEach((match) => {
+                    const { index } = match;
+                    report(
+                        node,
+                        new RuleError("半角かっこの外側に半角スペースが必要です。", {
+                            index,
+                            fix: fixer.replaceTextRange([index, index + 1], " " + match.text)
+                        })
+                    );
+                });
+                // 右にスペース必須
+                matchCaptureGroupAll(text, rightHalfParentheses).forEach((match) => {
+                    const { index } = match;
+                    report(
+                        node,
+                        new RuleError("半角かっこの外側に半角スペースが必要です。", {
+                            index,
+                            fix: fixer.replaceTextRange([index, index + 1], match.text + " ")
+                        })
+                    );
+                });
+            }
         }
     };
 }
