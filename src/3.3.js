@@ -14,8 +14,13 @@ const leftBrackets = brackets.map((bracket) => {
 const rightBrackets = brackets.map((bracket) => {
     return new RegExp(bracket + "([ 　])", "g");
 });
-function reporter(context) {
+const defaultOptions = {
+    allowOutsideHalfParentheses: true
+};
+function reporter(context, options) {
     let { Syntax, RuleError, report, fixer, getSource } = context;
+    const allowOutsideHalfParentheses =
+        options.allowOutsideHalfParentheses ?? defaultOptions.allowOutsideHalfParentheses;
     return {
         [Syntax.Str](node) {
             if (!isUserWrittenNode(node, context)) {
@@ -26,6 +31,9 @@ function reporter(context) {
             leftBrackets.forEach((pattern) => {
                 matchCaptureGroupAll(text, pattern).forEach((match) => {
                     const { index } = match;
+                    if (allowOutsideHalfParentheses && text.substring(index, index + 2) === " (") {
+                        return;
+                    }
                     report(
                         node,
                         new RuleError("かっこの外側、内側ともにスペースを入れません。", {
@@ -38,7 +46,10 @@ function reporter(context) {
             // 右にスペース
             rightBrackets.forEach((pattern) => {
                 matchCaptureGroupAll(text, pattern).forEach((match) => {
-                    const { index, text } = match;
+                    const { index } = match;
+                    if (allowOutsideHalfParentheses && text.substring(index - 1, index + 1) === ") ") {
+                        return;
+                    }
                     report(
                         node,
                         new RuleError("かっこの外側、内側ともにスペースを入れません。", {

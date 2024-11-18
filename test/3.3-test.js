@@ -7,6 +7,7 @@ tester.run("3.3.かっこ類と隣接する文字の間のスペースの有無"
     valid: [
         "「良い」",
         "テスト［文章］です",
+        "これは (test) です",
         `
 実装をみてもらうと分かりますが、JavaScriptの\`prototype\`の仕組みをそのまま利用しています。
 そのため、特別な実装は必要なく
@@ -50,6 +51,9 @@ tester.run("3.3.かっこ類と隣接する文字の間のスペースの有無"
         {
             text: "これはダメ (test) です",
             output: "これはダメ(test)です",
+            options: {
+                allowOutsideHalfParentheses: false
+            },
             errors: [
                 {
                     message: "かっこの外側、内側ともにスペースを入れません。",
