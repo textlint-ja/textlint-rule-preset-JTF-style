@@ -7,12 +7,19 @@ tester.run("3.3.かっこ類と隣接する文字の間のスペースの有無"
     valid: [
         "「良い」",
         "テスト［文章］です",
+        "これは (test) です",
         `
 実装をみてもらうと分かりますが、JavaScriptの\`prototype\`の仕組みをそのまま利用しています。
 そのため、特別な実装は必要なく
 「拡張する時は\`calculator.prototype\`の代わりに\`calculator.fn\`を拡張してください」
 というルールがあるだけとも言えます。
-`
+`,
+        {
+            text: "Page(s)",
+            options: {
+                requireOutsideHalfParentheses: true
+            }
+        }
     ],
     invalid: [
         {
@@ -28,6 +35,60 @@ tester.run("3.3.かっこ類と隣接する文字の間のスペースの有無"
                     message: "かっこの外側、内側ともにスペースを入れません。",
                     line: 1,
                     column: 4
+                }
+            ]
+        },
+        {
+            text: "これは （ダメ） です",
+            output: "これは（ダメ）です",
+            errors: [
+                {
+                    message: "かっこの外側、内側ともにスペースを入れません。",
+                    line: 1,
+                    column: 4
+                },
+                {
+                    message: "かっこの外側、内側ともにスペースを入れません。",
+                    line: 1,
+                    column: 9
+                }
+            ]
+        },
+        {
+            text: "これはダメ (test) です",
+            output: "これはダメ(test)です",
+            options: {
+                allowOutsideHalfParentheses: false
+            },
+            errors: [
+                {
+                    message: "かっこの外側、内側ともにスペースを入れません。",
+                    line: 1,
+                    column: 6
+                },
+                {
+                    message: "かっこの外側、内側ともにスペースを入れません。",
+                    line: 1,
+                    column: 13
+                }
+            ]
+        },
+        {
+            text: "これはダメ(test)です",
+            output: "これはダメ (test) です",
+            options: {
+                requireOutsideHalfParentheses: true
+            },
+            errors: [
+                {
+                    message: "半角かっこの外側に半角スペースが必要です。",
+                    line: 1,
+                    column: 6
+                },
+                {
+                    message: "半角かっこの外側に半角スペースが必要です。",
+                    line: 1,
+                    column: 11
                 }
             ]
         },
