@@ -655,6 +655,42 @@ A. 正規表現の辞書ベースのルールが幾つかあります。
 }
 ```
 
+Q. 半角かっこの外側のスペースを禁止したい・必須にしたい
+
+A. オプションで半角かっこの外側のスペースの扱いを変更することが出来ます。
+
+[3.3.かっこ類と隣接する文字の間のスペースの有無](./src/3.3.js)のオプションを設定することで、半角かっこの外側のスペースの扱いを変更することができます。
+
+`allowOutsideHalfParentheses` は半角かっこの外側の半角スペースを許容するオプションです。
+デフォルトは `true` です。
+`false` に設定することで、半角かっこの外側のスペースを禁止できます。
+
+```json5
+{
+  "rules": {
+    "preset-jtf-style": {
+      "3.3.かっこ類と隣接する文字の間のスペースの有無": {
+        "allowOutsideHalfParentheses": false
+      }
+    }
+  }
+}
+```
+
+`requireOutsideHalfParentheses` は半角かっこの外側の半角スペースを必須にするオプションです。
+デフォルトは `false` です。
+
+```json5
+{
+  "rules": {
+    "preset-jtf-style": {
+      "3.3.かっこ類と隣接する文字の間のスペースの有無": {
+        "requireOutsideHalfParentheses": true
+      }
+    }
+  }
+}
+```
 
 ## Migration: `textlint-plugin-jtf-style` to `textlint-rule-preset-jtf-style` 
 

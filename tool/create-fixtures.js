@@ -13,13 +13,15 @@ function processFile(filePath) {
     const lines = contents.split(/\n/);
     const inputRegExp = /^\s+text:\s*?"(.*?)"/;
     const outputRegExp = /^\s+output:\s*?"(.*?)"/;
+    const optionsRegExp = /^\s+options:\s*?\{/;
     lines.forEach(function (line, index) {
         const nextLine = lines[index + 1];
-        if (inputRegExp.test(line) && outputRegExp.test(nextLine)) {
+        const nextNextLine = lines[index + 2];
+        if (inputRegExp.test(line) && outputRegExp.test(nextLine) && !optionsRegExp.test(nextNextLine)) {
             const inputMatch = line.match(inputRegExp)[1];
             // \\n => \n
             RESULT.input.push(inputMatch.replace(/\\n/g, "\n"));
-        } else if (outputRegExp.test(line)) {
+        } else if (outputRegExp.test(line) && !optionsRegExp.test(nextLine)) {
             const outputMatch = line.match(outputRegExp)[1];
             RESULT.output.push(outputMatch.replace(/\\n/g, "\n"));
         }
