@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import assert from "assert";
+import assert from "node:assert";
 import index from "../src/index";
 describe("index-test", function () {
     context("rules", function () {
