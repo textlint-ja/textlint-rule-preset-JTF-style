@@ -39,21 +39,22 @@
     "translation"
   ],
   "devDependencies": {
+    "@textlint/legacy-textlint-core": "^14.4.0",
     "glob": "^8.0.3",
-    "lint-staged": "^13.0.3",
-    "prettier": "^2.7.1",
-    "textlint-scripts": "^12.2.1",
-    "textlint-tester": "^12.2.1"
+    "lint-staged": "^15.2.10",
+    "prettier": "^3.4.1",
+    "textlint-scripts": "^14.4.0",
+    "textlint-tester": "^14.4.0"
   },
   "dependencies": {
     "analyze-desumasu-dearu": "^2.1.2",
     "japanese-numerals-to-number": "^1.0.2",
     "match-index": "^1.0.3",
     "moji": "^0.5.1",
-    "regexp.prototype.flags": "^1.4.3",
+    "regexp.prototype.flags": "^1.5.3",
     "regx": "^1.0.4",
-    "textlint-rule-helper": "^2.2.1",
-    "textlint-rule-prh": "^5.2.1"
+    "textlint-rule-helper": "^2.3.1",
+    "textlint-rule-prh": "^6.0.0"
   },
   "peerDependencies": {
     "textlint": ">= 5.6.0"
@@ -68,5 +69,6 @@
     "*.{js,jsx,ts,tsx,css}": [
       "prettier --write"
     ]
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha256.c17d3797fb9a9115bf375e31bfd30058cac6bc9c3b8807a3d8cb2094794b51ca"
 }
