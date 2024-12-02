@@ -12,7 +12,7 @@
 
 基本的に[textlint](https://github.com/textlint/textlint "textlint")の使い方と同じです。
 
-- [textlintで日本語の文章をチェックする | Web Scratch](http://efcl.info/2015/09/10/introduce-textlint/ "textlintで日本語の文章をチェックする | Web Scratch")
+- [textlintで日本語の文章をチェックする | Web Scratch](https://efcl.info/2015/09/10/introduce-textlint/ "textlintで日本語の文章をチェックする | Web Scratch")
 
 ### 最も手軽な方法（グローバル）
 
@@ -52,7 +52,7 @@ node_modules/.bin/textlint /path/to/target.md
 
 npm run-script経由で実行すれば、`node_modules/.bin/`は省略出来ます。
 
-- [npm で依存もタスクも一元化する - Qiita](http://qiita.com/Jxck_/items/efaff21b977ddc782971#%E3%82%BF%E3%82%B9%E3%82%AF%E3%81%AE%E5%AE%9F%E8%A1%8C "npm で依存もタスクも一元化する - Qiita")
+- [npm で依存もタスクも一元化する - Qiita](https://qiita.com/Jxck/items/efaff21b977ddc782971#%E3%82%BF%E3%82%B9%E3%82%AF%E3%81%AE%E5%AE%9F%E8%A1%8C "npm で依存もタスクも一元化する - Qiita")
 
 ## 自動修正
 
@@ -607,7 +607,7 @@ Q. 特定のルールを使いたくない
 
 A. `.textlintrc` にルール毎の設定を追加することが出来ます。
 
-- [textlintで日本語の文章をチェックする | Web Scratch](http://efcl.info/2015/09/10/introduce-textlint/ "textlintで日本語の文章をチェックする | Web Scratch")
+- [textlintで日本語の文章をチェックする | Web Scratch](https://efcl.info/2015/09/10/introduce-textlint/ "textlintで日本語の文章をチェックする | Web Scratch")
 
 `1.2.2.ピリオド(.)とカンマ(,)`のルールを無効化したい場合は、`.textlintrc`に次のように`false`値を設定することで無効化出来ます。
 デフォルトでは`textlint-rule-preset-jtf-style`に含まれるルールが全て有効化されています。
