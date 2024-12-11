@@ -8,6 +8,7 @@
   "email": "azuciao@gmail.com",
   "homepage": "https://github.com/textlint-ja/textlint-rule-preset-jtf-style",
   "license": "MIT",
+  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/textlint-ja/textlint-rule-preset-jtf-style/issues"
   },
