@@ -56,9 +56,6 @@
     "textlint-rule-helper": "^2.3.1",
     "textlint-rule-prh": "^6.0.0"
   },
-  "peerDependencies": {
-    "textlint": ">= 5.6.0"
-  },
   "prettier": {
     "singleQuote": false,
     "printWidth": 120,
