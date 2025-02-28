@@ -12,11 +12,22 @@ tester.run("2.1.6.カタカナの長音", rule, {
         {
             text: "フィルタをかける",
             output: "フィルターをかける",
-            errors: [
-                {
-                    message: "フィルタをか => フィルターをか"
-                }
-            ]
+            errors: [{ message: "フィルタをか => フィルターをか" }]
+        },
+        {
+            text: "フィルタ",
+            output: "フィルター",
+            errors: [{ message: "フィルタ => フィルター" }]
+        },
+        {
+            text: "フィルタ。",
+            output: "フィルター。",
+            errors: [{ message: "フィルタ。 => フィルター。" }]
+        },
+        {
+            text: "フィルタ、",
+            output: "フィルター、",
+            errors: [{ message: "フィルタ、 => フィルター、" }]
         }
     ]
 });
