@@ -28,6 +28,11 @@ module.exports = function (context) {
             const matches = mergeMatches(leftMatches, rightMatches);
             matches.forEach((match) => {
                 const { index } = match;
+                // 数値の符号としてのハイフンは許可する
+                const nextChar = text[index + 1];
+                if (nextChar && /[0-9]/.test(nextChar)) {
+                    return;
+                }
                 report(
                     node,
                     new RuleError(
