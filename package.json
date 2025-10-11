@@ -26,11 +26,12 @@
   "scripts": {
     "build": "textlint-scripts build",
     "watch": "textlint-scripts build --watch",
-    "pretest": "node tool/create-fixtures.js",
+    "prepublishOnly": "npm run --if-present build",
+    "pretest": "npm run build && node tool/create-fixtures.js",
     "test": "textlint-scripts test && npm run test:textlint",
     "test:textlint": "(cd example && pnpm install && npm test)",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
-    "prepare": "git config --local core.hooksPath .githooks && npm run --if-present build"
+    "prepare": "git config --local core.hooksPath .githooks"
   },
   "keywords": [
     "textlint",
