@@ -29,7 +29,7 @@
     "prepublish": "npm run --if-present build",
     "pretest": "node tool/create-fixtures.js",
     "test": "textlint-scripts test && npm run test:textlint",
-    "test:textlint": "(cd example && yarn install && npm test)",
+    "test:textlint": "(cd example && pnpm install && npm test)",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
     "prepare": "git config --local core.hooksPath .githooks"
   },
@@ -68,5 +68,5 @@
       "prettier --write"
     ]
   },
-  "packageManager": "yarn@1.22.22+sha256.c17d3797fb9a9115bf375e31bfd30058cac6bc9c3b8807a3d8cb2094794b51ca"
+  "packageManager": "pnpm@10.18.2+sha512.9fb969fa749b3ade6035e0f109f0b8a60b5d08a1a87fdf72e337da90dcc93336e2280ca4e44f2358a649b83c17959e9993e777c2080879f3801e6f0d999ad3dd"
 }
