@@ -12,7 +12,7 @@ tester.run("2.1.5.カタカナ", require("../src/2.1.5"), {
 tester.run("2.1.6.カタカナの長音", require("../src/2.1.6"), {
     valid: ["これは正常なテキストです"]
 });
-tester.run("2.2.3.一部の助数詞の表記", require("../src/2.2.3"), {
+tester.run("2.2.3.一部の助数詞に関する表記", require("../src/2.2.3"), {
     valid: ["これは正常なテキストです"]
 });
 tester.run("2.2.1.ひらがなと漢字の使い分け", require("../src/2.2.1"), {

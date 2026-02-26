@@ -6,9 +6,9 @@ import { matchCaptureGroupAll } from "match-index";
 import mergeMatches from "./util/merge-matches";
 const rx = regx("g");
 /*
-1.2.1. 句点(。)と読点(、)
-句読点には全角の「、」と「。」を使います。和文の句読点としてピリオド(.)とカンマ(,)を使用しません。
-「4.1.1 句点(。)」と「4.1.2 読点(、)」を参照してください。
+1.2.1.句点（。）と読点（、）
+句読点には全角の「、」と「。」を使います。和文の句読点としてピリオド（.）とカンマ（,）を使用しません。
+「3.1.1 句点（。）」と「3.1.2 読点（、）」を参照してください。
  */
 import { isUserWrittenNode } from "./util/node-util";
 
@@ -45,7 +45,7 @@ const reporter = (context) => {
                 report(
                     node,
                     new RuleError(
-                        "句読点には全角の「、」と「。」を使います。和文の句読点としてピリオド(.)とカンマ(,)を使用しません。",
+                        "句読点には全角の「、」と「。」を使います。和文の句読点としてピリオド（.）とカンマ（,）を使用しません。",
                         {
                             index: indexOfSymbol,
                             fix: fixer.replaceTextRange([indexOfSymbol, indexOfSymbol + 1], symbol)

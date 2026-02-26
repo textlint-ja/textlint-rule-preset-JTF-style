@@ -2,7 +2,7 @@
 
 [JTF日本語標準スタイルガイド（翻訳用）](https://www.jtf.jp/tips/styleguide "JTF日本語標準スタイルガイド（翻訳用）") for [textlint](https://github.com/textlint/textlint "textlint").
 
-[2016年2月22日改訂第2.2版](https://github.com/textlint-ja/textlint-rule-preset-JTF-style/blob/master/jtf_style_guide2.2.pdf)を元にしています。
+[2019年8月20日改訂第3.0版](https://github.com/textlint-ja/textlint-rule-preset-JTF-style/blob/master/jtf_style_guide3.0.pdf)を元にしています。
 
 ## Installation
 
@@ -88,7 +88,7 @@ textlint --fix /path/to/target.md
 <table>
 <tr>
     <th>対応ルール</th>
-    <th>ページ（v2.1）</th>
+    <th>ページ（v3.0）</th>
     <th>小項目</th>
     <th>JTF標準ルール</th>
     <th>中項目</th>
@@ -96,7 +96,7 @@ textlint --fix /path/to/target.md
 </tr>
 <tr>
     <td><a href="src/1.1.1.js">1.1.1.js</a></td>
-    <td>10</td>
+    <td>9</td>
     <td>本文</td>
     <td>目的に応じて敬体、常体のどちらかに統一する。</td>
     <td>文体</td>
@@ -104,7 +104,7 @@ textlint --fix /path/to/target.md
 </tr>
 <tr>
     <td><a href="src/1.1.2.js">1.1.2.js</a></td>
-    <td>10</td>
+    <td>9</td>
     <td>見出し</td>
     <td>常体または体言止め。</td>
     <td></td>
@@ -120,7 +120,7 @@ textlint --fix /path/to/target.md
 </tr>
 <tr>
     <td>不可</td>
-    <td>11</td>
+    <td>10</td>
     <td>図表内テキスト</td>
     <td>「本文」の文体に合わせる。</td>
     <td></td>
@@ -128,7 +128,7 @@ textlint --fix /path/to/target.md
 </tr>
 <tr>
     <td><a href="src/1.1.5.js">1.1.5.js</a></td>
-    <td>11</td>
+    <td>10</td>
     <td>図表のキャプション</td>
     <td>「本文」の文体に合わせる。</td>
     <td></td>
@@ -160,7 +160,7 @@ textlint --fix /path/to/target.md
 </tr>
 <tr>
     <td><a href="src/2.1.2.js">2.1.2.js</a> (辞書ベース)</td>
-    <td>11</td>
+    <td>12</td>
     <td>漢字</td>
     <td>常用漢字表にゆるやかに準じる。</td>
     <td></td>
@@ -176,7 +176,7 @@ textlint --fix /path/to/target.md
 </tr>
 <tr>
     <td>未実装</td>
-    <td>13</td>
+    <td>14</td>
     <td>複合語の送りがな</td>
     <td>昭和48年6月18日内閣告示第2号「送り仮名の付け方」に準じる。</td>
     <td></td>
@@ -184,7 +184,7 @@ textlint --fix /path/to/target.md
 </tr>
 <tr>
     <td><a href="src/2.1.5.js">2.1.5.js</a> (辞書ベース/デフォルト無効)</td>
-    <td>14</td>
+    <td>16</td>
     <td>カタカナ</td>
     <td>全角。半角カタカナは特殊用途を除いて使わない。</td>
     <td></td>
@@ -192,15 +192,15 @@ textlint --fix /path/to/target.md
 </tr>
 <tr>
     <td><a href="src/2.1.6.js">2.1.6.js</a> (辞書ベース/デフォルト無効)</td>
-    <td>14</td>
+    <td>16</td>
     <td>カタカナの長音</td>
     <td>原則として省略しない。</td>
     <td></td>
     <td></td>
 </tr>
 <tr>
-    <td>不可</td>
-    <td>15</td>
+    <td><a href="src/2.1.7.js">2.1.7.js</a></td>
+    <td>17</td>
     <td>カタカナ複合語</td>
     <td>中黒または半角スペースで区切る。</td>
     <td></td>
@@ -208,7 +208,7 @@ textlint --fix /path/to/target.md
 </tr>
 <tr>
     <td><a href="src/2.1.8.js">2.1.8.js</a></td>
-    <td>16</td>
+    <td>19</td>
     <td>算用数字</td>
     <td>半角。</td>
     <td></td>
@@ -216,7 +216,7 @@ textlint --fix /path/to/target.md
 </tr>
 <tr>
     <td><a href="src/2.1.9.js">2.1.9.js</a></td>
-    <td>16</td>
+    <td>19</td>
     <td>アルファベット</td>
     <td>半角。</td>
     <td></td>
@@ -224,15 +224,15 @@ textlint --fix /path/to/target.md
 </tr>
 <tr>
     <td><a href="src/2.1.10.js">2.1.10.js</a></td>
-    <td>16</td>
-    <td>算用数字（位取りの表記）</td>
+    <td>19</td>
+    <td>算用数字の位取りの表記</td>
     <td>桁区切りには「カンマ」、小数点には「ピリオド」を使う。ただし桁区切りの「カンマ」は省略する場合がある。</td>
     <td></td>
     <td></td>
 </tr>
 <tr>
     <td><a href="src/2.2.1.js">2.2.1.js</a> (辞書ベース/デフォルト無効)</td>
-    <td>17</td>
+    <td>19</td>
     <td>ひらがなと漢字の使い分け</td>
     <td>参考文献に従う。</td>
     <td>文字の表記と使い分け</td>
@@ -240,7 +240,7 @@ textlint --fix /path/to/target.md
 </tr>
 <tr>
     <td><a href="src/2.2.2.js">2.2.2.js</a></td>
-    <td>19</td>
+    <td>24</td>
     <td>算用数字と漢数字の使い分け</td>
     <td>数えられるものは算用数字。慣用句は漢数字。</td>
     <td></td>
@@ -248,55 +248,47 @@ textlint --fix /path/to/target.md
 </tr>
 <tr>
     <td><a href="src/2.2.3.js">2.2.3.js</a></td>
-    <td>20</td>
-    <td>一部の助数詞の表記</td>
+    <td>25</td>
+    <td>一部の助数詞に関する表記</td>
     <td>「〜か月」、「〜か所」</td>
     <td></td>
     <td></td>
 </tr>
 <tr>
-    <td><a href="src/3.1.1.js">3.1.1.js</a></td>
-    <td>20</td>
-    <td>全角と半角の間</td>
+    <td><a href="src/2.3.1.1.js">2.3.1.1.js</a></td>
+    <td>25</td>
+    <td>全角文字と半角文字の間</td>
     <td>スペースなし</td>
     <td>単一文字間のスペースの有無</td>
     <td>文字間のスペース</td>
 </tr>
 <tr>
-    <td><a href="src/3.1.2.js">3.1.2.js</a></td>
-    <td>20</td>
-    <td>全角どうし</td>
+    <td><a href="src/2.3.1.2.js">2.3.1.2.js</a></td>
+    <td>26</td>
+    <td>全角文字どうし</td>
     <td>スペースなし</td>
     <td></td>
     <td></td>
 </tr>
 <tr>
     <td>不可</td>
-    <td>20</td>
-    <td>半角どうし</td>
+    <td>26</td>
+    <td>半角文字どうし</td>
     <td>和文中に欧文を引用するなど、和文に欧文が含まれる場合は欧文中の半角スペースを維持する。</td>
     <td></td>
     <td></td>
 </tr>
 <tr>
-    <td><a href="src/3.2.js">3.2.js</a></td>
-    <td>20</td>
-    <td>カタカナ語間のスペースの有無</td>
-    <td>中黒または半角スペースを入れる。</td>
-    <td>カタカナ語間のスペースの有無</td>
-    <td></td>
-</tr>
-<tr>
-    <td><a href="src/3.3.js">3.3.js</a></td>
-    <td>20</td>
-    <td>かっこ類と隣接する文字の間のスペース</td>
+    <td><a href="src/2.3.2.js">2.3.2.js</a></td>
+    <td>26</td>
+    <td>かっこ類と隣接する文字の間のスペースの有無</td>
     <td>スペースなし</td>
     <td>かっこ類と隣接する文字の間のスペースの有無</td>
     <td></td>
 </tr>
 <tr>
-    <td><a href="src/4.1.1.js">4.1.1.js</a></td>
-    <td>21</td>
+    <td><a href="src/3.1.1.js">3.1.1.js</a></td>
+    <td>26</td>
     <td>句点（。）</td>
     <td>全角</td>
     <td>句読点</td>
@@ -304,151 +296,151 @@ textlint --fix /path/to/target.md
 </tr>
 <tr>
     <td>不可(1.2.2参照)</td>
-    <td>21</td>
+    <td>27</td>
     <td>読点（、）</td>
     <td>全角</td>
     <td></td>
     <td></td>
 </tr>
 <tr>
-    <td><a href="src/4.1.3.js">4.1.3.js</a> (1.2.2参照)</td>
-    <td>21</td>
+    <td><a href="src/3.1.3.js">3.1.3.js</a> (1.2.2参照)</td>
+    <td>27</td>
     <td>ピリオド（.）、カンマ（,）</td>
     <td>半角</td>
     <td></td>
     <td></td>
 </tr>
 <tr>
-    <td><a href="src/4.2.1.js">4.2.1.js</a></td>
-    <td>21</td>
+    <td><a href="src/3.2.1.js">3.2.1.js</a></td>
+    <td>27</td>
     <td>感嘆符（！）</td>
     <td>全角。和文では多用しない。</td>
     <td>記号</td>
     <td></td>
 </tr>
 <tr>
-    <td><a href="src/4.2.2.js">4.2.2.js</a></td>
-    <td>22</td>
+    <td><a href="src/3.2.2.js">3.2.2.js</a></td>
+    <td>28</td>
     <td>疑問符（？）</td>
     <td>全角。和文では多用しない。</td>
     <td></td>
     <td></td>
 </tr>
 <tr>
-    <td>チェック項目なし</td>
-    <td>22</td>
-    <td>スラッシュ（/）</td>
+    <td>未実装</td>
+    <td>28</td>
+    <td>スラッシュ（/）（／）</td>
     <td>全角または半角</td>
     <td></td>
     <td></td>
 </tr>
 <tr>
-    <td><a href="src/4.2.4.js">4.2.4.js</a></td>
-    <td>22</td>
+    <td><a href="src/3.2.4.js">3.2.4.js</a></td>
+    <td>29</td>
     <td>中黒（・）</td>
     <td>全角</td>
     <td></td>
     <td></td>
 </tr>
 <tr>
-    <td><a href="src/4.2.5.js">4.2.5.js</a></td>
-    <td>22</td>
-    <td>波線（〜または～）</td>
+    <td><a href="src/3.2.5.js">3.2.5.js</a></td>
+    <td>29</td>
+    <td>波線（〜）</td>
     <td>全角</td>
     <td></td>
     <td></td>
 </tr>
 <tr>
-    <td><a href="src/4.2.6.js">4.2.6.js</a></td>
-    <td>22</td>
+    <td><a href="src/3.2.6.js">3.2.6.js</a></td>
+    <td>29</td>
     <td>ハイフン（-）</td>
     <td>原則として和文では使用しない。</td>
     <td></td>
     <td></td>
 </tr>
 <tr>
-    <td><a href="src/4.2.7.js">4.2.7.js</a></td>
-    <td>23</td>
+    <td><a href="src/3.2.7.js">3.2.7.js</a></td>
+    <td>29</td>
     <td>コロン（：）</td>
     <td>全角。和文では多用しない。</td>
     <td></td>
     <td></td>
 </tr>
 <tr>
-    <td><a href="src/4.2.8.js">4.2.8.js</a></td>
-    <td>23</td>
+    <td><a href="src/3.2.8.js">3.2.8.js</a></td>
+    <td>30</td>
     <td>セミコロン（；）</td>
     <td>原則として和文では使用しない。</td>
     <td></td>
     <td></td>
 </tr>
 <tr>
-    <td><a href="src/4.2.9.js">4.2.9.js</a></td>
-    <td>23</td>
-    <td>ダッシュ（－）</td>
+    <td><a href="src/3.2.9.js">3.2.9.js</a></td>
+    <td>30</td>
+    <td>ダッシュ（―）</td>
     <td>原則として和文では使用しない。</td>
     <td></td>
     <td></td>
 </tr>
 <tr>
-    <td><a href="src/4.3.1.js">4.3.1.js</a></td>
-    <td>23</td>
+    <td><a href="src/3.3.1.js">3.3.1.js</a></td>
+    <td>30</td>
     <td>丸かっこ（）</td>
     <td>全角</td>
     <td>かっこ</td>
     <td></td>
 </tr>
 <tr>
-    <td><a href="src/4.3.2.js">4.3.2.js</a></td>
-    <td>23</td>
+    <td><a href="src/3.3.2.js">3.3.2.js</a></td>
+    <td>30</td>
     <td>大かっこ［］</td>
     <td>全角</td>
     <td></td>
     <td></td>
 </tr>
 <tr>
-    <td><a href="src/4.3.3.js">4.3.3.js</a></td>
-    <td>23</td>
+    <td><a href="src/3.3.3.js">3.3.3.js</a></td>
+    <td>30</td>
     <td>かぎかっこ「」</td>
     <td>全角</td>
     <td></td>
     <td></td>
 </tr>
 <tr>
-    <td><a href="src/4.3.4.js">4.3.4.js</a></td>
-    <td>23</td>
+<td><a href="src/3.3.4.js">3.3.4.js</a></td>
+    <td>31</td>
     <td>二重かぎかっこ『』</td>
     <td>全角</td>
     <td></td>
     <td></td>
 </tr>
 <tr>
-    <td><a href="src/4.3.5.js">4.3.5.js</a> (対の有無)</td>
-    <td>23</td>
-    <td>二重引用符\" \"</td>
+<td><a href="src/3.3.5.js">3.3.5.js</a> (対の有無)</td>
+    <td>31</td>
+    <td>二重引用符" "</td>
     <td>半角。和文では多用しない。</td>
     <td></td>
     <td></td>
 </tr>
 <tr>
-    <td><a href="src/4.3.6.js">4.3.6.js</a> (対の有無)</td>
-    <td>24</td>
-    <td>中かっこ{}</td>
+    <td><a href="src/3.3.6.js">3.3.6.js</a> (対の有無)</td>
+    <td>31</td>
+    <td>中かっこ{ }</td>
     <td>原則として和文では使用しない。</td>
     <td></td>
     <td></td>
 </tr>
 <tr>
-    <td><a href="src/4.3.7.js">4.3.7.js</a> (対の有無)</td>
-    <td>24</td>
-    <td>山かっこ＜＞</td>
+    <td><a href="src/3.3.7.js">3.3.7.js</a> (対の有無)</td>
+    <td>31</td>
+    <td>山かっこ〈 〉</td>
     <td>原則として和文では使用しない。</td>
     <td></td>
     <td></td>
 </tr>
 <tr>
-    <td><a href="src/4.3.8.js">4.3.8.js</a> (対の有無)</td>
-    <td>24</td>
+    <td><a href="src/3.3.8.js">3.3.8.js</a> (対の有無)</td>
+    <td>31</td>
     <td>一重引用符' '</td>
     <td>原則として和文では使用しない。</td>
     <td></td>
@@ -456,7 +448,7 @@ textlint --fix /path/to/target.md
 </tr>
 <tr>
     <td>不可</td>
-    <td>24</td>
+    <td>31</td>
     <td>JIS規格Z8202「量及び単位」、Z8203「国際単位系(SI)及びその使い方」に従う。</td>
     <td></td>
     <td>単位系</td>
@@ -464,7 +456,7 @@ textlint --fix /path/to/target.md
 </tr>
 <tr>
     <td></td>
-    <td>24</td>
+    <td>32</td>
     <td>主に、英字による表記とカタカナによる表記がある。</td>
     <td></td>
     <td>単位記号の表記</td>
@@ -472,7 +464,7 @@ textlint --fix /path/to/target.md
 </tr>
 <tr>
     <td></td>
-    <td>24</td>
+    <td>32</td>
     <td>時間、時刻</td>
     <td>時間、時、分、秒、ミリ秒</td>
     <td>個別の単位</td>
@@ -480,7 +472,7 @@ textlint --fix /path/to/target.md
 </tr>
 <tr>
     <td></td>
-    <td>24</td>
+    <td>32</td>
     <td>長さ</td>
     <td>mm、km、ミリメートル、センチメートル</td>
     <td></td>
@@ -488,7 +480,7 @@ textlint --fix /path/to/target.md
 </tr>
 <tr>
     <td></td>
-    <td>24</td>
+    <td>32</td>
     <td>質量</td>
     <td>g、kg、t、グラム、キログラム、トン</td>
     <td></td>
@@ -496,15 +488,15 @@ textlint --fix /path/to/target.md
 </tr>
 <tr>
     <td></td>
-    <td>24</td>
+    <td>32</td>
     <td>面積、体積</td>
-    <td>㎡、平方メートル、立法メートル</td>
+    <td>㎡、平方メートル、立方メートル</td>
     <td></td>
     <td></td>
 </tr>
 <tr>
     <td></td>
-    <td>24</td>
+    <td>32</td>
     <td>電気</td>
     <td>A、W、V、アンペア、ワット、ボルト</td>
     <td></td>
@@ -512,7 +504,7 @@ textlint --fix /path/to/target.md
 </tr>
 <tr>
     <td></td>
-    <td>25</td>
+    <td>33</td>
     <td>温度</td>
     <td>℃</td>
     <td></td>
@@ -520,7 +512,7 @@ textlint --fix /path/to/target.md
 </tr>
 <tr>
     <td></td>
-    <td>25</td>
+    <td>33</td>
     <td>周波数</td>
     <td>Hz、ヘルツ</td>
     <td></td>
@@ -528,7 +520,7 @@ textlint --fix /path/to/target.md
 </tr>
 <tr>
     <td></td>
-    <td>25</td>
+    <td>33</td>
     <td>速度</td>
     <td>m/s、キロメートル毎時、分速～km</td>
     <td></td>
@@ -536,7 +528,7 @@ textlint --fix /path/to/target.md
 </tr>
 <tr>
     <td></td>
-    <td>25</td>
+    <td>33</td>
     <td>伝送速度</td>
     <td>bps、Kbps、バイト/秒</td>
     <td></td>
@@ -544,7 +536,7 @@ textlint --fix /path/to/target.md
 </tr>
 <tr>
     <td></td>
-    <td>25</td>
+    <td>33</td>
     <td>割合</td>
     <td>％、パーセント</td>
     <td></td>
@@ -552,7 +544,7 @@ textlint --fix /path/to/target.md
 </tr>
 <tr>
     <td></td>
-    <td>25</td>
+    <td>33</td>
     <td>角度</td>
     <td>90°、90度</td>
     <td></td>
@@ -560,7 +552,7 @@ textlint --fix /path/to/target.md
 </tr>
 <tr>
     <td></td>
-    <td>25</td>
+    <td>33</td>
     <td>記憶容量</td>
     <td>ビット、バイト、Kb、KB、Mb、MB</td>
     <td></td>
@@ -568,17 +560,9 @@ textlint --fix /path/to/target.md
 </tr>
 <tr>
     <td></td>
-    <td>25</td>
+    <td>33</td>
     <td>通貨</td>
     <td>円、米ドル、ユーロ、＄、USD</td>
-    <td></td>
-    <td></td>
-</tr>
-<tr>
-    <td></td>
-    <td>25</td>
-    <td>その他</td>
-    <td></td>
     <td></td>
     <td></td>
 </tr>
@@ -609,14 +593,14 @@ A. `.textlintrc` にルール毎の設定を追加することが出来ます。
 
 - [textlintで日本語の文章をチェックする | Web Scratch](https://efcl.info/2015/09/10/introduce-textlint/ "textlintで日本語の文章をチェックする | Web Scratch")
 
-`1.2.2.ピリオド(.)とカンマ(,)`のルールを無効化したい場合は、`.textlintrc`に次のように`false`値を設定することで無効化出来ます。
+`1.2.2.ピリオド（.）とカンマ（,）`のルールを無効化したい場合は、`.textlintrc`に次のように`false`値を設定することで無効化出来ます。
 デフォルトでは`textlint-rule-preset-jtf-style`に含まれるルールが全て有効化されています。
 
 ```json5
 {
     "rules": {
         "preset-jtf-style": {
-            "1.2.2.ピリオド(.)とカンマ(,)": false
+            "1.2.2.ピリオド（.）とカンマ（,）": false
         }
     }
 }
@@ -659,7 +643,7 @@ Q. 半角かっこの外側のスペースを禁止したい・必須にした�
 
 A. オプションで半角かっこの外側のスペースの扱いを変更することが出来ます。
 
-[3.3.かっこ類と隣接する文字の間のスペースの有無](./src/3.3.js)のオプションを設定することで、半角かっこの外側のスペースの扱いを変更することができます。
+[2.3.2.かっこ類と隣接する文字の間のスペースの有無](./src/2.3.2.js)のオプションを設定することで、半角かっこの外側のスペースの扱いを変更することができます。
 
 `allowOutsideHalfParentheses` は半角かっこの外側の半角スペースを許容するオプションです。
 デフォルトは `true` です。
@@ -669,7 +653,7 @@ A. オプションで半角かっこの外側のスペースの扱いを変更�
 {
   "rules": {
     "preset-jtf-style": {
-      "3.3.かっこ類と隣接する文字の間のスペースの有無": {
+      "2.3.2.かっこ類と隣接する文字の間のスペースの有無": {
         "allowOutsideHalfParentheses": false
       }
     }
@@ -684,7 +668,7 @@ A. オプションで半角かっこの外側のスペースの扱いを変更�
 {
   "rules": {
     "preset-jtf-style": {
-      "3.3.かっこ類と隣接する文字の間のスペースの有無": {
+      "2.3.2.かっこ類と隣接する文字の間のスペースの有無": {
         "requireOutsideHalfParentheses": true
       }
     }
@@ -692,7 +676,7 @@ A. オプションで半角かっこの外側のスペースの扱いを変更�
 }
 ```
 
-## Migration: `textlint-plugin-jtf-style` to `textlint-rule-preset-jtf-style` 
+## Migration: `textlint-plugin-jtf-style` to `textlint-rule-preset-jtf-style`
 
 `textlint-plugin-jtf-style` から `textlint-rule-preset-jtf-style` へ移行したい場合の移行手順です。
 
@@ -748,9 +732,14 @@ npm install -D textlint-rule-preset-jtf-style
 
 ## License
 
-    by Japan Translation Federation (CC BY-SA) www.jtf.jp
-    本著作物は「JTF日本語標準スタイルガイド2.0」(JTF, CC BY-SA)を改変して作成したものです。
+```plaintext
+by Japan Translation Federation (CC BY 4.0)
+www.jtf.jp (CC BY 4.0)
+本著作物は「JTF日本語標準スタイルガイド 第3.0版」（JTF、CC BY 4.0）を改変して作成したものです。
+```
 
 - [JTFスタイルガイドとCCライセンスの素敵な関係 | JTFジャーナルWeb](https://webjournal.jtf.jp/back-number/#b271/6/ "JTFスタイルガイドとCCライセンスの素敵な関係 | JTFジャーナルWeb")
+
+JTFスタイルガイドは第3.0版から「CC BY 4.0」に変更されました（第2.3版以前は「CC BY-SA 4.0」です）。
 
 その他のコードはMITライセンスです。

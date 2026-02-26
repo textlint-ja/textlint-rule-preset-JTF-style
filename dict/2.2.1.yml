@@ -64,6 +64,13 @@ rules:
     patterns: 度々
   - expected: ただし
     patterns: 但し
+  - expected: ために
+    patterns: 為に
+    specs:
+      - from: 到達する為に。
+        to:   到達するために。
+  - expected: のため
+    patterns: の為
 # 誤爆を避けるのが難しい
 #  - expected: たち
 #    patterns: 達
@@ -125,8 +132,6 @@ rules:
         to:   一日中
       - from: 世界じゅう
         to  : 世界中
-  - expected: 時々
-    patterns: ときどき
   - expected: 何しろ
     patterns: なにしろ
     specs:

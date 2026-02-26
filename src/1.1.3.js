@@ -5,9 +5,9 @@
 
 基本的に本文の文体に合わせます。
 ただし、本文が「敬体」である場合、箇条書きに「常体」または「体言止め」も使う場合があります。
-一般読者向け の文書で、本文が敬体である場合、多くの場合、箇条書きでも敬体を使います。
+一般読者向けの文書で、本文が敬体である場合、多くの場合、箇条書きでも敬体を使います。
 本文が「常体」である場合、箇条書きには「常体」または「体言止め」を使います。「敬体」は使いません。
-いずれの場合も、ひとまとまりの箇条書きでは、敬体と常体を混在させません。文末に句点(。)を付けるかどうかも統一します。
+いずれの場合も、ひとまとまりの箇条書きでは、敬体と常体を混在させません。文末に句点（。）を付けるかどうかも統一します。
  */
 import { analyzeDesumasu, analyzeDearu } from "analyze-desumasu-dearu";
 module.exports = function (context) {
@@ -30,9 +30,9 @@ module.exports = function (context) {
         nodeList.forEach((node) => {
             let message;
             if (shouldUsePoint) {
-                message = `箇条書きの文末に句点(。)を付けて下さい。\n箇条書きの文末に句点(。)を付けるかを統一します。`;
+                message = `箇条書きの文末に句点（。）を付けて下さい。\n箇条書きの文末に句点（。）を付けるかを統一します。`;
             } else {
-                message = `箇条書きの文末から句点(。)を外して下さい。\n箇条書きの文末に句点(。)を付けるかを統一します。`;
+                message = `箇条書きの文末から句点（。）を外して下さい。\n箇条書きの文末に句点（。）を付けるかを統一します。`;
             }
             report(node, new RuleError(message));
         });
@@ -43,9 +43,9 @@ module.exports = function (context) {
             matches.forEach((match) => {
                 let message;
                 if (desumasu) {
-                    message = `箇条書きを敬体(ですます調)に統一して下さい。\nひとまとまりの箇条書きでは、敬体と常体を混在させません。\n"${match.value}"が常体(である調)です。`;
+                    message = `箇条書きを敬体（ですます調）に統一して下さい。\nひとまとまりの箇条書きでは、敬体と常体を混在させません。\n"${match.value}"が常体（である調）です。`;
                 } else if (dearu) {
-                    message = `箇条書きを常体(である調)に統一して下さい。\nひとまとまりの箇条書きでは、敬体と常体を混在させません。\n"${match.value}"が敬体(ですます調)です。`;
+                    message = `箇条書きを常体（である調）に統一して下さい。\nひとまとまりの箇条書きでは、敬体と常体を混在させません。\n"${match.value}"が敬体（ですます調）です。`;
                 }
                 report(
                     node,
@@ -81,7 +81,7 @@ module.exports = function (context) {
         }
     }
 
-    // 敬体(ですます調)あるいは常体(である調)なのかのチェック
+    // 敬体（ですます調）あるいは常体（である調）なのかのチェック
     function countingDesumasuDearu(desumasuList, dearuList) {
         let desumasuCount = desumasuList.reduce((count, { matches }) => count + matches.length, 0);
         let dearuCount = dearuList.reduce((count, { matches }) => count + matches.length, 0);
@@ -121,7 +121,7 @@ module.exports = function (context) {
                 // 。なし
                 withoutPointList.push(node);
             }
-            // 敬体(ですます調)あるいは常体(である調)なのかのチェック
+            // 敬体（ですます調）あるいは常体（である調）なのかのチェック
             let retDesumasu = analyzeDesumasu(text);
             if (retDesumasu.length > 0) {
                 desumasuList.push({

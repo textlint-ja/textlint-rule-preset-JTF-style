@@ -1,5 +1,11 @@
 // LICENSE : MIT
 "use strict";
+/*
+2.2.2.算用数字と漢数字の使い分け
+数量を表現し、数を数えられるものは算用数字を使用します。任意の数に置き換えても通用する語句がこれに該当します。序数詞（「第〜回」「〜番目」「〜回目」）も算用数字を使います。
+
+慣用的表現、熟語、概数、固有名詞、副詞など、漢数字を使用することが一般的な語句では漢数字を使います。
+ */
 import { isUserWrittenNode } from "./util/node-util";
 import ja2num from "japanese-numerals-to-number";
 
@@ -121,7 +127,7 @@ function reporter(context) {
                 });
                 const ruleError = new RuleError(
                     `${matchedString} => ${expected}
-数量を表現し、数を数えられるものは算用数字を使用します。任意の数に置き換えても通用する語句がこれに該当します。`,
+数量を表現し、数を数えられるものは算用数字を使用します。任意の数に置き換えても通用する語句がこれに該当します。序数詞（「第〜回」「〜番目」「〜回目」）も算用数字を使います。`,
                     {
                         index: index,
                         fix: fixer.replaceTextRange([index, index + matchedString.length], expected)
