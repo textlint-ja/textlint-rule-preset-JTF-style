@@ -30,8 +30,21 @@ function reporter(context) {
             }
             // 半角のかっこ[]は使用しないで全角のかっこを使用する
             const text = getSource(node);
-            const matchRegExp = rx`(?:${japaneseRegExp})([\[\]])`;
-            matchCaptureGroupAll(text, matchRegExp).forEach((match) => {
+            // 日本語の前後どちらに隣接していても半角の大かっこにマッチする
+            // (行頭や数字の後ろなど、前が日本語でない開きかっこも修正対象にする)
+            const matchRegExpAfterJapanese = rx`(?:${japaneseRegExp})([\[\]])`;
+            const matchRegExpBeforeJapanese = rx`([\[\]])(?=${japaneseRegExp})`;
+            // 両側が日本語のかっこは両方の正規表現にマッチするため、indexで重複を除く
+            const reportedIndexes = new Set();
+            const matches = [
+                ...matchCaptureGroupAll(text, matchRegExpAfterJapanese),
+                ...matchCaptureGroupAll(text, matchRegExpBeforeJapanese)
+            ];
+            matches.forEach((match) => {
+                if (reportedIndexes.has(match.index)) {
+                    return;
+                }
+                reportedIndexes.add(match.index);
                 const { index } = match;
                 report(
                     node,
