@@ -8,20 +8,21 @@
  */
 import { isUserWrittenNode } from "./util/node-util";
 import { matchCaptureGroupAll } from "match-index";
-import regx from "regx";
 import { japaneseRegExp } from "./util/regexp";
-const rx = regx("g");
+// "和文:" というような半角:は使用しない
+const matchHanQuestion = new RegExp(`(?:${japaneseRegExp.source})(:)`, "g");
 function reporter(context) {
     let { Syntax, RuleError, report, fixer, getSource } = context;
     return {
         [Syntax.Str](node) {
+            const text = getSource(node);
+            // 半角のコロンがないなら、マッチしない
+            if (text.indexOf(":") === -1) {
+                return;
+            }
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
-            const text = getSource(node);
-            // "和文:" というような半角:は使用しない
-
-            const matchHanQuestion = rx`(?:${japaneseRegExp})(:)`;
             matchCaptureGroupAll(text, matchHanQuestion).forEach((match) => {
                 const { index } = match;
                 report(

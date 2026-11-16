@@ -9,9 +9,6 @@
  */
 import assert from "assert";
 import { RuleHelper } from "textlint-rule-helper";
-const flat = (array) => {
-    return [].concat.apply([], array);
-};
 export function checkPair(context, { left, right }) {
     assert(left);
     assert(right);
@@ -24,7 +21,7 @@ export function checkPair(context, { left, right }) {
      * @param {Object} currentStrInParagraph
      * @returns {{node, index}[]}
      */
-    const findAllSymbolLocations = (symbol, text) => {
+    const findAllSymbolLocations = (symbol, text, node) => {
         let index = 0;
         const symbolLocations = [];
         while (index < text.length) {
@@ -32,24 +29,28 @@ export function checkPair(context, { left, right }) {
             if (index < 0) break;
             symbolLocations.push({
                 index,
-                symbol
+                symbol,
+                node
             });
             index += 1;
         }
         return symbolLocations;
     };
     const foundMissingPairNodes = (currentStrInParagraph) => {
-        const matchParentheses = flat(
-            currentStrInParagraph.map((node) => {
-                let text = getSource(node);
-                const leftSymbolLocations = findAllSymbolLocations(left, text);
-                const rightSymbolLocations = left !== right ? findAllSymbolLocations(right, text) : [];
-                const allSymbolLocations = [...leftSymbolLocations, ...rightSymbolLocations].sort(
-                    (a, b) => a.index - b.index
-                );
-                return allSymbolLocations.map((loc) => ({ ...loc, node }));
-            })
-        );
+        const matchParentheses = [];
+        currentStrInParagraph.forEach((node) => {
+            const text = getSource(node);
+            const leftSymbolLocations = findAllSymbolLocations(left, text, node);
+            const rightSymbolLocations = left !== right ? findAllSymbolLocations(right, text, node) : [];
+            if (leftSymbolLocations.length === 0 && rightSymbolLocations.length === 0) {
+                return;
+            }
+            const allSymbolLocations =
+                rightSymbolLocations.length === 0
+                    ? leftSymbolLocations
+                    : leftSymbolLocations.concat(rightSymbolLocations).sort((a, b) => a.index - b.index);
+            allSymbolLocations.forEach((loc) => matchParentheses.push(loc));
+        });
         if (left === right) {
             const isCompletedParentheses = matchParentheses.length % 2 == 0;
             if (isCompletedParentheses) {
@@ -59,8 +60,7 @@ export function checkPair(context, { left, right }) {
             }
         } else {
             const lastUnmatchParences = [];
-            while (matchParentheses.length > 0) {
-                const item = matchParentheses.shift();
+            for (const item of matchParentheses) {
                 if (item.symbol == left) {
                     lastUnmatchParences.push(item);
                 } else {

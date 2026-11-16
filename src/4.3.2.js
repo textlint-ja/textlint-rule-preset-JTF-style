@@ -7,9 +7,9 @@
  */
 import { isUserWrittenNode } from "./util/node-util";
 import { matchCaptureGroupAll } from "match-index";
-import regx from "regx";
 import { japaneseRegExp } from "./util/regexp";
-const rx = regx("g");
+// 半角のかっこ[]は使用しないで全角のかっこを使用する
+const matchRegExp = new RegExp(`(?:${japaneseRegExp.source})([\\[\\]])`, "g");
 
 const replaceSymbol = (symbol) => {
     var newSymbol = {
@@ -25,12 +25,14 @@ function reporter(context) {
     let { Syntax, RuleError, report, fixer, getSource } = context;
     return {
         [Syntax.Str](node) {
+            const text = getSource(node);
+            // 半角の大かっこがないなら、マッチしない
+            if (text.indexOf("[") === -1 && text.indexOf("]") === -1) {
+                return;
+            }
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
-            // 半角のかっこ[]は使用しないで全角のかっこを使用する
-            const text = getSource(node);
-            const matchRegExp = rx`(?:${japaneseRegExp})([\[\]])`;
             matchCaptureGroupAll(text, matchRegExp).forEach((match) => {
                 const { index } = match;
                 report(

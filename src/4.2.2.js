@@ -12,19 +12,23 @@
  */
 import { isUserWrittenNode } from "./util/node-util";
 import { matchCaptureGroupAll } from "match-index";
-import regx from "regx";
 import { japaneseRegExp } from "./util/regexp";
-const rx = regx("g");
+// 和文で半角の?は利用しない
+const matchRegExp = new RegExp(`${japaneseRegExp.source}(\\?)`, "g");
+// ？の後ろは全角スペースが推奨
+const matchAfter = /？( )[^\n]/;
 function reporter(context) {
     let { Syntax, RuleError, report, fixer, getSource } = context;
     return {
         [Syntax.Str](node) {
+            const text = getSource(node);
+            // 疑問符がないなら、どのパターンにもマッチしない
+            if (text.indexOf("?") === -1 && text.indexOf("？") === -1) {
+                return;
+            }
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
-            let text = getSource(node);
-            // 和文で半角の?は利用しない
-            const matchRegExp = rx`${japaneseRegExp}(\?)`;
             matchCaptureGroupAll(text, matchRegExp).forEach((match) => {
                 const { index } = match;
                 return report(
@@ -37,7 +41,6 @@ function reporter(context) {
             });
             // ？の後ろは全角スペースが推奨
             // 半角スペースである場合はエラーとする
-            const matchAfter = /？( )[^\n]/;
             matchCaptureGroupAll(text, matchAfter).forEach((match) => {
                 const { index } = match;
                 return report(

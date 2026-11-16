@@ -11,19 +11,22 @@ https://ja.wikipedia.org/wiki/%E3%83%80%E3%83%83%E3%82%B7%E3%83%A5_%28%E8%A8%98%
  */
 import { isUserWrittenNode } from "./util/node-util";
 import { matchCaptureGroupAll } from "match-index";
-import regx from "regx";
 import { japaneseRegExp } from "./util/regexp";
-const rx = regx("g");
+// 和文でダッシュは使用しない
+const matchRegExp = new RegExp(`(?:${japaneseRegExp.source})([\\u2012-\\u2015])`, "g");
+const dashRegExp = /[\u2012-\u2015]/;
 module.exports = function (context) {
     let { Syntax, RuleError, report, getSource } = context;
     return {
         [Syntax.Str](node) {
+            const text = getSource(node);
+            // ダッシュがないなら、マッチしない
+            if (!dashRegExp.test(text)) {
+                return;
+            }
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
-            const text = getSource(node);
-            // 和文でダッシュは使用しない
-            const matchRegExp = rx`(?:${japaneseRegExp})([\u2012-\u2015])`;
             matchCaptureGroupAll(text, matchRegExp).forEach((match) => {
                 const { index } = match;
                 report(

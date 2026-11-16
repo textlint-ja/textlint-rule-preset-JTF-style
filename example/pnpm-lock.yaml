@@ -1575,9 +1575,6 @@ packages:
     resolution: {integrity: sha512-dYqgNSZbDwkaJ2ceRd9ojCGjBq+mOm9LmtXnAnEGyHhN/5R7iDW2TRw3h+o/jCFxus3P2LfWIIiwowAjANm7IA==}
     engines: {node: '>= 0.4'}
 
-  regx@1.0.4:
-    resolution: {integrity: sha512-Z/5ochRUyD5TkJgFq+66ajKePlj6KzpSLfDO2lOLOLu7E82xAjNux0m8mx1DAXBj5ECHiRCBWoqL25b4lkwcgw==}
-
   remark-footnotes@3.0.0:
     resolution: {integrity: sha512-ZssAvH9FjGYlJ/PBVKdSmfyPc3Cz4rTWgZLI4iE/SX8Nt5l3o3oEjv3wwG5VD7xOjktzdwp5coac+kJV9l4jgg==}
 
@@ -3967,8 +3964,6 @@ snapshots:
       gopd: 1.2.0
       set-function-name: 2.0.2
 
-  regx@1.0.4: {}
-
   remark-footnotes@3.0.0:
     dependencies:
       mdast-util-footnote: 0.1.7
@@ -4294,7 +4289,6 @@ snapshots:
       match-index: 1.0.3
       moji: 0.5.1
       regexp.prototype.flags: 1.5.4
-      regx: 1.0.4
       textlint-rule-helper: 2.5.0
       textlint-rule-prh: 6.1.0
 
