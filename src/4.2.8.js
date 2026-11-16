@@ -7,19 +7,21 @@
  */
 import { isUserWrittenNode } from "./util/node-util";
 import { matchCaptureGroupAll } from "match-index";
-import regx from "regx";
 import { japaneseRegExp } from "./util/regexp";
-const rx = regx("g");
+// "和文;" というような半角;は使用しない
+const matchRegExp = new RegExp(`(?:${japaneseRegExp.source})(;)`, "g");
 module.exports = function (context) {
     let { Syntax, RuleError, report, getSource } = context;
     return {
         [Syntax.Str](node) {
+            const text = getSource(node);
+            // 半角のセミコロンがないなら、マッチしない
+            if (text.indexOf(";") === -1) {
+                return;
+            }
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
-            const text = getSource(node);
-            // "和文;" というような半角;は使用しない
-            const matchRegExp = rx`(?:${japaneseRegExp})(;)`;
             matchCaptureGroupAll(text, matchRegExp).forEach((match) => {
                 const { index } = match;
                 report(

@@ -1,10 +1,8 @@
 // LICENSE : MIT
 "use strict";
-import regx from "regx";
 import { japaneseRegExp } from "./util/regexp";
 import { matchCaptureGroupAll } from "match-index";
 import mergeMatches from "./util/merge-matches";
-const rx = regx("g");
 /*
 1.2.1. 句点(。)と読点(、)
 句読点には全角の「、」と「。」を使います。和文の句読点としてピリオド(.)とカンマ(,)を使用しません。
@@ -13,15 +11,9 @@ const rx = regx("g");
 import { isUserWrittenNode } from "./util/node-util";
 
 // [,.]{日本語}
-const leftTarget = rx`
-        ([,\.])
-        ${japaneseRegExp}
-    `;
+const leftTarget = new RegExp(`([,\\.])${japaneseRegExp.source}`, "g");
 // {日本語}[,.]
-const rightTarget = rx`
-        ${japaneseRegExp}
-        ([,\.])
-    `;
+const rightTarget = new RegExp(`${japaneseRegExp.source}([,\\.])`, "g");
 // . => 。 の置換マップ
 const replaceSymbol = {
     ".": "。",
@@ -32,10 +24,14 @@ const reporter = (context) => {
     let { Syntax, RuleError, report, fixer, getSource } = context;
     return {
         [Syntax.Str](node) {
+            const text = getSource(node);
+            // 半角のピリオドとカンマがないなら、どのパターンにもマッチしない
+            if (text.indexOf(",") === -1 && text.indexOf(".") === -1) {
+                return;
+            }
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
-            const text = getSource(node);
             const leftMatches = matchCaptureGroupAll(text, leftTarget);
             const rightMatches = matchCaptureGroupAll(text, rightTarget);
             const matches = mergeMatches(leftMatches, rightMatches);

@@ -23,9 +23,6 @@ importers:
       regexp.prototype.flags:
         specifier: ^1.5.3
         version: 1.5.4
-      regx:
-        specifier: ^1.0.4
-        version: 1.0.4
       textlint-rule-helper:
         specifier: ^2.3.1
         version: 2.5.0
@@ -1516,9 +1513,6 @@ packages:
   regjsparser@0.13.0:
     resolution: {integrity: sha512-NZQZdC5wOE/H3UT28fVGL+ikOZcEzfMGk/c3iN9UGxzWHMa1op7274oyiUVrAG4B2EuFhus8SvkaYnhvW92p9Q==}
     hasBin: true
-
-  regx@1.0.4:
-    resolution: {integrity: sha512-Z/5ochRUyD5TkJgFq+66ajKePlj6KzpSLfDO2lOLOLu7E82xAjNux0m8mx1DAXBj5ECHiRCBWoqL25b4lkwcgw==}
 
   remark-footnotes@3.0.0:
     resolution: {integrity: sha512-ZssAvH9FjGYlJ/PBVKdSmfyPc3Cz4rTWgZLI4iE/SX8Nt5l3o3oEjv3wwG5VD7xOjktzdwp5coac+kJV9l4jgg==}
@@ -3555,8 +3549,6 @@ snapshots:
   regjsparser@0.13.0:
     dependencies:
       jsesc: 3.1.0
-
-  regx@1.0.4: {}
 
   remark-footnotes@3.0.0:
     dependencies:

@@ -10,19 +10,24 @@
  */
 import { isUserWrittenNode } from "./util/node-util";
 import { matchCaptureGroupAll } from "match-index";
-import regx from "regx";
 import { japaneseRegExp } from "./util/regexp";
-const rx = regx("g");
+// 和文で半角の･は利用しない
+const matchHanNakaguro = new RegExp(
+    `(?:${japaneseRegExp.source}|[a-zA-Z])(･)(?:${japaneseRegExp.source}|[a-zA-Z])`,
+    "g"
+);
 function reporter(context) {
     let { Syntax, RuleError, report, fixer, getSource } = context;
     return {
         [Syntax.Str](node) {
+            const text = getSource(node);
+            // 半角の中黒がないなら、マッチしない
+            if (text.indexOf("･") === -1) {
+                return;
+            }
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
-            const text = getSource(node);
-            // 和文で半角の･は利用しない
-            const matchHanNakaguro = rx`(?:${japaneseRegExp}|[a-zA-Z])(･)(?:${japaneseRegExp}|[a-zA-Z])`;
             matchCaptureGroupAll(text, matchHanNakaguro).forEach((match) => {
                 const { index } = match;
                 report(

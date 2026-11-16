@@ -8,23 +8,27 @@
  */
 import { isUserWrittenNode } from "./util/node-util";
 import { matchCaptureGroupAll } from "match-index";
-import regx from "regx";
 import { japaneseRegExp } from "./util/regexp";
 import mergeMatches from "./util/merge-matches";
-const rx = regx("g");
+const rightRegExp = new RegExp(`${japaneseRegExp.source}(\\-)`, "g");
+const leftRegExp = new RegExp(`(\\-)${japaneseRegExp.source}`, "g");
 module.exports = function (context) {
     let { Syntax, RuleError, report, getSource } = context;
     return {
         [Syntax.Str](node) {
+            const text = getSource(node);
+            // ハイフンがないなら、どのパターンにもマッチしない
+            if (text.indexOf("-") === -1) {
+                return;
+            }
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
-            let text = getSource(node);
             // 和文ではハイフン(-)を使用しません
             // right
-            const rightMatches = matchCaptureGroupAll(text, rx`${japaneseRegExp}(\-)`);
+            const rightMatches = matchCaptureGroupAll(text, rightRegExp);
             // left
-            const leftMatches = matchCaptureGroupAll(text, rx`(\-)${japaneseRegExp}`);
+            const leftMatches = matchCaptureGroupAll(text, leftRegExp);
             const matches = mergeMatches(leftMatches, rightMatches);
             matches.forEach((match) => {
                 const { index } = match;

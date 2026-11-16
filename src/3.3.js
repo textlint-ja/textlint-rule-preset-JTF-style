@@ -9,12 +9,17 @@ import { matchCaptureGroupAll } from "match-index";
 import { japaneseRegExp } from "./util/regexp";
 
 const brackets = ["\\(", "\\)", "\\[", "\\]", "（", "）", "［", "］", "「", "」", "『", "』"];
+// 各パターンが必要とするかっこの文字
+const bracketChars = brackets.map((bracket) => bracket.replace("\\", ""));
 const leftBrackets = brackets.map((bracket) => {
     return new RegExp("([ 　])" + bracket, "g");
 });
 const rightBrackets = brackets.map((bracket) => {
     return new RegExp(bracket + "([ 　])", "g");
 });
+// かっこ類とスペースのどちらかがない場合は、どのパターンにもマッチしない
+const anyBracketRegExp = /[()[\]（）［］「」『』]/;
+const anySpaceRegExp = /[ 　]/;
 const leftHalfParentheses = new RegExp(`${japaneseRegExp.source}(\\()`, "g");
 const rightHalfParentheses = new RegExp(`(\\))${japaneseRegExp.source}`, "g");
 const defaultOptions = {
@@ -29,12 +34,23 @@ function reporter(context, options) {
         options.requireOutsideHalfParentheses ?? defaultOptions.requireOutsideHalfParentheses;
     return {
         [Syntax.Str](node) {
+            const text = getSource(node);
+            if (!anyBracketRegExp.test(text)) {
+                return;
+            }
+            // 半角かっこの外側のスペースを必須にする場合は、スペースがなくてもエラーになる
+            const hasSpace = anySpaceRegExp.test(text);
+            if (!hasSpace && !requireOutsideHalfParentheses) {
+                return;
+            }
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
-            const text = getSource(node);
             // 左にスペース
-            leftBrackets.forEach((pattern) => {
+            leftBrackets.forEach((pattern, i) => {
+                if (!hasSpace || text.indexOf(bracketChars[i]) === -1) {
+                    return;
+                }
                 matchCaptureGroupAll(text, pattern).forEach((match) => {
                     const { index } = match;
                     if (allowOutsideHalfParentheses && text.substring(index, index + 2) === " (") {
@@ -50,7 +66,10 @@ function reporter(context, options) {
                 });
             });
             // 右にスペース
-            rightBrackets.forEach((pattern) => {
+            rightBrackets.forEach((pattern, i) => {
+                if (!hasSpace || text.indexOf(bracketChars[i]) === -1) {
+                    return;
+                }
                 matchCaptureGroupAll(text, pattern).forEach((match) => {
                     const { index } = match;
                     if (allowOutsideHalfParentheses && text.substring(index - 1, index + 1) === ") ") {

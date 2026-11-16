@@ -7,9 +7,14 @@
  */
 import { isUserWrittenNode } from "./util/node-util";
 import { matchCaptureGroupAll } from "match-index";
-import regx from "regx";
 import { japaneseRegExp } from "./util/regexp";
-const rx = regx("g");
+// 半角のかっこ()は使用しないで全角のかっこを使用する
+const matchRegExps = [
+    new RegExp(`([\\(\\)])(?:.*${japaneseRegExp.source}.*)([\\(\\)])`, "g"),
+    new RegExp(`(?:${japaneseRegExp.source})([\\(\\)])(?:${japaneseRegExp.source})`, "g"),
+    new RegExp(`^(\\()(?:${japaneseRegExp.source})`, "g"),
+    new RegExp(`(?:${japaneseRegExp.source})(\\))$`, "g")
+];
 
 const replaceSymbol = (symbol) => {
     var newSymbol = {
@@ -25,17 +30,14 @@ function reporter(context) {
     let { Syntax, RuleError, report, fixer, getSource } = context;
     return {
         [Syntax.Str](node) {
+            const text = getSource(node);
+            // 半角のかっこがないなら、どのパターンにもマッチしない
+            if (text.indexOf("(") === -1 && text.indexOf(")") === -1) {
+                return;
+            }
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
-            // 半角のかっこ()は使用しないで全角のかっこを使用する
-            const text = getSource(node);
-            const matchRegExps = [
-                rx`([\(\)])(?:.*${japaneseRegExp}.*)([\(\)])`,
-                rx`(?:${japaneseRegExp})([\(\)])(?:${japaneseRegExp})`,
-                rx`^(\()(?:${japaneseRegExp})`,
-                rx`(?:${japaneseRegExp})(\))$`
-            ];
             matchRegExps.forEach((matchRegExp) => {
                 matchCaptureGroupAll(text, matchRegExp).forEach((match) => {
                     const { index } = match;

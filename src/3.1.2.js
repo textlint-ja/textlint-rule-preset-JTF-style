@@ -2,9 +2,10 @@
 "use strict";
 import { isUserWrittenNode } from "./util/node-util";
 import { matchAll } from "match-index";
-import regx from "regx";
 import { japaneseRegExp } from "./util/regexp";
-const rx = regx("g");
+// 全角同士の間は半角スペースを入れない
+const matchReg = new RegExp(`${japaneseRegExp.source}( )${japaneseRegExp.source}`, "g");
+const katakakana = /[ァ-ヶ]( )[ァ-ヶ]/;
 /*
 3.1.2. 全角文字どうし
 
@@ -15,13 +16,14 @@ function reporter(context) {
     let { Syntax, RuleError, report, fixer, getSource } = context;
     return {
         [Syntax.Str](node) {
+            const text = getSource(node);
+            // 半角スペースがないなら、マッチしない
+            if (text.indexOf(" ") === -1) {
+                return;
+            }
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
-            const text = getSource(node);
-            // 全角同士の間は半角スペースを入れない
-            const matchReg = rx`${japaneseRegExp}( )${japaneseRegExp}`;
-            const katakakana = /[ァ-ヶ]( )[ァ-ヶ]/;
             matchAll(text, matchReg).forEach((match) => {
                 const { input, captureGroups } = match;
                 // ただしカタカナ複合語の場合を除きます。
