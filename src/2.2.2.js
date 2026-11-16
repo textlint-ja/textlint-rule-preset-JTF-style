@@ -108,10 +108,14 @@ function reporter(context) {
     let { Syntax, RuleError, report, fixer, getSource } = context;
     return {
         [Syntax.Str](node) {
+            const text = getSource(node);
+            // 算用数字と漢数字がどちらもないなら、どのパターンにもマッチしない
+            if (!/[0-9一二三四五六七八九十壱弐参拾百〇]/.test(text)) {
+                return;
+            }
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
-            const text = getSource(node);
             // 漢数字 -> 算用数字
             const toNumber = (text, pattern, match) => {
                 const matchedString = match[0];

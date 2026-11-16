@@ -14,10 +14,14 @@ function reporter(context) {
     let { Syntax, RuleError, report, fixer, getSource } = context;
     return {
         [Syntax.Str](node) {
+            let text = getSource(node);
+            // ピリオドがないなら、マッチしない
+            if (text.indexOf(".") === -1) {
+                return;
+            }
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
-            let text = getSource(node);
             // 和文. はエラー
             const matchReg = /(?:[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]|[\uD840-\uD87F][\uDC00-\uDFFF]|[ぁ-んァ-ヶ])(\.)/g;
             matchCaptureGroupAll(text, matchReg).forEach((match) => {

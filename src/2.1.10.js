@@ -11,10 +11,14 @@ function reporter(context) {
     let { Syntax, RuleError, report, fixer, getSource } = context;
     return {
         [Syntax.Str](node) {
+            let text = getSource(node);
+            // カンマがないなら、マッチしない
+            if (text.indexOf(",") === -1) {
+                return;
+            }
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
-            let text = getSource(node);
             // 数字,で絞って
             let numberWithComma = /([\d,]+)/g;
             // 0,xxx な文字列を検出する

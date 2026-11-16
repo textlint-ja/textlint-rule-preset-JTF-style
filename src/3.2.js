@@ -12,10 +12,14 @@ module.exports = function (context) {
     let { Syntax, RuleError, report, getSource } = context;
     return {
         [Syntax.Str](node) {
+            const text = getSource(node);
+            // 全角スペースがないなら、報告するものはない
+            if (text.indexOf("　") === -1) {
+                return;
+            }
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
-            const text = getSource(node);
             // カタカナ(カタカナ以外)カタカナ のパターンを取り出す
             matchCaptureGroupAll(text, /[ァ-ヶー]([^[ァ-ヶー])[ァ-ヶー]/).forEach((match) => {
                 // カタカナの間を全角スペースでは区切らない

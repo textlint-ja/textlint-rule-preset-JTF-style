@@ -34,10 +34,14 @@ function reporter(context) {
     // 半角カタカナの使用をチェックする
     dictRule[Syntax.Str] = function (node) {
         originalStrRule(node);
+        const text = getSource(node);
+        // 半角カタカナがないなら、マッチしない
+        if (!/[\uFF65-\uFF9F]/.test(text)) {
+            return;
+        }
         if (!isUserWrittenNode(node, context)) {
             return;
         }
-        const text = getSource(node);
         const matches = matchCaptureGroupAll(text, /([\uFF65-\uFF9F]+)/g);
         matches.forEach((match) => {
             const { index, text } = match;

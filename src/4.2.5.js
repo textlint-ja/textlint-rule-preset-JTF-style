@@ -11,10 +11,14 @@ function reporter(context) {
     let { Syntax, RuleError, report, fixer, getSource } = context;
     return {
         [Syntax.Str](node) {
+            const text = getSource(node);
+            // 半角の~がないなら、マッチしない
+            if (text.indexOf("~") === -1) {
+                return;
+            }
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
-            const text = getSource(node);
             // 数値の区切りに半角の~は利用しない
             const matchHanQuestion = /\d(~)\d/g;
             matchCaptureGroupAll(text, matchHanQuestion).forEach((match) => {
