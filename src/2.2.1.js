@@ -14,14 +14,15 @@ JTFスタイルガイドは、ひらがなと漢字の使い分けについて�
 用例集や用語集を作って表記の統一を図るのも有効な方法です。
 漢字を使用する傾向の強い特許、金融、法律の分野では、以下のひらがなを使用する語句について、漢字を使用する場合があります。
  */
-import fs from "fs";
-import path from "path";
-import prh from "textlint-rule-prh";
+import { compileDictionary, createDictionaryChecker } from "./util/dictionary-checker";
+import rawDictionary from "./dict/2.2.1";
+
+const dictionary = compileDictionary(rawDictionary);
 
 const report = function (context) {
-    return prh.fixer(context, {
-        ruleContents: [fs.readFileSync(path.join(__dirname, "..", "dict", "2.2.1.yml"), "utf-8")]
-    });
+    return {
+        [context.Syntax.Str]: createDictionaryChecker(context, dictionary)
+    };
 };
 module.exports = {
     linter: report,
