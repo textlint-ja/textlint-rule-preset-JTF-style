@@ -12,10 +12,14 @@ function reporter(context) {
     let { Syntax, RuleError, report, fixer, getSource } = context;
     return {
         [Syntax.Str](node) {
+            let text = getSource(node);
+            // 半角スペースがないなら、どのパターンにもマッチしない
+            if (text.indexOf(" ") === -1) {
+                return;
+            }
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
-            let text = getSource(node);
             // アルファベットと全角の間は半角スペースではない
             let betweenHanAndZen = matchCaptureGroupAll(
                 text,

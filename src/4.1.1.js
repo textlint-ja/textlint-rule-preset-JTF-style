@@ -17,10 +17,14 @@ var reporter = function reporter(context) {
     let { Syntax, RuleError, report, fixer, getSource } = context;
     return {
         [Syntax.Str](node) {
+            let text = getSource(node);
+            // 句点がないなら、どのパターンにもマッチしない
+            if (text.indexOf("。") === -1) {
+                return;
+            }
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
-            let text = getSource(node);
             leftBrackets.forEach((pattern) => {
                 matchCaptureGroupAll(text, pattern).forEach((match) => {
                     const { index } = match;

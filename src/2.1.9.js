@@ -16,10 +16,14 @@ function reporter(context) {
     let { Syntax, RuleError, report, fixer, getSource } = context;
     return {
         [Syntax.Str](node) {
+            const text = getSource(node);
+            // 全角アルファベットがないなら、マッチしない
+            if (!/[Ａ-Ｚ]/.test(text)) {
+                return;
+            }
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
-            const text = getSource(node);
             const matchRegExp = /([Ａ-Ｚ]+)/;
             matchCaptureGroupAll(text, matchRegExp).forEach((match) => {
                 const { index, text } = match;
