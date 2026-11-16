@@ -4,24 +4,40 @@
 2.2.3. 一部の助数詞の表記
 助数詞にともなう「ヵ」、「か」、「カ」、「ヶ」、「ケ」、「箇」、「個」の表記は、原則として、ひらがなの「か」を使います。
  */
-import prh from "textlint-rule-prh";
-import path from "path";
-import fs from "fs";
+import { RuleHelper } from "textlint-rule-helper";
+
+// 以前は textlint-rule-prh と dict/2.2.3.yml でチェックしていた。
+// 辞書のルールは1つだけなので、同じパターンとメッセージで直接チェックする。
+const pattern = /(\d+)ヶ([所月国年])/g;
 
 const report = function (context) {
-    const { Syntax, getSource } = context;
-    const dictRule = prh.fixer(context, {
-        ruleContents: [fs.readFileSync(path.join(__dirname, "..", "dict", "2.2.3.yml"), "utf-8")]
-    });
-    const originalStrRule = dictRule[Syntax.Str];
-    // 辞書のパターン /(\d+)ヶ([所月国年])/ は「ヶ」を必ず含むので、「ヶ」がないStrは辞書のチェックを省く
-    dictRule[Syntax.Str] = function (node) {
-        if (getSource(node).indexOf("ヶ") === -1) {
-            return;
+    const { Syntax, RuleError, fixer, getSource } = context;
+    const helper = new RuleHelper(context);
+    return {
+        [Syntax.Str](node) {
+            const text = getSource(node);
+            // パターンは「ヶ」を必ず含む
+            if (text.indexOf("ヶ") === -1) {
+                return;
+            }
+            // textlint-rule-prh のデフォルトと同じく、Link、BlockQuote、Emphasis の中は無視する
+            if (helper.isChildNode(node, [Syntax.Link, Syntax.BlockQuote, Syntax.Emphasis])) {
+                return;
+            }
+            for (const match of text.matchAll(pattern)) {
+                const actual = match[0];
+                const expected = `${match[1]}か${match[2]}`;
+                const index = match.index;
+                context.report(
+                    node,
+                    new RuleError(`${actual} => ${expected}`, {
+                        index,
+                        fix: fixer.replaceTextRange([index, index + actual.length], expected)
+                    })
+                );
+            }
         }
-        return originalStrRule(node);
     };
-    return dictRule;
 };
 module.exports = {
     linter: report,
