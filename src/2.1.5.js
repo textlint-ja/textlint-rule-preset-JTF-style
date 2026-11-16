@@ -10,9 +10,8 @@ Halfwidth Katakana variants（半角片仮名）
 http://www.asahi-net.or.jp/~ax2s-kmtn/ref/unicode/uff00.html
  */
 import { isUserWrittenNode } from "./util/node-util";
-import prh from "textlint-rule-prh";
-import path from "path";
-import fs from "fs";
+import { createDictionaryChecker } from "./util/dictionary-checker";
+import dictionary from "./dict/2.1.5";
 import { matchCaptureGroupAll } from "match-index";
 import moji from "moji";
 /**
@@ -27,13 +26,11 @@ function toZenkaku(string) {
 function reporter(context) {
     let { Syntax, RuleError, fixer, report, getSource } = context;
     // 辞書ベースのカタカタ表記のチェックを行う
-    let dictRule = prh.fixer(context, {
-        ruleContents: [fs.readFileSync(path.join(__dirname, "..", "dict", "2.1.5.yml"), "utf-8")]
-    });
-    let originalStrRule = dictRule[Syntax.Str];
+    const checkDictionary = createDictionaryChecker(context, dictionary);
+    const dictRule = {};
     // 半角カタカナの使用をチェックする
     dictRule[Syntax.Str] = function (node) {
-        originalStrRule(node);
+        checkDictionary(node);
         const text = getSource(node);
         // 半角カタカナがないなら、マッチしない
         if (!/[\uFF65-\uFF9F]/.test(text)) {

@@ -1,10 +1,9 @@
 // LICENSE : MIT
 "use strict";
-// test prh rule
+// test dictionary rules
 import TextLintTester from "textlint-tester";
 var tester = new TextLintTester();
-// 実際のテストはymlファイル自体に書かれている
-// それを実行するために使うだけのテストファイル
+// 辞書の specs は test/dictionary-test.js でテストする
 tester.run("2.1.5.カタカナ", require("../src/2.1.5"), {
     valid: ["これは正常なテキストです"]
 });

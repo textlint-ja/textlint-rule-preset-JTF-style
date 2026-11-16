@@ -6,15 +6,14 @@
 カタカナの長音表記のルールについては、『外来語(カタカナ)表記ガイドライン第 2 版』(テクニカルコミュニケーター協会、2008 年)に従います。
 『日本語スタイルガイド』(テクニカルコミュニケーター協会編著)の 207 ページ「付録 2 外来語(カタカナ)表記ガイドライン」も参考にします。
 */
-import fs from "fs";
-import path from "path";
-import prh from "textlint-rule-prh";
+import { createDictionaryChecker } from "./util/dictionary-checker";
+import dictionary from "./dict/2.1.6";
 
 const report = function (context) {
     // 辞書ベースのカタカナ末尾の長音のチェックを行う
-    return prh.fixer(context, {
-        ruleContents: [fs.readFileSync(path.join(__dirname, "..", "dict", "2.1.6.yml"), "utf-8")]
-    });
+    return {
+        [context.Syntax.Str]: createDictionaryChecker(context, dictionary)
+    };
 };
 module.exports = {
     linter: report,
