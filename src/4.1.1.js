@@ -13,13 +13,14 @@ const brackets = ["」", "）", "\\)"];
 const leftBrackets = brackets.map((bracket) => {
     return new RegExp("(。)" + bracket, "g");
 });
+// 「。」の直後に閉じかっこがない場合は、どのパターンにもマッチしない
+const pointBeforeBracketRegExp = /。[」）)]/;
 var reporter = function reporter(context) {
     let { Syntax, RuleError, report, fixer, getSource } = context;
     return {
         [Syntax.Str](node) {
             let text = getSource(node);
-            // 句点がないなら、どのパターンにもマッチしない
-            if (text.indexOf("。") === -1) {
+            if (!pointBeforeBracketRegExp.test(text)) {
                 return;
             }
             if (!isUserWrittenNode(node, context)) {

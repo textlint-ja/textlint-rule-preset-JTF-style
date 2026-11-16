@@ -16,6 +16,22 @@ const matchRegExps = [
     new RegExp(`(?:${japaneseRegExp.source})(\\))$`, "g")
 ];
 
+/**
+ * 1つ目のパターン(かっこ...和文...かっこ)がマッチしうるかを返す
+ * 最初のかっこと最後のかっこの間に和文の文字がない場合は、マッチしない
+ * `.*` のバックトラックが重いので、先に調べる
+ */
+const hasJapaneseBetweenParentheses = (text) => {
+    const firstOpen = text.indexOf("(");
+    const firstClose = text.indexOf(")");
+    const first = firstOpen === -1 ? firstClose : firstClose === -1 ? firstOpen : Math.min(firstOpen, firstClose);
+    const last = Math.max(text.lastIndexOf("("), text.lastIndexOf(")"));
+    if (first === last) {
+        return false;
+    }
+    return japaneseRegExp.test(text.slice(first + 1, last));
+};
+
 const replaceSymbol = (symbol) => {
     var newSymbol = {
         "(": "（",
@@ -35,10 +51,18 @@ function reporter(context) {
             if (text.indexOf("(") === -1 && text.indexOf(")") === -1) {
                 return;
             }
+            // どのパターンも和文の文字を含むので、和文の文字がないならマッチしない
+            if (!japaneseRegExp.test(text)) {
+                return;
+            }
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
-            matchRegExps.forEach((matchRegExp) => {
+            const skipFirstPattern = !hasJapaneseBetweenParentheses(text);
+            matchRegExps.forEach((matchRegExp, i) => {
+                if (i === 0 && skipFirstPattern) {
+                    return;
+                }
                 matchCaptureGroupAll(text, matchRegExp).forEach((match) => {
                     const { index } = match;
                     report(

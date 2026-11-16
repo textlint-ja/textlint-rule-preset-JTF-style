@@ -104,13 +104,18 @@ function _num2ja(num, opt) {
     return result;
 }
 
+// 各パターンが必ず含む「数字 + 後ろの文字」の組み合わせ
+// - 漢数字: [兆億万]、つ、回、か月、番目、進法、次元、章、節 が後ろに続く
+// - 算用数字: 世界1、1時的、1部分、第3者、1種、1部の、1番に、数10倍、数10[兆億万]、数10年、N次関数、5大陸
+const candidateRegExp =
+    /[一二三四五六七八九十壱弐参拾百〇][兆億万つ回か番進次章節]|[0-9][時部者種番倍兆億万年次大]|世界1/;
 function reporter(context) {
     let { Syntax, RuleError, report, fixer, getSource } = context;
     return {
         [Syntax.Str](node) {
             const text = getSource(node);
-            // 算用数字と漢数字がどちらもないなら、どのパターンにもマッチしない
-            if (!/[0-9一二三四五六七八九十壱弐参拾百〇]/.test(text)) {
+            // 数字と後ろの文字の組み合わせがないなら、どのパターンにもマッチしない
+            if (!candidateRegExp.test(text)) {
                 return;
             }
             if (!isUserWrittenNode(node, context)) {

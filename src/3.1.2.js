@@ -5,6 +5,7 @@ import { matchAll } from "match-index";
 import { japaneseRegExp } from "./util/regexp";
 // 全角同士の間は半角スペースを入れない
 const matchReg = new RegExp(`${japaneseRegExp.source}( )${japaneseRegExp.source}`, "g");
+const matchRegTest = new RegExp(matchReg.source);
 const katakakana = /[ァ-ヶ]( )[ァ-ヶ]/;
 /*
 3.1.2. 全角文字どうし
@@ -18,7 +19,7 @@ function reporter(context) {
         [Syntax.Str](node) {
             const text = getSource(node);
             // 半角スペースがないなら、マッチしない
-            if (text.indexOf(" ") === -1) {
+            if (text.indexOf(" ") === -1 || !matchRegTest.test(text)) {
                 return;
             }
             if (!isUserWrittenNode(node, context)) {

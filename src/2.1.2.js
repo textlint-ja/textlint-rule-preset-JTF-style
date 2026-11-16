@@ -2150,17 +2150,22 @@ const JOYOKANJI = [
     "湾",
     "腕"
 ];
+const JOYOKANJI_SET = new Set(JOYOKANJI);
 const isJoyoKanji = (kanji) => {
-    return JOYOKANJI.includes(kanji);
+    return JOYOKANJI_SET.has(kanji);
 };
 module.exports = function (context) {
     const { Syntax, RuleError, report, getSource } = context;
     return {
         [Syntax.Str](node) {
+            const text = getSource(node);
+            // 漢字がないなら、報告するものはない
+            if (!kanjiRegExp.test(text)) {
+                return;
+            }
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
-            const text = getSource(node);
             const strArray = stringToArray(text);
             for (let index = 0; index < strArray.length; index++) {
                 const item = strArray[index];

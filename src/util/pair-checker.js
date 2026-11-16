@@ -91,6 +91,11 @@ export function checkPair(context, { left, right }) {
             if (!isInParagraph) {
                 return;
             }
+            // 記号を含まない Str は対のチェックに影響しないので、集めない
+            const text = getSource(node);
+            if (text.indexOf(left) === -1 && text.indexOf(right) === -1) {
+                return;
+            }
             currentStrInParagraph.push(node);
         },
         [`${Syntax.Paragraph}:exit`]() {

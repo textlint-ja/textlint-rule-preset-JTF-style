@@ -17,6 +17,11 @@
  */
 import { analyzeDesumasu, analyzeDearu } from "analyze-desumasu-dearu";
 import { RuleHelper } from "textlint-rule-helper";
+// analyze-desumasu-dearu が使うパターンをまとめたもの
+// どれにもマッチしないなら analyzeDesumasu と analyzeDearu はどちらも空の配列を返す
+// (analyze-desumasu-dearu 2.1.5 の lib/analyze.js)
+const desumasuDearuRegExp =
+    /のだが|ないかと|であるから|(?:だ|である|った|ではない｜ないか|しろ|しなさい|いただきたい|いただく|ならない|あろう|られる)。|でしたが|でしたので|ですので|ですが|(?:です|ます|ました|ません|ですね|でしょうか|ください|ませ)。/;
 module.exports = function (context) {
     let { Syntax, RuleError, report, getSource } = context;
     let helper = new RuleHelper(context);
@@ -49,6 +54,10 @@ module.exports = function (context) {
             dearuList = [];
         },
         [Syntax.Str](node) {
+            const text = getSource(node);
+            if (!desumasuDearuRegExp.test(text)) {
+                return;
+            }
             // 本文以外は無視する
             // => isUserWrittenNode
             if (helper.isChildNode(node, [Syntax.Link, Syntax.Image, Syntax.BlockQuote, Syntax.Emphasis])) {
@@ -58,7 +67,6 @@ module.exports = function (context) {
             if (helper.isChildNode(node, [Syntax.ListItem])) {
                 return;
             }
-            let text = getSource(node);
             let retDesumasu = analyzeDesumasu(text);
             if (retDesumasu.length > 0) {
                 desumasuList.push({
