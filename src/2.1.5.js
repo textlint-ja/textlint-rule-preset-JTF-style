@@ -10,8 +10,10 @@ Halfwidth Katakana variants（半角片仮名）
 http://www.asahi-net.or.jp/~ax2s-kmtn/ref/unicode/uff00.html
  */
 import { isUserWrittenNode } from "./util/node-util";
-import { createDictionaryChecker } from "./util/dictionary-checker";
-import dictionary from "./dict/2.1.5";
+import { compileDictionary, createDictionaryChecker } from "./util/dictionary-checker";
+import rawDictionary from "./dict/2.1.5";
+
+const dictionary = compileDictionary(rawDictionary);
 import { matchCaptureGroupAll } from "match-index";
 import moji from "moji";
 /**

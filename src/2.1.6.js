@@ -6,8 +6,10 @@
 カタカナの長音表記のルールについては、『外来語(カタカナ)表記ガイドライン第 2 版』(テクニカルコミュニケーター協会、2008 年)に従います。
 『日本語スタイルガイド』(テクニカルコミュニケーター協会編著)の 207 ページ「付録 2 外来語(カタカナ)表記ガイドライン」も参考にします。
 */
-import { createDictionaryChecker } from "./util/dictionary-checker";
-import dictionary from "./dict/2.1.6";
+import { compileDictionary, createDictionaryChecker } from "./util/dictionary-checker";
+import rawDictionary from "./dict/2.1.6";
+
+const dictionary = compileDictionary(rawDictionary);
 
 const report = function (context) {
     // 辞書ベースのカタカナ末尾の長音のチェックを行う

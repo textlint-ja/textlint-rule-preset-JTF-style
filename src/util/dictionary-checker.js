@@ -3,11 +3,8 @@
 /**
  * 辞書(src/dict/*.js)を使って Str ノードをチェックする
  *
- * 以前は textlint-rule-prh を使っていたが、辞書をチェックするだけならprhのエンジン全体は必要ない。
- * 結果を変えないように、prh 5.4.4 と textlint-rule-prh 6.x の次の挙動をそのまま実装している。
+ * 以前は textlint-rule-prh を使っていた。検出結果を変えないように、次の挙動は prh と同じにしている。
  *
- * - テキストを空行(\n{2,})で段落に分け、段落ごとに全ルールを適用する
- * - `prh:disable` と `prh:disable:パターン` のプラグマ
  * - `regexpMustEmpty: $N` は N番目のグループが空でない場合を無視する
  * - マッチした文字列が expected と同じなら無視する
  * - 重なった検出の除外(同じ位置なら長い方、違う位置なら先にある方)
@@ -17,8 +14,6 @@
 import { RuleHelper } from "textlint-rule-helper";
 
 const EXPECTED_GROUP = /\$([0-9]{1,2})/g;
-const PRAGMA = /^(?:.*?)prh:disable(?::([^\n\s]*))?/gm;
-const PARAGRAPH = /([^]*?)\n{2,}/g;
 
 const tailIndexOf = (diff) => diff.index + diff.matches[0].length;
 
@@ -33,9 +28,9 @@ const replaceGroups = (expected, matches) => {
 };
 
 /**
- * @param {{expected: string, pattern: RegExp, regexpMustEmpty?: string, prh?: string}[]} dictionary
+ * @param {{expected: string, pattern: RegExp, regexpMustEmpty?: string}[]} dictionary
  */
-const compileDictionary = (dictionary) => {
+const compileRules = (dictionary) => {
     return dictionary.map((rule) => {
         let mustEmptyIndex = null;
         if (rule.regexpMustEmpty) {
@@ -48,8 +43,7 @@ const compileDictionary = (dictionary) => {
         return {
             expected: rule.expected,
             pattern: rule.pattern,
-            mustEmptyIndex,
-            note: rule.prh || null
+            mustEmptyIndex
         };
     });
 };
@@ -66,59 +60,6 @@ const collectRuleDiffs = (rule, content, diffs) => {
             continue;
         }
         diffs.push({ index: matches.index, matches, rule });
-    }
-};
-
-const isCollide = (diff, range) => {
-    const tailIndex = tailIndexOf(diff);
-    if (range.index < diff.index && diff.index < range.tailIndex) {
-        return true;
-    }
-    if (diff.index < range.index && range.index < tailIndex) {
-        return true;
-    }
-    return false;
-};
-
-/**
- * prh の Paragraph#makeDiffs と同じ
- */
-const makeParagraphDiffs = (rules, paragraphIndex, content, diffs) => {
-    let ignoreAll = false;
-    let pragmaRanges = null;
-    let ignorePatterns = null;
-    if (content.indexOf("prh:disable") !== -1) {
-        pragmaRanges = [];
-        ignorePatterns = [];
-        PRAGMA.lastIndex = 0;
-        let matches;
-        while ((matches = PRAGMA.exec(content))) {
-            if (!matches[1]) {
-                ignoreAll = true;
-                continue;
-            }
-            pragmaRanges.push({ index: matches.index, tailIndex: matches.index + matches[0].length });
-            ignorePatterns.push(new RegExp("(" + matches[1] + ")", "g"));
-        }
-    }
-    if (ignoreAll) {
-        return;
-    }
-    const paragraphDiffs = [];
-    for (const rule of rules) {
-        collectRuleDiffs(rule, content, paragraphDiffs);
-    }
-    for (const diff of paragraphDiffs) {
-        if (pragmaRanges !== null) {
-            if (!pragmaRanges.every((range) => !isCollide(diff, range))) {
-                continue;
-            }
-            if (ignorePatterns.some((ignorePattern) => diff.matches[0].match(ignorePattern))) {
-                continue;
-            }
-        }
-        diff.index += paragraphIndex;
-        diffs.push(diff);
     }
 };
 
@@ -149,25 +90,10 @@ const prepareDiffs = (diffs) => {
     });
 };
 
-/**
- * prh の Engine#makeChangeSet と同じ
- */
 const makeDiffs = (rules, content) => {
     const diffs = [];
-    if (content.indexOf("\n\n") === -1) {
-        makeParagraphDiffs(rules, 0, content, diffs);
-    } else {
-        PARAGRAPH.lastIndex = 0;
-        let lastIndex = 0;
-        while (true) {
-            const matches = PARAGRAPH.exec(content);
-            if (!matches) {
-                makeParagraphDiffs(rules, lastIndex, content.substr(lastIndex), diffs);
-                break;
-            }
-            makeParagraphDiffs(rules, matches.index, matches[1], diffs);
-            lastIndex = PARAGRAPH.lastIndex;
-        }
+    for (const rule of rules) {
+        collectRuleDiffs(rule, content, diffs);
     }
     if (diffs.length === 0) {
         return diffs;
@@ -176,21 +102,38 @@ const makeDiffs = (rules, content) => {
 };
 
 /**
+ * 辞書をコンパイルする。ルールのモジュールで1回だけ呼び出す
+ * @param {{expected: string, pattern: RegExp, regexpMustEmpty?: string}[]} dictionary
+ */
+export function compileDictionary(dictionary) {
+    const rules = compileRules(dictionary);
+    return {
+        rules,
+        // すべてのパターンを | でつないだ正規表現。テキストに検出対象があるかを1回で調べる
+        anyPattern: new RegExp(rules.map((rule) => `(?:${rule.pattern.source})`).join("|"), "mu")
+    };
+}
+
+/**
  * 辞書でチェックする Str ハンドラーを作る
  * @param context
- * @param {{expected: string, pattern: RegExp, regexpMustEmpty?: string, prh?: string}[]} dictionary
+ * @param {{rules: object[], anyPattern: RegExp}} compiledDictionary compileDictionary の結果
  * @returns {function(node): void}
  */
-export function createDictionaryChecker(context, dictionary) {
+export function createDictionaryChecker(context, compiledDictionary) {
     const { Syntax, RuleError, report, fixer, getSource } = context;
     const helper = new RuleHelper(context);
-    const rules = compileDictionary(dictionary);
+    const { rules, anyPattern } = compiledDictionary;
     const ignoreNodeTypes = [Syntax.Link, Syntax.BlockQuote, Syntax.Emphasis];
     return (node) => {
+        const text = getSource(node);
+        // どのパターンにもマッチしないなら、検出するものはない
+        if (!anyPattern.test(text)) {
+            return;
+        }
         if (helper.isChildNode(node, ignoreNodeTypes)) {
             return;
         }
-        const text = getSource(node);
         const diffs = makeDiffs(rules, text);
         // textlint-rule-prh の forEachChange と同じく、前の置換を反映した文字列から actual を取り出す
         let str = text;
@@ -206,10 +149,9 @@ export function createDictionaryChecker(context, dictionary) {
             if (actual === expected) {
                 continue;
             }
-            const suffix = diff.rule.note !== null ? "\n" + diff.rule.note : "";
             report(
                 node,
-                new RuleError(actual + " => " + expected + suffix, {
+                new RuleError(actual + " => " + expected, {
                     index: matchStartIndex,
                     fix: fixer.replaceTextRange([matchStartIndex, matchEndIndex], expected)
                 })
@@ -226,7 +168,7 @@ export function createDictionaryChecker(context, dictionary) {
  * @returns {string}
  */
 export function applyDictionaryRule(rule, text) {
-    const rules = compileDictionary([rule]);
+    const rules = compileRules([rule]);
     const diffs = [];
     collectRuleDiffs(rules[0], text, diffs);
     let str = text;
