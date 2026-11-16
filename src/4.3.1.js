@@ -35,6 +35,10 @@ function reporter(context) {
             if (text.indexOf("(") === -1 && text.indexOf(")") === -1) {
                 return;
             }
+            // どのパターンも和文の文字を含むので、和文の文字がないならマッチしない
+            if (!japaneseRegExp.test(text)) {
+                return;
+            }
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
