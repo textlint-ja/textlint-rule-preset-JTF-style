@@ -14,6 +14,8 @@ import { isUserWrittenNode } from "./util/node-util";
 const leftTarget = new RegExp(`([,\\.])${japaneseRegExp.source}`, "g");
 // {日本語}[,.]
 const rightTarget = new RegExp(`${japaneseRegExp.source}([,\\.])`, "g");
+// leftTarget か rightTarget のどちらかにマッチするかを1回で調べる
+const anyTarget = new RegExp(`[,\\.]${japaneseRegExp.source}|${japaneseRegExp.source}[,\\.]`);
 // . => 。 の置換マップ
 const replaceSymbol = {
     ".": "。",
@@ -26,7 +28,7 @@ const reporter = (context) => {
         [Syntax.Str](node) {
             const text = getSource(node);
             // 半角のピリオドとカンマがないなら、どのパターンにもマッチしない
-            if (text.indexOf(",") === -1 && text.indexOf(".") === -1) {
+            if ((text.indexOf(",") === -1 && text.indexOf(".") === -1) || !anyTarget.test(text)) {
                 return;
             }
             if (!isUserWrittenNode(node, context)) {

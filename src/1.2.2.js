@@ -16,22 +16,23 @@ function report(context) {
     let { Syntax, RuleError, fixer, report, getSource } = context;
     return {
         [Syntax.Str](node) {
+            const text = getSource(node);
+            // 1.2.2. ピリオド(.)とカンマ(,)
+            const index = text.search(/[．，]/);
+            if (index === -1) {
+                return;
+            }
             if (!isUserWrittenNode(node, context)) {
                 return;
             }
-            let text = getSource(node);
-            // 1.2.2. ピリオド(.)とカンマ(,)
-            if (/[．，]/.test(text)) {
-                const index = text.search(/[．，]/);
-                const symbol = replaceSymbol[text[index]];
-                report(
-                    node,
-                    new RuleError("全角のピリオドとカンマは使用しません。", {
-                        index: index,
-                        fix: fixer.replaceTextRange([index, index + 1], symbol)
-                    })
-                );
-            }
+            const symbol = replaceSymbol[text[index]];
+            report(
+                node,
+                new RuleError("全角のピリオドとカンマは使用しません。", {
+                    index: index,
+                    fix: fixer.replaceTextRange([index, index + 1], symbol)
+                })
+            );
         }
     };
 }
