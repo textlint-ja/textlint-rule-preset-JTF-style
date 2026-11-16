@@ -1161,8 +1161,8 @@ packages:
   markdown-table@2.0.0:
     resolution: {integrity: sha512-Ezda85ToJUBhM6WGaG6veasyym+Tbs3cMAw/ZhOPqXiYsr0jgocBV3j3nx+4lk47plLlIqjwuTm/ywVI+zjJ/A==}
 
-  match-index@1.0.3:
-    resolution: {integrity: sha512-1XjyBWqCvEFFUDW/MPv0RwbITRD4xQXOvKoPYtLDq8IdZTfdF/cQSo5Yn4qvhfSSZgjgkTFsqJD2wOUG4ovV8Q==}
+  match-index@1.0.4:
+    resolution: {integrity: sha512-19YL6AzgZmZSu/mJvPr3GPH13Lgu7+wXpzKVVzHdOSMUVBPUq6kI2FfPW2h5wsqtArk4Z4vDCHgi/53+8MqbtQ==}
 
   math-intrinsics@1.1.0:
     resolution: {integrity: sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==}
@@ -1820,8 +1820,8 @@ packages:
   textchecker-element@0.18.0:
     resolution: {integrity: sha512-nHvm5lVjeDmm9FDQt9jXEFUCJzDacz9Y6FQJOPLOX8QBOPuWq71jQbfJb8dbMCeiLpcHb1iR9OytHvBLEnnABg==}
 
-  textlint-rule-helper@2.5.0:
-    resolution: {integrity: sha512-QIbFPtyqLy0g5BJn8mryk9iHzGYicNaFIpLFPiEnb4RXxrEGeQ2W2aARQ9yEXLIAqo+OwK4ndWBAWkbgJEPzTQ==}
+  textlint-rule-helper@2.6.0:
+    resolution: {integrity: sha512-xmMYSJKI/LVKyEcda275/PyqR3NbHQwWGO+DOQuE7fOhZenaonV9ocptW7/Qj4vwI52YRyOYzTdqPi3oG5vOXA==}
 
   textlint-rule-preset-jtf-style@file:..:
     resolution: {directory: .., type: directory}
@@ -1906,9 +1906,6 @@ packages:
 
   unist-util-visit-parents@3.1.1:
     resolution: {integrity: sha512-1KROIZWo6bcMrZEwiH2UrXDyalAa0uqzWCxCJj6lPOvTve2WkfgCytoDTPaMnodXh1WrXOq0haVYHj99ynJlsg==}
-
-  unist-util-visit@2.0.3:
-    resolution: {integrity: sha512-iJ4/RczbJMkD0712mGktuGpm/U4By4FfDonL7N/9tATGIF4imikjOuagyMY53tnZq3NP6BcmlrHhEKAfGWjh7Q==}
 
   unpipe@1.0.0:
     resolution: {integrity: sha512-pjy2bYhSsufwWlKwPc+l3cN7+wuJlK6uz0YdJEOlQDbl6jo/YlPi4mb8agUkVC8BF7V8NuzeyPNqRksA3hztKQ==}
@@ -3412,7 +3409,7 @@ snapshots:
     dependencies:
       repeat-string: 1.6.1
 
-  match-index@1.0.3:
+  match-index@1.0.4:
     dependencies:
       regexp.prototype.flags: 1.5.4
 
@@ -4253,20 +4250,19 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  textlint-rule-helper@2.5.0:
+  textlint-rule-helper@2.6.0:
     dependencies:
       '@textlint/ast-node-types': 15.2.2
       structured-source: 4.0.0
-      unist-util-visit: 2.0.3
 
   textlint-rule-preset-jtf-style@file:..:
     dependencies:
       analyze-desumasu-dearu: 2.1.5
       japanese-numerals-to-number: 1.0.2
-      match-index: 1.0.3
+      match-index: 1.0.4
       moji: 0.5.1
       regexp.prototype.flags: 1.5.4
-      textlint-rule-helper: 2.5.0
+      textlint-rule-helper: 2.6.0
 
   textlint@15.2.2:
     dependencies:
@@ -4369,12 +4365,6 @@ snapshots:
     dependencies:
       '@types/unist': 2.0.11
       unist-util-is: 4.1.0
-
-  unist-util-visit@2.0.3:
-    dependencies:
-      '@types/unist': 2.0.11
-      unist-util-is: 4.1.0
-      unist-util-visit-parents: 3.1.1
 
   unpipe@1.0.0: {}
 
